@@ -10,7 +10,7 @@ using ZFrameCore.Entity;
 
 namespace ZFrameCore.Common
 {
-    
+
     #region Emit DataTable => List<T>
     public static class ToEntityByEmit
     {
@@ -493,7 +493,7 @@ namespace ZFrameCore.Common
     }
     #endregion
 
-    //JSON<=>T
+    #region JSON<=>T
     public static class JsonHelper
     {
         /// <summary>
@@ -516,8 +516,33 @@ namespace ZFrameCore.Common
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(Obj);
         }
-        
+
     }
+    #endregion
+
+    #region String Helper
+    public static class StringHelper
+    {
+        /// <summary>
+        /// 生成随机字符串(没有 欧O)
+        /// </summary>
+        /// <param name="codeCount"></param>
+        /// <returns></returns>
+        public static string CreateRandomCode(int codeCount)
+        {
+            String chars = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
+            char[] stringChars = new char[codeCount];
+            Random random = new Random();
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+            return new String(stringChars);
+        }
+    }
+
+    #endregion
+
 }
 
 
