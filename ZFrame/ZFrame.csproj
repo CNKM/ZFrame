@@ -661,7 +661,6 @@
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\window.css" />
     <Content Include="VCode.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
-    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
     <Content Include="Scripts\jquery-easyui-1.4.1\demo\accordion\datagrid_data1.json" />
     <Content Include="Scripts\jquery-easyui-1.4.1\demo\combobox\combobox_data1.json" />
@@ -731,13 +730,6 @@
     </Compile>
     <Compile Include="WCFServices.svc.cs">
       <DependentUpon>WCFServices.svc</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

@@ -12,6 +12,7 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Web;
+using ZFrameCore.Common;
 
 namespace ZFrame
 {
@@ -47,7 +48,6 @@ namespace ZFrame
       
 
         [WebGet]
-        
         [OperationContract]
         public Stream GetListUsers(String LoginName="", String LoginPWD="")
         {
@@ -64,7 +64,6 @@ namespace ZFrame
 
 
         [WebGet]
-
         [OperationContract]
         public Stream GetServerDateTime()
         {
@@ -74,6 +73,16 @@ namespace ZFrame
             //jsonObject是准备转换的对象
             String JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(DateTime.Now, Newtonsoft.Json.Formatting.None, timeConverter);
             return GetStream(JsonString);
+        }
+
+        [WebGet]
+        [OperationContract]
+        public Stream Login_UserCheck(String PostValue)
+        {
+            ZJsonObject ZJ = new ZJsonObject(PostValue);
+            string ss = ZJ["U"].ToString();
+            return null;
+            
         }
 
     }

@@ -543,6 +543,27 @@ namespace ZFrameCore.Common
 
     #endregion
 
+    #region Json Extend
+    public class ZJsonObject : Dictionary<String, Object>
+    {
+        Dictionary<String, Object> TempJsonObject;
+
+        public ZJsonObject(String JsonString)
+
+        {
+            this.Clear();
+            TempJsonObject = JsonString.FromJsonString<Dictionary<String, Object>>();
+            foreach (var item in TempJsonObject)
+            {
+                this.Add(item.Key,item.Value);
+            }
+           
+        }
+
+
+    }
+    #endregion
+
 }
 
 

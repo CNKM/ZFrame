@@ -35,20 +35,43 @@
     <script>
         WindowResizeEvent = function () {
             $("#LoginFrm").window("center");
+
         }
         var UserLogin = function () {
-            var PV = {
+            var CValue = {
                 U: $("#txtUserName").textbox("getText"),
                 P: $("#txtUserPWD").textbox("getText"),
                 C: $("#txtCheckCode").textbox("getText")
             };
-            
-            var PV =JSON.stringify(PostValue);
+
+            if (StringHelper.IsNullOrEmpty(CValue.U)) {
+                alert("登录密码不能为空！");
+                return;
+            }
+            if (StringHelper.IsNullOrEmpty(CValue.P)) {
+                alert("登录账号不能为空！");
+                return;
+            }
+            if (StringHelper.IsNullOrEmpty(CValue.C)) {
+                alert("登录验证码不能为空！");
+                return;
+            }
+
+            var Parm = {
+                PostValue: JSON.stringify(CValue)
+            }
+          
+            AjaxHelper.CallFunction("Login_UserCheck", Parm, function () {
+                 alert("成功！")
+             }, function (e) {
+                 alert(e);
+
+             });
         }
 
         $(document).ready(function () {
+            AjaxHelper.ServerBaseURL = "http://localhost:52448/WCFServices.svc";
             $('#txtUserName').textbox("textbox").focus();
-
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
                     $("#txtUserPWD").textbox("textbox").focus();
@@ -64,8 +87,6 @@
                     UserLogin();
                 }
             })
-
-
             $("#btnLogin").click(function () {
                 UserLogin();
             });

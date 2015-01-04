@@ -1,10 +1,9 @@
-﻿
-var AjaxHelper = {
+﻿var AjaxHelper = {
     ServerBaseURL: "",
-    CallFunction: function (funcurl,parm, successcallback, errorcallback) {
+    CallFunction: function (funcurl, parm, successcallback, errorcallback) {
         $.ajax({
             type: "GET",
-            url: this.ServerBaseURL + "/"+funcurl,
+            url: this.ServerBaseURL + "/" + funcurl,
             data: parm,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -16,7 +15,7 @@ var AjaxHelper = {
             }
         });
     }
-};
+}
 
 //获取数据行
 var GridJsonRows = function (data) {
@@ -35,5 +34,16 @@ $(window).resize(function () {
     WindowResizeEvent();
 });
 
-
+///字符串处理
+var StringHelper = {
+    IsNullOrEmpty: function (str) {
+        if (str == null) {
+            return true;
+        }
+        if (str.length == 0) {
+            return true;
+        }
+        return false;
+    }
+}
 
