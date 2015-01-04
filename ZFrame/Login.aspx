@@ -31,37 +31,76 @@
             padding-bottom: 3px;
             font-size: 16px;
         }
-        .CheckCodeLine {
-            float:left;
-            *margin-left:30px;
-            margin-left:35px;
-            
-        }
     </style>
     <script>
         WindowResizeEvent = function () {
             $("#LoginFrm").window("center");
         }
+        var UserLogin = function () {
+            var PV = {
+                U: $("#txtUserName").textbox("getText"),
+                P: $("#txtUserPWD").textbox("getText"),
+                C: $("#txtCheckCode").textbox("getText")
+            };
+            
+            var PV =JSON.stringify(PostValue);
+        }
+
+        $(document).ready(function () {
+            $('#txtUserName').textbox("textbox").focus();
+
+            $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    $("#txtUserPWD").textbox("textbox").focus();
+                }
+            });
+            $("#txtUserPWD").textbox("textbox").bind("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    $("#txtCheckCode").textbox("textbox").focus();
+                }
+            });
+            $("#txtCheckCode").textbox("textbox").bind("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    UserLogin();
+                }
+            })
+
+
+            $("#btnLogin").click(function () {
+                UserLogin();
+            });
+            $("#btnCancel").click(function () {
+
+                $("#txtUserName").textbox("setText", "");
+                $("#txtUserPWD").textbox("setText", "");
+                $("#txtCheckCode").textbox("setText", "");
+                $("#txtUserName").textbox("textbox").focus();
+            })
+        });
     </script>
     <div id="LoginFrm" class="easyui-window" title="用户登陆"
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
         style="width: 400px; height: 200px; top: 200px;">
         <div style="text-align: center; overflow: hidden; margin-top: 11px; font-size: 13.5px">
-            <div style="width: 100%; margin: 5px;">登陆姓名: <input class="easyui-textbox" data-options="prompt:'请输入管理员分配的账号...'" style="width: 70%; height: 25px" /></div>
-            <div style="width: 100%; margin: 5px; margin-top: 4px">登陆密码: <input class="easyui-textbox" data-options="prompt:'请输入用户密码...'" style="width: 70%; height: 25px" /></div>
-            <div style="width: 100%; margin: 5px;margin-left:32px">
-                <div style="float:left;">
-                    验证密码: <input class="easyui-textbox" data-options="prompt:'请输入右侧验证码...',validType:'email'" type="password" style="height: 25px; width: 120px" />
-                </div>
-                <div style="float: left; margin-left: 4px">
-                    <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
-                </div>
+            <div style="width: 100%; margin: 5px;">
+                登陆姓名:
+                <input id="txtUserName" class="easyui-textbox" data-options="prompt:'请输入管理员分配的账号...',iconCls:'icon-search',iconAlign:'left'" style="width: 70%; height: 25px" />
             </div>
-            <div style="width: 100%; margin: 5px; float: left; margin-top: 8px">
-                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">登陆</a>
-                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px; margin-left: 10px">取消</a>
+            <div style="width: 100%; margin: 5px; margin-top: 4px">
+                登陆密码:
+                <input id="txtUserPWD" class="easyui-textbox" data-options="" type="password" style="width: 70%; height: 25px" />
             </div>
-
+            <div style="float: left; margin: 5px; margin-top: 1px; width: 196px">
+                验证密码:
+                    <input id="txtCheckCode" class="easyui-textbox" data-options="" type="password" style="height: 25px; width: 80px" />
+            </div>
+            <div style="float: left; margin-left: -30px; margin-top: 3px">
+                <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
+            </div>
+            <div style="width: 100%; margin: 5px; float: left; margin-top: 8px; clear: both">
+                <a href="#" id="btnLogin" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">登陆</a>
+                <a href="#" id="btnCancel" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px; margin-left: 10px">取消</a>
+            </div>
         </div>
     </div>
 </asp:Content>
