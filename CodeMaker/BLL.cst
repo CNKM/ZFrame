@@ -3,7 +3,7 @@ Name:实体对象
 Author: PeerLessSoul Code by:Code Smith
 --%>
 <%@ CodeTemplate Language="C#" TargetLanguage="JScript" Description="Generates a very simple business object." ResponseEncoding="UTF-8" %>
-<%@ Property Name="NameSpace" Type="String" Category="Text" Default="Sunfishlu." Description="The namespace to use for this class" %>
+<%@ Property Name="NameSpace" Type="String" Category="Text" Default="BLL." Description="The namespace to use for this class" %>
 <%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the object is based on." %>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Assembly Name="System.Data" %>
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-namespace <%= NameSpace %>
+namespace <%= this.GetProperty("NameSpace").ToString()+this.SourceTable.Name.Split('_')[1].ToUpper() %>
 {
    public class  <%=GetClassName(SourceTable.Name)%> : TBLLBase<<%=SourceTable.Name%>>
     {

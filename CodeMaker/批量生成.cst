@@ -4,7 +4,8 @@ Author:
 Description: 
 --%>
 <%@ CodeTemplate Language="C#" TargetLanguage="JScript" Description="Generates a very simple business object." ResponseEncoding="UTF-8" %>
-<%@ Property Name="NameSpace" Type="String" Category="Text" Default="Sunfishlu." Description="The namespace to use for this class" %>
+<%@ Property Name="EntityNameSpace" Type="String" Category="Text" Default="Entity." Description="The namespace to use for this class" %>
+<%@ Property Name="BLLNameSpace" Type="String" Category="Text" Default="BLL." Description="The namespace to use for this class" %>
 <%-- 数据库 --%>
 <%@ Property Name="SourceDatabase" Type="SchemaExplorer.DatabaseSchema" DeepLoad="True" Optional="False" Category="01. Getting Started - Required" Description="Database that the tables views, and stored procedures should be based on. IMPORTANT!!! If SourceTables and SourceViews are left blank, the Entire Database will then be generated."%>
 <%--注册模版--%>
@@ -45,6 +46,8 @@ private void BatchMake()
         //生成模板
         entityTemplate.SetProperty("SourceTable",table);
         bLLTemplate.SetProperty("SourceTable",table);
+        entityTemplate.SetProperty("NameSpace",this.GetProperty("EntityNameSpace").ToString());
+        bLLTemplate.SetProperty("NameSpace",this.GetProperty("BLLNameSpace").ToString());
      
         string EFileDirectory = OutputDirectory +"\\Entity\\"+ table.Name +".cs";
         entityTemplate.RenderToFile(EFileDirectory,true);
