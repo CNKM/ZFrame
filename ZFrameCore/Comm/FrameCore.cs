@@ -562,16 +562,12 @@ namespace ZFrameCore.Common
         /// <returns></returns>
         public static Stream ToStream(this String SourceString)
         {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (StreamWriter sw = new StreamWriter(ms))
-                {
-                    sw.AutoFlush = true;
-                    sw.Write(SourceString);
-                    ms.Position = 0;
-                    return ms;
-                }
-            }
+            MemoryStream ms = new MemoryStream();
+            StreamWriter sw = new StreamWriter(ms);
+            sw.AutoFlush = true;
+            sw.Write(SourceString);
+            ms.Position = 0;
+            return ms;
         }
     }
 
@@ -585,15 +581,14 @@ namespace ZFrameCore.Common
         Dictionary<String, Object> TempJsonObject;
 
         public ZJsonObject(String JsonString)
-
         {
             this.Clear();
             TempJsonObject = JsonString.FromJsonString<Dictionary<String, Object>>();
             foreach (var item in TempJsonObject)
             {
-                this.Add(item.Key,item.Value);
+                this.Add(item.Key, item.Value);
             }
-           
+
         }
 
 

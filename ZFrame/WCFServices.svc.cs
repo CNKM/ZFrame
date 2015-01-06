@@ -27,7 +27,6 @@ namespace ZFrameWeb
         public WCFServices()
         {
 
-
         }
 
         [WebGet]
@@ -50,7 +49,6 @@ namespace ZFrameWeb
         [OperationContract]
         public Stream GetServerDateTime()
         {
-
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").ToStream();
         }
 
