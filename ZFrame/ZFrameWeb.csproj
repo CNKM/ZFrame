@@ -433,7 +433,7 @@
     <Content Include="VCode.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
-    <Content Include="Web1.config" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
