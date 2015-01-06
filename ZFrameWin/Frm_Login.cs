@@ -16,7 +16,7 @@ namespace ZFrameWin
     public partial class Frm_Login : Form
     {
 
-        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient();
+        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient("NetHttpBinding_WCFServices");
         public Frm_Login()
         {
             InitializeComponent();
