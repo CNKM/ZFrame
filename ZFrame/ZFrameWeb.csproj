@@ -48,7 +48,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -443,7 +442,6 @@
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="WCFServices.svc" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
@@ -479,24 +477,9 @@
     <Compile Include="Views\MasterPage\BasePage.Master.designer.cs">
       <DependentUpon>BasePage.Master</DependentUpon>
     </Compile>
-    <Compile Include="WCFServices.svc.cs">
-      <DependentUpon>WCFServices.svc</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{caf253de-796e-4bd0-9e2a-08934fce19ea}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EasyUI\EasyUI.csproj">
-      <Project>{d523cbb0-34a9-4077-9bb6-09f4fbbd80ea}</Project>
-      <Name>EasyUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{2bca7369-5c3f-46bf-9912-8c27fb53183d}</Project>
-      <Name>Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ZFrameCore\ZFrameCore.csproj">
       <Project>{8652e3d9-7f7c-49b3-b310-b730f82b4cae}</Project>
       <Name>ZFrameCore</Name>

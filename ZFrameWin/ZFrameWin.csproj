@@ -77,15 +77,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\WCFS\WCFServices.wsdl" />
-    <None Include="Service References\WCFS\WCFServices.xsd">
+    <None Include="Service References\WCFS\WCFServices22.wsdl" />
+    <None Include="Service References\WCFS\WCFServices23.wsdl" />
+    <None Include="Service References\WCFS\WCFServices33.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFS\WCFServices1.wsdl" />
-    <None Include="Service References\WCFS\WCFServices1.xsd">
+    <None Include="Service References\WCFS\WCFServices34.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFS\WCFServices2.xsd">
+    <None Include="Service References\WCFS\WCFServices35.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -97,9 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WCFS\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WCFS\WCFServices.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WCFS\configuration91.svcinfo" />
@@ -114,18 +111,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{caf253de-796e-4bd0-9e2a-08934fce19ea}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{2bca7369-5c3f-46bf-9912-8c27fb53183d}</Project>
-      <Name>Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ZFrameCore\ZFrameCore.csproj">
       <Project>{8652e3d9-7f7c-49b3-b310-b730f82b4cae}</Project>
       <Name>ZFrameCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFS\WCFServices11.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

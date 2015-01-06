@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0S28T5kOma9MrScDosmEDQHzWKI=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/FfORGZHQhjIwCWuw7qrIFAQcAw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpContextBinding_WCFServices">
       <properties>
@@ -387,10 +387,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpContextBinding_WCFServices" contract="WCFS.WCFServices" bindingType="basicHttpBinding" address="http://localhost:52448/WCFServices.svc/BaseHttp" bindingConfiguration="BasicHttpContextBinding_WCFServices">
+    <endpoint name="BasicHttpContextBinding_WCFServices" contract="WCFS.WCFServices" bindingType="basicHttpBinding" address="http://localhost:4274/WCFServices.svc/BaseHttp" bindingConfiguration="BasicHttpContextBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:52448/WCFServices.svc/BaseHttp</serializedValue>
+          <serializedValue>http://localhost:4274/WCFServices.svc/BaseHttp</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -472,10 +472,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="wsHttpBinding" address="http://localhost:52448/WCFServices.svc/WsHttp" bindingConfiguration="WSHttpBinding_WCFServices">
+    <endpoint name="WSHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="wsHttpBinding" address="http://localhost:4274/WCFServices.svc/WsHttp" bindingConfiguration="WSHttpBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:52448/WCFServices.svc/WsHttp</serializedValue>
+          <serializedValue>http://localhost:4274/WCFServices.svc/WsHttp</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -557,10 +557,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="customBinding" address="http://localhost:52448/WCFServices.svc/HttpNet" bindingConfiguration="NetHttpBinding_WCFServices">
+    <endpoint name="NetHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="customBinding" address="http://localhost:4274/WCFServices.svc/HttpNet" bindingConfiguration="NetHttpBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:52448/WCFServices.svc/HttpNet</serializedValue>
+          <serializedValue>http://localhost:4274/WCFServices.svc/HttpNet</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

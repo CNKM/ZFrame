@@ -18,15 +18,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:52448/WCFServices.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:4274/WCFServices.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="0d8e376f-83a5-463c-bed3-b318193a032e" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?xsd=xsd2" />
-    <MetadataFile FileName="WCFServices.disco" MetadataType="Disco" ID="f9c72b01-a02d-4514-a702-f3e37b5172bc" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?disco" />
-    <MetadataFile FileName="WCFServices1.xsd" MetadataType="Schema" ID="501eee75-3559-4911-9b73-1e69c354f1e8" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?xsd=xsd0" />
-    <MetadataFile FileName="WCFServices.wsdl" MetadataType="Wsdl" ID="61731a0a-8c2a-4a31-88fe-fb0255c70e55" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?wsdl" />
-    <MetadataFile FileName="WCFServices1.wsdl" MetadataType="Wsdl" ID="dcbb64bc-daa7-48fb-8b59-94dd1255b709" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?wsdl=wsdl0" />
-    <MetadataFile FileName="WCFServices2.xsd" MetadataType="Schema" ID="d758c6e0-188f-4d8d-8bfc-d0fabb0f349e" SourceId="1" SourceUrl="http://localhost:52448/WCFServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFServices22.wsdl" MetadataType="Wsdl" ID="f1446c0d-fef8-49f0-9eb4-73def967152a" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?wsdl" />
+    <MetadataFile FileName="WCFServices23.wsdl" MetadataType="Wsdl" ID="d4ceee77-6071-4223-baa5-a498c595ccda" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="WCFServices33.xsd" MetadataType="Schema" ID="62e52f3a-7204-4c1f-8370-bdc354a720f3" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFServices34.xsd" MetadataType="Schema" ID="f9fe337a-8f9b-475f-b3f2-889a16320101" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFServices11.disco" MetadataType="Disco" ID="34fbdf0f-1a17-4482-815d-bafca4509838" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?disco" />
+    <MetadataFile FileName="WCFServices35.xsd" MetadataType="Schema" ID="8a784266-3f7e-42da-9faf-de37931e33ef" SourceId="1" SourceUrl="http://localhost:4274/WCFServices.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
