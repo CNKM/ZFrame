@@ -27,6 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.外围", "4.外围", "{61
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyUI", "EasyUI\EasyUI.csproj", "{D523CBB0-34A9-4077-9BB6-09F4FBBD80EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZFrameWin", "ZFrameWin\ZFrameWin.csproj", "{E0CDFD91-6AD8-4E23-8BD7-127853E88103}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C34BA373-1363-4596-AE62-C5295FDDC4C3} = {C34BA373-1363-4596-AE62-C5295FDDC4C3}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -61,6 +66,10 @@ Global
 		{D523CBB0-34A9-4077-9BB6-09F4FBBD80EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D523CBB0-34A9-4077-9BB6-09F4FBBD80EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D523CBB0-34A9-4077-9BB6-09F4FBBD80EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0CDFD91-6AD8-4E23-8BD7-127853E88103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0CDFD91-6AD8-4E23-8BD7-127853E88103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0CDFD91-6AD8-4E23-8BD7-127853E88103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0CDFD91-6AD8-4E23-8BD7-127853E88103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

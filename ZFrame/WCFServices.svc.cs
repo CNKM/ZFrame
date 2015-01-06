@@ -23,12 +23,10 @@ namespace ZFrameWeb
     public class WCFServices
     {
 
-        
-
         public WCFServices()
         {
-            WebOperationContext.Current.OutgoingResponse.ContentType = "text/plain; charset=utf-8";
-            String T= HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.Url.ToString());
+            //WebOperationContext.Current.OutgoingResponse.ContentType = "text/plain; charset=utf-8";
+           // String T = HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.Url.ToString());
 
         }
         // 要使用 HTTP GET，请添加 [WebGet] 特性。(默认 ResponseFormat 为 WebMessageFormat.Json)
