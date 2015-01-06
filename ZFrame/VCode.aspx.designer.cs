@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZFrame
+namespace ZFrameWeb
 {
 
 

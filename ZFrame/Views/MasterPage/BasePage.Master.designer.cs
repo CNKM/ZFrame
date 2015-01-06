@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZFrame.Views.MasterPage {
+namespace ZFrameWeb.Views.MasterPage {
     
     
     public partial class BasePage {

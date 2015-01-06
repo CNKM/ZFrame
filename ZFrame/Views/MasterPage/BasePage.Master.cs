@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ZFrame.Views.MasterPage
+namespace ZFrameWeb.Views.MasterPage
 {
     public partial class BasePage : System.Web.UI.MasterPage
     {

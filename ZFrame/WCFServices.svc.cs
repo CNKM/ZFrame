@@ -14,7 +14,7 @@ using System.Text;
 using System.Web;
 using ZFrameCore.Common;
 
-namespace ZFrame
+namespace ZFrameWeb
 {
 
 

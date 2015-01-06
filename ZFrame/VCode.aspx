@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VCode.aspx.cs" Inherits="ZFrame.VCode" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VCode.aspx.cs" Inherits="ZFrameWeb.VCode" %>
 
 <!DOCTYPE html>
 

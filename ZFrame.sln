@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZFrame", "ZFrame\ZFrame.csproj", "{C34BA373-1363-4596-AE62-C5295FDDC4C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZFrameWeb", "ZFrame\ZFrameWeb.csproj", "{C34BA373-1363-4596-AE62-C5295FDDC4C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZFrameCore", "ZFrameCore\ZFrameCore.csproj", "{8652E3D9-7F7C-49B3-B310-B730F82B4CAE}"
 EndProject

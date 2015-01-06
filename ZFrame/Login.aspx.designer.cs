@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZFrame {
+namespace ZFrameWeb {
     
     
     public partial class Login {

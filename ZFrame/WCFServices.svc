@@ -1,2 +1,2 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="ZFrame.WCFServices" CodeBehind="WCFServices.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="ZFrameWeb.WCFServices" CodeBehind="WCFServices.svc.cs" %>
 

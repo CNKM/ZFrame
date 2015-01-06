@@ -7,7 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace ZFrame
+namespace ZFrameWeb
 {
     public class Global : System.Web.HttpApplication
     {

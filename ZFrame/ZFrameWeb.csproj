@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZFrame</RootNamespace>
-    <AssemblyName>ZFrame</AssemblyName>
+    <RootNamespace>ZFrameWeb</RootNamespace>
+    <AssemblyName>ZFrameWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -69,7 +69,6 @@
     <Content Include="Images\Icons\ExtIconsLib.css" />
     <Content Include="Images\Icons\login_user.png" />
     <Content Include="Login.aspx" />
-    <Content Include="Login.css" />
     <Content Include="Readme.txt" />
     <Content Include="Scripts\Comm\JComm.js" />
     <Content Include="Scripts\jquery-easyui-1.4.1\changelog.txt" />
