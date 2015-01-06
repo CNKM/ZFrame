@@ -67,7 +67,7 @@
         }
 
         $(document).ready(function () {
-            AjaxHelper.ServerBaseURL = "http://localhost:52448/WCFServices.svc";
+            //AjaxHelper.ServerBaseURL = "http://localhost:52448/WCFServices.svc";
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {

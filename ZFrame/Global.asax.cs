@@ -13,15 +13,16 @@ namespace ZFrameWeb
     {
 
 
-        public void RegWCFServices()
-        {
-            RouteTable.Routes.Add(new ServiceRoute("Func", new WebServiceHostFactory(), typeof(WCFServices)));
-        }
+        //public void RegWCFServices()
+        //{
+        //    RouteTable.Routes.Add(new ServiceRoute("Func", new WebServiceHostFactory(), typeof(WCFServices)));
+        //}
 
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RegWCFServices();
+           // RegWCFServices();
+            Application["WCFHOME"] = System.Configuration.ConfigurationManager.AppSettings["WCFHOME"];
         }
 
         

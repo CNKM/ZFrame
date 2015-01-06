@@ -1,9 +1,6 @@
-﻿using BLL;
-using BLL.SYS;
+﻿using BLL.SYS;
 using EasyUI.DataGrid;
-using Entity;
 using Entity.SYS;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,10 +14,8 @@ using System.Web;
 using ZFrameCore.Common;
 
 
-namespace ZFrameWeb
+namespace ZFrameWCF
 {
-
-
     [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class WCFServices
@@ -49,12 +44,11 @@ namespace ZFrameWeb
 
         [WebGet]
         [OperationContract]
-        public Stream Login_UserCheck(String UserName,String PassWord,String CheckCode)
+        public Stream Login_UserCheck(String UserName, String PassWord, String CheckCode)
         {
             T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
             UserBLL.UserCheck(UserName, PassWord);
             return UserName.ToStream();
-            //return ReturnValue.ToStream();
         }
 
     }

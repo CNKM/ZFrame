@@ -6,9 +6,8 @@
             url: this.ServerBaseURL + "/" + funcurl,
             data: parm,
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
-                successcallback(data);
+            success: function (responseText, status) {
+                successcallback(responseText);
             },
             error: function (err) {
                 errorcallback(err);
