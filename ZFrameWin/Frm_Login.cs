@@ -20,7 +20,7 @@ namespace ZFrameWin
         public Frm_Login()
         {
             InitializeComponent();
-            MessageBox.Show(WCFSC.GetServerDateTime().ToStream());
+            MessageBox.Show(WCFSC.GetServerDateTime().SToString());
         }
     }
 }

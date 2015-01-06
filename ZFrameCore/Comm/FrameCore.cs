@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -497,6 +498,7 @@ namespace ZFrameCore.Common
     #region JSON<=>T
     public static class JsonHelper
     {
+        static IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
         /// <summary>
         /// JSON字符串=>对象
         /// </summary>
@@ -515,7 +517,8 @@ namespace ZFrameCore.Common
         /// <returns></returns>
         public static String ToJsonString(this Object Obj)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(Obj);
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            return Newtonsoft.Json.JsonConvert.SerializeObject(Obj, Newtonsoft.Json.Formatting.None, timeConverter);
         }
 
     }
@@ -547,7 +550,7 @@ namespace ZFrameCore.Common
         /// </summary>
         /// <param name="SourceStream"></param>
         /// <returns></returns>
-        public static String ToStream(this Stream SourceStream)
+        public static String SToString(this Stream SourceStream)
         {
             using (StreamReader sw = new StreamReader(SourceStream))
             {
