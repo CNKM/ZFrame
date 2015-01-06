@@ -31,7 +31,9 @@
   <xs:element name="Login_UserCheck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="PostValue" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CheckCode" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

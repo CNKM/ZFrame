@@ -47,10 +47,8 @@ namespace ZFrameWeb
 
         [WebGet]
         [OperationContract]
-        public Stream Login_UserCheck(String PostValue)
+        public Stream Login_UserCheck(String UserName,String PassWord,String CheckCode)
         {
-            ZJsonObject ZJ = new ZJsonObject(PostValue);
-            string ss = ZJ["U"].ToString();
             return null;
         }
 

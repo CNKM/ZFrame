@@ -16,11 +16,13 @@ namespace ZFrameWin
     public partial class Frm_Login : Form
     {
 
-        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient("NetHttpBinding_WCFServices");
+        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient("BasicHttpContextBinding_WCFServices");
         public Frm_Login()
         {
             InitializeComponent();
             MessageBox.Show(WCFSC.GetServerDateTime().SToString());
+            
+            
         }
     }
 }

@@ -39,29 +39,26 @@
         }
         var UserLogin = function () {
             var CValue = {
-                U: $("#txtUserName").textbox("getText"),
-                P: $("#txtUserPWD").textbox("getText"),
-                C: $("#txtCheckCode").textbox("getText")
+                UserName: $("#txtUserName").textbox("getText"),
+                PassWord: $("#txtUserPWD").textbox("getText"),
+                CheckCode: $("#txtCheckCode").textbox("getText")
             };
 
-            if (StringHelper.IsNullOrEmpty(CValue.U)) {
+            if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
                 alert("登录密码不能为空！");
                 return;
             }
-            if (StringHelper.IsNullOrEmpty(CValue.P)) {
+            if (StringHelper.IsNullOrEmpty(CValue.PassWord)) {
                 alert("登录账号不能为空！");
                 return;
             }
-            if (StringHelper.IsNullOrEmpty(CValue.C)) {
+            if (StringHelper.IsNullOrEmpty(CValue.CheckCode)) {
                 alert("登录验证码不能为空！");
                 return;
             }
 
-            var Parm = {
-                PostValue: JSON.stringify(CValue)
-            }
           
-            AjaxHelper.CallFunction("Login_UserCheck", Parm, function () {
+            AjaxHelper.CallFunction("Login_UserCheck", CValue, function () {
                  alert("成功！")
              }, function (e) {
                  alert(e);
