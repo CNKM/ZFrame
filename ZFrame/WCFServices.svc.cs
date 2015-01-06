@@ -14,6 +14,7 @@ using System.Text;
 using System.Web;
 using ZFrameCore.Common;
 
+
 namespace ZFrameWeb
 {
 
@@ -25,29 +26,13 @@ namespace ZFrameWeb
 
         public WCFServices()
         {
-            //WebOperationContext.Current.OutgoingResponse.ContentType = "text/plain; charset=utf-8";
-           // String T = HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.Url.ToString());
+
 
         }
-        // 要使用 HTTP GET，请添加 [WebGet] 特性。(默认 ResponseFormat 为 WebMessageFormat.Json)
-        // 要创建返回 XML 的操作，
-        //     请添加 [WebGet(ResponseFormat=WebMessageFormat.Xml)]，
-        //     并在操作正文中包括以下行:
-        //     WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
-        private Stream GetStream(string str)
-        {
-            MemoryStream ms = new MemoryStream();
-            StreamWriter sw = new StreamWriter(ms);
-            sw.AutoFlush = true;
-            sw.Write(str);
-            ms.Position = 0;
-            return ms;
-        }
-      
 
         [WebGet]
         [OperationContract]
-        public Stream GetListUsers(String LoginName="", String LoginPWD="")
+        public Stream GetListUsers(String LoginName = "", String LoginPWD = "")
         {
 
             var t = EasyUIHelper.DataGrid.GetClientRequestInfo(HttpContext.Current);
@@ -57,7 +42,7 @@ namespace ZFrameWeb
             timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             //jsonObject是准备转换的对象
             String JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(EasyUIHelper.DataGrid.GetReutrnList<T_SYS_User>(UB.Select(), 100), Newtonsoft.Json.Formatting.None, timeConverter);
-            return GetStream(JsonString);
+            return JsonString.ToStream();
         }
 
 
@@ -65,12 +50,8 @@ namespace ZFrameWeb
         [OperationContract]
         public Stream GetServerDateTime()
         {
-            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
-            //这里使用自定义日期格式，如果不使用的话，默认是ISO8601格式
-            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-            //jsonObject是准备转换的对象
-            String JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(DateTime.Now, Newtonsoft.Json.Formatting.None, timeConverter);
-            return GetStream(JsonString);
+
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").ToStream();
         }
 
         [WebGet]
@@ -80,7 +61,6 @@ namespace ZFrameWeb
             ZJsonObject ZJ = new ZJsonObject(PostValue);
             string ss = ZJ["U"].ToString();
             return null;
-            
         }
 
     }

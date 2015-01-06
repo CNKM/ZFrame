@@ -8,26 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZFrameCore.Common;
+
 
 namespace ZFrameWin
 {
     public partial class Frm_Login : Form
     {
 
-
-        private String ReadStream(Stream sr)
-        {
-            
-            StreamReader sw = new StreamReader(sr);
-            String Reuslt = sw.ReadToEnd();
-            return Reuslt;
-        }
-        ServiceReference1.WCFServicesClient WCFC = new ServiceReference1.WCFServicesClient();
+        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient();
         public Frm_Login()
         {
             InitializeComponent();
-            Stream AS = WCFC.GetServerDateTime();
-            String ReusltS = ReadStream(AS);
+            MessageBox.Show(WCFSC.GetServerDateTime().ToStream());
         }
     }
 }

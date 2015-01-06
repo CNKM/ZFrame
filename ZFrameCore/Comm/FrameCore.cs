@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
 using ZFrameCore.Entity;
@@ -539,7 +540,42 @@ namespace ZFrameCore.Common
             }
             return new String(stringChars);
         }
+
+
+        /// <summary>
+        /// Stream => 字符串
+        /// </summary>
+        /// <param name="SourceStream"></param>
+        /// <returns></returns>
+        public static String ToStream(this Stream SourceStream)
+        {
+            using (StreamReader sw = new StreamReader(SourceStream))
+            {
+                return sw.ReadToEnd();
+
+            }
+        }
+        /// <summary>
+        /// 字符串=>Stream
+        /// </summary>
+        /// <param name="SourceString"></param>
+        /// <returns></returns>
+        public static Stream ToStream(this String SourceString)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (StreamWriter sw = new StreamWriter(ms))
+                {
+                    sw.AutoFlush = true;
+                    sw.Write(SourceString);
+                    ms.Position = 0;
+                    return ms;
+                }
+            }
+        }
     }
+
+
 
     #endregion
 
@@ -563,6 +599,8 @@ namespace ZFrameCore.Common
 
     }
     #endregion
+
+
 
 }
 

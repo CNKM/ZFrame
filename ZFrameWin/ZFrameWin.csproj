@@ -54,7 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
+    <Compile Include="Service References\WCFS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -77,15 +77,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\ServiceReference1\WCFServices.wsdl" />
-    <None Include="Service References\ServiceReference1\WCFServices.xsd">
+    <None Include="Service References\WCFS\WCFServices.wsdl" />
+    <None Include="Service References\WCFS\WCFServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\WCFServices1.wsdl" />
-    <None Include="Service References\ServiceReference1\WCFServices1.xsd">
+    <None Include="Service References\WCFS\WCFServices1.wsdl" />
+    <None Include="Service References\WCFS\WCFServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\WCFServices2.xsd">
+    <None Include="Service References\WCFS\WCFServices2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -96,22 +96,36 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\WCFS\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\WCFServices.disco" />
+    <None Include="Service References\WCFS\WCFServices.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\WCFS\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\WCFS\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
+    <None Include="Service References\WCFS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{caf253de-796e-4bd0-9e2a-08934fce19ea}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{2bca7369-5c3f-46bf-9912-8c27fb53183d}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZFrameCore\ZFrameCore.csproj">
+      <Project>{8652e3d9-7f7c-49b3-b310-b730f82b4cae}</Project>
+      <Name>ZFrameCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

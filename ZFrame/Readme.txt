@@ -1,11 +1,10 @@
-﻿  <table id="dg" title="数据列表" class="easyui-datagrid" style="width: 100%;"
-        data-options="fit:true,singleSelect:false,collapsible:false,url:'Func/GetListUsers',method:'get',loadFilter:GridJsonRows" 
-        rownumbers="true" pagination="true" pagesize="10">
-        <thead>
-            <tr>
-                <th data-options="field:'ck',checkbox:true"></th>
-                <th data-options="field:'F_SN',width:80" sortable="true">SN</th>
-                <th data-options="field:'F_UserName',width:100" sortable="true">名字</th>
-            </tr>
-        </thead>
-    </table>
+﻿--JSON 时间
+     //IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            ////这里使用自定义日期格式，如果不使用的话，默认是ISO8601格式
+            //timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            ////jsonObject是准备转换的对象
+            //String JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(DateTime.Now, Newtonsoft.Json.Formatting.None, timeConverter);
+
+
+			     //WebOperationContext.Current.OutgoingResponse.ContentType = "text/plain; charset=utf-8";
+           // String T = HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.Url.ToString());
