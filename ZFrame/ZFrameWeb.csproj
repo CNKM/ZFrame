@@ -433,12 +433,7 @@
     <Content Include="VCode.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+    <Content Include="Web1.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -449,9 +444,6 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="WCFServices.svc" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
