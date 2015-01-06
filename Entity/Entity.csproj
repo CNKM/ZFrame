@@ -41,7 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="T_SYS_User.cs" />
+    <Compile Include="SYS\T_SYS_CommCode.cs" />
+    <Compile Include="SYS\T_SYS_Dept.cs" />
+    <Compile Include="SYS\T_SYS_DeptUser.cs" />
+    <Compile Include="SYS\T_SYS_Function.cs" />
+    <Compile Include="SYS\T_SYS_FunctionRight.cs" />
+    <Compile Include="SYS\T_SYS_LoginLog.cs" />
+    <Compile Include="SYS\T_SYS_Notice.cs" />
+    <Compile Include="SYS\T_SYS_NoticeTo.cs" />
+    <Compile Include="SYS\T_SYS_NoticeViewRecord.cs" />
+    <Compile Include="SYS\T_SYS_Organization.cs" />
+    <Compile Include="SYS\T_SYS_Parameter.cs" />
+    <Compile Include="SYS\T_SYS_Role.cs" />
+    <Compile Include="SYS\T_SYS_RoleRight.cs" />
+    <Compile Include="SYS\T_SYS_RoleUser.cs" />
+    <Compile Include="SYS\T_SYS_User.cs" />
+    <Compile Include="SYS\T_SYS_UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZFrameCore\ZFrameCore.csproj">

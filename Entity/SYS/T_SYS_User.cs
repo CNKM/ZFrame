@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ZFrameCore.Common;
 using ZFrameCore.Entity;
 
-namespace Entity
+namespace Entity.SYS
 {
     public class T_SYS_User : TEntityBase
     {

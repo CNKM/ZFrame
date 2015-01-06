@@ -32,6 +32,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZFrameWin", "ZFrameWin\ZFra
 		{C34BA373-1363-4596-AE62-C5295FDDC4C3} = {C34BA373-1363-4596-AE62-C5295FDDC4C3}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSmith", "CodeSmith", "{B13BC9BD-C3CC-4D57-9C58-A3CE939FA925}"
+	ProjectSection(SolutionItems) = preProject
+		CodeMaker\BLL.cst = CodeMaker\BLL.cst
+		CodeMaker\Entity.cst = CodeMaker\Entity.cst
+		CodeMaker\批量生成.cst = CodeMaker\批量生成.cst
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -80,5 +87,6 @@ Global
 		{CAF253DE-796E-4BD0-9E2A-08934FCE19EA} = {FABB5153-8666-477A-8F9C-4915580CB2D8}
 		{2BCA7369-5C3F-46BF-9912-8C27FB53183D} = {D1D94C16-E492-443E-B46A-2A696B34A2D7}
 		{D523CBB0-34A9-4077-9BB6-09F4FBBD80EA} = {61BF735D-C10F-44FF-8F3C-984DC0239409}
+		{B13BC9BD-C3CC-4D57-9C58-A3CE939FA925} = {E719AB18-9E74-471F-B9A4-8D20FD07CC77}
 	EndGlobalSection
 EndGlobal

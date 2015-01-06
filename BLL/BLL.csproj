@@ -41,7 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="T_SYS_User_BLL.cs" />
+    <Compile Include="SYS\T_SYS_CommCode_BLL.cs" />
+    <Compile Include="SYS\T_SYS_DeptUser_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Dept_BLL.cs" />
+    <Compile Include="SYS\T_SYS_FunctionRight_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Function_BLL.cs" />
+    <Compile Include="SYS\T_SYS_LoginLog_BLL.cs" />
+    <Compile Include="SYS\T_SYS_NoticeTo_BLL.cs" />
+    <Compile Include="SYS\T_SYS_NoticeViewRecord_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Notice_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Organization_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Parameter_BLL.cs" />
+    <Compile Include="SYS\T_SYS_RoleRight_BLL.cs" />
+    <Compile Include="SYS\T_SYS_RoleUser_BLL.cs" />
+    <Compile Include="SYS\T_SYS_Role_BLL.cs" />
+    <Compile Include="SYS\T_SYS_UserInfo_BLL.cs" />
+    <Compile Include="SYS\T_SYS_User_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

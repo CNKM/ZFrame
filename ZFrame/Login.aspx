@@ -58,8 +58,8 @@
             }
 
           
-            AjaxHelper.CallFunction("Login_UserCheck", CValue, function () {
-                 alert("成功！")
+            AjaxHelper.CallFunction("Login_UserCheck", CValue, function (data) {
+                alert(data);
              }, function (e) {
                  alert(e);
 

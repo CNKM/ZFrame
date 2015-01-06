@@ -1,6 +1,8 @@
 ﻿using BLL;
+using BLL.SYS;
 using EasyUI.DataGrid;
 using Entity;
+using Entity.SYS;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -49,7 +51,10 @@ namespace ZFrameWeb
         [OperationContract]
         public Stream Login_UserCheck(String UserName,String PassWord,String CheckCode)
         {
+            T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
+            UserBLL.UserCheck(UserName, PassWord);
             return null;
+            //return ReturnValue.ToStream();
         }
 
     }
