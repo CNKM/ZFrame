@@ -51,7 +51,7 @@ namespace ZFrameWCF
             T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
             List<T_SYS_Role> ReturnRoles;
             CurrentLoginObject CLO;
-            String RS= UserBLL.CheckUserLogin(UserName, PassWord,out CLO, out ReturnRoles);
+            String RS = UserBLL.CheckUserLogin(UserName, PassWord, out CLO, out ReturnRoles, ChooseDept);
             return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles }.ToJsonString().ToStream();
         }
 

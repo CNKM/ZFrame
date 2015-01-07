@@ -37,11 +37,20 @@
             $("#LoginFrm").window("center");
 
         }
+
         var UserLogin = function () {
             var CValue = {
                 UserName: $("#txtUserName").textbox("getText"),
                 PassWord: $("#txtUserPWD").textbox("getText"),
-                CheckCode: $("#txtCheckCode").textbox("getText")
+                CheckCode: $("#txtCheckCode").textbox("getText"),
+                ChooseDept: function () {
+                    var selectrows = $("#gdChooseDept").datagrid("getSelected");
+                    if (selectrows != null) {
+                        return selectrows.F_SN;
+                    }
+                    else { return ""; }
+
+                }
             };
 
             if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
@@ -60,13 +69,22 @@
 
             AjaxHelper.CallFunction("Login_UserCheck", CValue, function (data) {
                 if (data.Msg == "1") {
-
+                    alert("OK");
                 }
                 else if (data.Msg == "2") {
+                    $("#LoginFrm").window({ height: 360 });
+                    $("#extTable").show();
+                    $("#gdChooseDept").datagrid({
+                        data: data.Contend
+                    });
                     alert("存在多岗位角色,请选择!");
-                    //data.Contend
                 }
                 else {
+                    $("#LoginFrm").window({ height: 200 });
+                    $("#extTable").hide();
+                    $("#gdChooseDept").datagrid({
+                        data:[]
+                    });
                     alert(data.Msg);
                 }
             }, function (e) {
@@ -76,7 +94,6 @@
         }
 
         $(document).ready(function () {
-            $("#gdChooseDept").center();
             //AjaxHelper.ServerBaseURL = "http://localhost:4274/WCFServices.svc";
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
@@ -92,6 +109,7 @@
             $("#txtCheckCode").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
                     UserLogin();
+
                 }
             })
             $("#btnLogin").click(function () {
@@ -107,14 +125,8 @@
     </script>
     <div id="LoginFrm" class="easyui-window" title="用户登陆"
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
-        style="width: 400px; height: 360px; top: 200px;">
+        style="width: 400px; height: 200px; top: 200px;">
         <div style="text-align: center; overflow: hidden; margin-top: 11px; font-size: 13.5px">
-             <div data-options="region:'east'" style="width:100px;padding:10px">
-                Right Content
-            </div>
-             <div data-options="region:'east'" style="width:100px;padding:10px">
-                Right Content
-            </div>
             <div style="width: 100%; margin: 5px;">
                 登陆姓名:
                 <input id="txtUserName" class="easyui-textbox" data-options="prompt:'请输入管理员分配的账号...',iconCls:'icon-search',iconAlign:'left'" style="width: 70%; height: 25px" />
@@ -130,23 +142,29 @@
             <div style="float: left; margin-left: -30px; margin-top: 3px">
                 <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
             </div>
-           <div id="p" class="easyui-panel" title="Basic Panel" style="width:300px;height:160px;padding:10px;">
-               sad
-               </div>
-            <%--<table id="gdChooseDept" class="easyui-datagrid" title="部门角色选择" style="width: 300px; height: 160px; float:right"
-                data-options="singleSelect:true,collapsible:false">
-                <thead>
-                    <tr>
-                        <th data-options="field:'F_DeptName',width:80">部门名称</th>
-                        <th data-options="field:'F_Name',width:100">角色名称</th>
-                    </tr>
-                </thead>
-            </table>--%>
+            <div style="clear: both;"></div>
+            <table id="extTable" style="width: 100%; margin-left: 5px; display: none">
+                <tr>
+                    <td style="text-align: center">
+                        <table id="gdChooseDept" class="easyui-datagrid" title="部门角色选择" style="width: 98%; height: 160px;"
+                            data-options="singleSelect:true,collapsible:false,rownumbers:true,">
+                            <thead>
+                                <tr>
+                                    <th data-options="field:'ck',checkbox:true"></th>
+                                    <th data-options="field:'F_DeptName',width:80">部门名称</th>
+                                    <th data-options="field:'F_Name',width:100">角色名称</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
             <div style="width: 100%; margin: 5px; margin-top: 8px;">
                 <a href="#" id="btnLogin" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">登陆</a>
                 <a href="#" id="btnCancel" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px; margin-left: 10px">取消</a>
             </div>
-    </div>
+        </div>
     </div>
 </asp:Content>
 

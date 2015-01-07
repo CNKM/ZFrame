@@ -54,7 +54,7 @@ namespace BLL.SYS
                     ReutnrString = "请联系管理员:用户未分配岗位角色!";
                     break;
                 case LoginReulst.UserNoFuncs:
-                    ReutnrString = "请联系管理员:用户未分配岗位角色!";
+                    ReutnrString = "请联系管理员:用户岗位角色未分配功能!";
                     break;
                 case LoginReulst.UserHasMuiltRole:
                     ReutnrString = "2";
@@ -65,7 +65,7 @@ namespace BLL.SYS
                     ReutnrString = "请联系管理员:用户表基础错误!";
                     break;
                 case LoginReulst.ExecError:
-                    ReutnrString = "请联系管理员:用户表检测车错误!";
+                    ReutnrString = "请联系管理员:用户表检测错误!";
                     break;
                 default:
                     currentloginobj.CurrentUser = this.ToList<T_SYS_UserInfo>(returnDs.Tables[0])[0];
