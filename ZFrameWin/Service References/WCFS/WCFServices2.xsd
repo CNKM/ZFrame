@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="GetCheckCodeImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCheckCodeImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="GetCheckCodeImageResult" type="q1:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetListUsers">
     <xs:complexType>
       <xs:sequence>
@@ -12,7 +26,7 @@
   <xs:element name="GetListUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="GetListUsersResult" type="q1:StreamBody" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/Message" name="GetListUsersResult" type="q2:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -24,7 +38,7 @@
   <xs:element name="GetServerDateTimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/Message" name="GetServerDateTimeResult" type="q2:StreamBody" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/Message" name="GetServerDateTimeResult" type="q3:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -41,7 +55,7 @@
   <xs:element name="Login_UserCheckResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/Message" name="Login_UserCheckResult" type="q3:StreamBody" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="Login_UserCheckResult" type="q4:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -20,8 +20,8 @@ namespace ZFrameWin
         public Frm_Login()
         {
             InitializeComponent();
-            MessageBox.Show(WCFSC.GetServerDateTime().SToString());
-            
+            Stream CheckCodeStream = WCFSC.GetCheckCodeImage("");
+            pictureBox1.Image = Image.FromStream(GraphicHelper.DecodeStreamToImage(CheckCodeStream));
             
         }
     }

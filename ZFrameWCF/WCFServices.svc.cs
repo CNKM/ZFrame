@@ -1,16 +1,8 @@
-﻿using BLL.Comm;
-using BLL.SYS;
-using EasyUI.DataGrid;
-using Entity.SYS;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
-using System.Text;
 using System.Web;
 using ZFrameCore.Common;
 using ZFrameWCF.Comm;
@@ -18,9 +10,9 @@ using ZFrameWCF.Comm;
 
 namespace ZFrameWCF
 {
-    [ServiceContract(Namespace = "")]
+    [ServiceContract(Namespace = "", SessionMode = SessionMode.Allowed)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class WCFServices
+    public partial class WCFServices
     {
 
         public WCFServices()
@@ -28,15 +20,22 @@ namespace ZFrameWCF
 
         }
 
+        /// <summary>
+        /// 生成验证码
+        /// </summary>
+        /// <param name="VCode"></param>
+        /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream GetListUsers(String LoginName = "", String LoginPWD = "")
+        public Stream GetCheckCodeImage(String VCode = "")
         {
-            var t = EasyUIHelper.DataGrid.GetClientRequestInfo(HttpContext.Current);
-            T_SYS_User_BLL UB = new T_SYS_User_BLL();
-            return EasyUIHelper.DataGrid.GetReutrnList<T_SYS_User>(UB.Select(), 100).ToJsonString().ToStream();
+           return HttpContext.Current.Session.MakeCheckCode(VCode).ToStream();
         }
 
+        /// <summary>
+        /// 服务器时间
+        /// </summary>
+        /// <returns></returns>
         [WebGet]
         [OperationContract]
         public Stream GetServerDateTime()
@@ -44,16 +43,8 @@ namespace ZFrameWCF
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").ToStream();
         }
 
-        [WebGet]
-        [OperationContract]
-        public Stream Login_UserCheck(String CheckCode, String UserName = "", String PassWord = "", String ChooseDept = "")
-        {
-            T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
-            List<T_SYS_Role> ReturnRoles;
-            CurrentLoginObject CLO;
-            String RS = UserBLL.CheckUserLogin(UserName, PassWord, out CLO, out ReturnRoles, ChooseDept);
-            return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles }.ToJsonString().ToStream();
-        }
+        
+        
 
     }
 }

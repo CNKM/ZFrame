@@ -429,7 +429,6 @@
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\validatebox.css" />
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\window.css" />
     <Content Include="TestPage.aspx" />
-    <Content Include="VCode.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
     <Content Include="Web.config" />
@@ -462,13 +461,6 @@
     </Compile>
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VCode.aspx.cs">
-      <DependentUpon>VCode.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VCode.aspx.designer.cs">
-      <DependentUpon>VCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterPage\BasePage.Master.cs">
       <DependentUpon>BasePage.Master</DependentUpon>

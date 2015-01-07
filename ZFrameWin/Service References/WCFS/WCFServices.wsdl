@@ -7,6 +7,12 @@
       <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="WCFServices_GetCheckCodeImage_InputMessage">
+    <wsdl:part name="parameters" element="GetCheckCodeImage" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetCheckCodeImage_OutputMessage">
+    <wsdl:part name="parameters" element="GetCheckCodeImageResponse" />
+  </wsdl:message>
   <wsdl:message name="WCFServices_GetListUsers_InputMessage">
     <wsdl:part name="parameters" element="GetListUsers" />
   </wsdl:message>
@@ -26,6 +32,10 @@
     <wsdl:part name="parameters" element="Login_UserCheckResponse" />
   </wsdl:message>
   <wsdl:portType name="WCFServices">
+    <wsdl:operation name="GetCheckCodeImage">
+      <wsdl:input wsaw:Action="urn:WCFServices/GetCheckCodeImage" message="WCFServices_GetCheckCodeImage_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WCFServices/GetCheckCodeImageResponse" message="WCFServices_GetCheckCodeImage_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetListUsers">
       <wsdl:input wsaw:Action="urn:WCFServices/GetListUsers" message="WCFServices_GetListUsers_InputMessage" />
       <wsdl:output wsaw:Action="urn:WCFServices/GetListUsersResponse" message="WCFServices_GetListUsers_OutputMessage" />

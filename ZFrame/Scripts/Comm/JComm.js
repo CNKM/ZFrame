@@ -3,11 +3,16 @@
     CallFunction: function (funcurl, parm, successcallback, errorcallback) {
         $.ajax({
             type: "GET",
-            url: this.ServerBaseURL + "/" + funcurl,
+            url: this.ServerBaseURL + "/" + funcurl+"?"+Math.random(),
             data: parm,
             contentType: "application/json; charset=utf-8",
             success: function (responseText, status) {
-                successcallback(JSON.parse(responseText));
+                try
+                {
+                    successcallback(JSON.parse(responseText));
+                } catch (ex) {
+                    successcallback(responseText);
+                }
             },
             error: function (err) {
                 errorcallback(err);

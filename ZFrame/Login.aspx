@@ -67,7 +67,7 @@
             }
 
 
-            AjaxHelper.CallFunction("Login_UserCheck", CValue, function (data) {
+            AjaxHelper.CallFunction("UserLoginCheck", CValue, function (data) {
                 if (data.Msg == "1") {
                     alert("OK");
                 }
@@ -83,7 +83,7 @@
                     $("#LoginFrm").window({ height: 200 });
                     $("#extTable").hide();
                     $("#gdChooseDept").datagrid({
-                        data:[]
+                        data: []
                     });
                     alert(data.Msg);
                 }
@@ -93,8 +93,18 @@
             });
         }
 
+        var LoadCheckCode = function () {
+            AjaxHelper.CallFunction("GetCheckCodeImage", null,
+                function (data) {
+                    var val = data;
+                    $("#icheckcode").attr("src", "data:image/gif;base64," + val);
+                }, function (eeror) {
+                });
+        }
         $(document).ready(function () {
-            //AjaxHelper.ServerBaseURL = "http://localhost:4274/WCFServices.svc";
+
+
+            LoadCheckCode();
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
@@ -116,6 +126,7 @@
                 UserLogin();
             });
             $("#btnCancel").click(function () {
+                LoadCheckCode();
                 $("#txtUserName").textbox("setText", "superadmin");
                 $("#txtUserPWD").textbox("setText", "saynccl");
                 $("#txtCheckCode").textbox("setText", "123456");
@@ -140,7 +151,7 @@
                     <input id="txtCheckCode" class="easyui-textbox" data-options="" type="password" style="height: 25px; width: 80px" />
             </div>
             <div style="float: left; margin-left: -30px; margin-top: 3px">
-                <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
+                <img id="icheckcode"  title="看不清楚？点击更换" style="margin-top: 3px;" />
             </div>
             <div style="clear: both;"></div>
             <table id="extTable" style="width: 380px; margin-left: 5px; display: none">

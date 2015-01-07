@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text;
 using ZFrameCore.Entity;
 
 
@@ -552,7 +553,7 @@ namespace ZFrameCore.Common
         /// <returns></returns>
         public static String SToString(this Stream SourceStream)
         {
-            using (StreamReader sw = new StreamReader(SourceStream))
+            using (StreamReader sw = new StreamReader(SourceStream, Encoding.UTF8))
             {
                 return sw.ReadToEnd();
 
@@ -566,7 +567,7 @@ namespace ZFrameCore.Common
         public static Stream ToStream(this String SourceString)
         {
             MemoryStream ms = new MemoryStream();
-            StreamWriter sw = new StreamWriter(ms);
+            StreamWriter sw = new StreamWriter(ms, Encoding.UTF8);
             sw.AutoFlush = true;
             sw.Write(SourceString);
             ms.Position = 0;
@@ -608,6 +609,24 @@ namespace ZFrameCore.Common
         public Object Contend { get; set; }
     }
     #endregion
+
+
+    public static class GraphicHelper
+   {
+        /// <summary>
+        /// WCF 返回图片，转换为本地图片;
+        /// </summary>
+        /// <param name="WcfCallBackStrem"></param>
+        /// <returns></returns>
+        public static MemoryStream DecodeStreamToImage(this Stream WcfCallBackStrem)
+        {
+            Byte[] ImageValue = System.Convert.FromBase64String(WcfCallBackStrem.SToString());
+            MemoryStream ms = new MemoryStream(); //新建内存流
+            ms.Write(ImageValue, 0, ImageValue.Length); //附值
+            return ms;
+        }
+   }
+       
 
 
 
