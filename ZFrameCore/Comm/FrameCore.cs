@@ -598,6 +598,17 @@ namespace ZFrameCore.Common
     }
     #endregion
 
+    #region HttpCallBackObject
+    /// <summary>
+    /// Ajax返回结果
+    /// </summary>
+    public class WCFCallBackObj
+    {
+        public Object Msg { get; set; }
+        public Object Contend { get; set; }
+    }
+    #endregion
+
 
 
 }

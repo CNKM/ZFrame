@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using BLL.Comm;
+using Entity;
 using Entity.SYS;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,7 @@ namespace BLL.SYS
         public String CheckUserLogin(
             string tUserName,
             string tUserPWD,
-            out T_SYS_Dept t_SYS_ORG_Dept,
-            out T_SYS_Role t_SYS_ORG_Position,
-            out T_SYS_UserInfo t_SYS_ORG_Person,
-            out List<T_SYS_FunctionRight> UserFuncs,
+            out CurrentLoginObject currentloginobj,
             out List<T_SYS_Role> ChoosePositionSource,
             String ChooseDeptid = "")
         {
@@ -41,35 +39,44 @@ namespace BLL.SYS
             Parms.Add(new SqlParameter() { ParameterName = "@LoginName", Value = tUserName });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPWD", Value = tUserPWD });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPosition", Value = ChooseDeptid });
-            Parms.Add(new SqlParameter() { ParameterName = "@LoginResult", DbType = System.Data.DbType.String, Size = 60, Direction = ParameterDirection.Output });
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginResult", DbType = System.Data.DbType.Int32, Direction = ParameterDirection.Output });
             DataSet returnDs = this.ExecProceureRetrunList("USP_CheckUserLogin", Parms, out ExecResult, null, false);
-            String ExecResultString = Parms[3].Value.ToString();
-
-
-            t_SYS_ORG_Dept = null;
-            t_SYS_ORG_Person = null;
-            t_SYS_ORG_Position = null;
-            UserFuncs = null;
+            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[3].Value);
+            currentloginobj = new CurrentLoginObject();
             ChoosePositionSource = null;
-
-            if (String.IsNullOrEmpty(ExecResultString))
+            String ReutnrString = "";
+            switch (CheckResult)
             {
-                if (returnDs.Tables.Count == 4)
-                {
-                    t_SYS_ORG_Person = this.ToList<T_SYS_UserInfo>(returnDs.Tables[0])[0];
-                    t_SYS_ORG_Dept = this.ToList<T_SYS_Dept>(returnDs.Tables[1])[0];
-                    t_SYS_ORG_Position = this.ToList<T_SYS_Role>(returnDs.Tables[2])[0];
-                    UserFuncs = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[3]);
+                case LoginReulst.UserNotFind:
+                    ReutnrString = "用户名或者密码错误,请重试!";
+                    break;
+                case LoginReulst.UserNotRole:
+                    ReutnrString = "请联系管理员:用户未分配岗位角色!";
+                    break;
+                case LoginReulst.UserNoFuncs:
+                    ReutnrString = "请联系管理员:用户未分配岗位角色!";
+                    break;
+                case LoginReulst.UserHasMuiltRole:
+                    ReutnrString = "2";
+                    currentloginobj = null;
+                    ChoosePositionSource = returnDs.Tables.Count == 2 ? this.ToList<T_SYS_Role>(returnDs.Tables[1]) : null;
+                    break;
+                case LoginReulst.HasMuiltUser:
+                    ReutnrString = "请联系管理员:用户表基础错误!";
+                    break;
+                case LoginReulst.ExecError:
+                    ReutnrString = "请联系管理员:用户表检测车错误!";
+                    break;
+                default:
+                    currentloginobj.CurrentUser = this.ToList<T_SYS_UserInfo>(returnDs.Tables[0])[0];
+                    currentloginobj.CurrentDept = this.ToList<T_SYS_Dept>(returnDs.Tables[1])[0];
+                    currentloginobj.CurrentRole = this.ToList<T_SYS_Role>(returnDs.Tables[2])[0];
+                    currentloginobj.CurrentFuncs = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[3]);
                     ChoosePositionSource = null;
-                }
-                return "";
+                    ReutnrString = "1";
+                    break;
             }
-            else
-            {
-
-                ChoosePositionSource = returnDs.Tables.Count == 2 ? this.ToList<T_SYS_Role>(returnDs.Tables[1]) : null;
-                return ExecResultString;
-            }
+            return ReutnrString;
         }
 
 

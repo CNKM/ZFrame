@@ -7,7 +7,7 @@
             data: parm,
             contentType: "application/json; charset=utf-8",
             success: function (responseText, status) {
-                successcallback(responseText);
+                successcallback(JSON.parse(responseText));
             },
             error: function (err) {
                 errorcallback(err);

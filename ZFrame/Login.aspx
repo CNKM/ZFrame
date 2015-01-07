@@ -57,16 +57,26 @@
                 return;
             }
 
-          
-            AjaxHelper.CallFunction("Login_UserCheck", CValue, function (data) {
-                alert(data);
-             }, function (e) {
-                 alert(e);
 
-             });
+            AjaxHelper.CallFunction("Login_UserCheck", CValue, function (data) {
+                if (data.Msg == "1") {
+
+                }
+                else if (data.Msg == "2") {
+                    alert("存在多岗位角色,请选择!");
+                    //data.Contend
+                }
+                else {
+                    alert(data.Msg);
+                }
+            }, function (e) {
+                alert(e);
+
+            });
         }
 
         $(document).ready(function () {
+            $("#gdChooseDept").center();
             //AjaxHelper.ServerBaseURL = "http://localhost:4274/WCFServices.svc";
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
@@ -88,18 +98,23 @@
                 UserLogin();
             });
             $("#btnCancel").click(function () {
-
-                $("#txtUserName").textbox("setText", "");
-                $("#txtUserPWD").textbox("setText", "");
-                $("#txtCheckCode").textbox("setText", "");
+                $("#txtUserName").textbox("setText", "superadmin");
+                $("#txtUserPWD").textbox("setText", "saynccl");
+                $("#txtCheckCode").textbox("setText", "123456");
                 $("#txtUserName").textbox("textbox").focus();
             })
         });
     </script>
     <div id="LoginFrm" class="easyui-window" title="用户登陆"
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
-        style="width: 400px; height: 200px; top: 200px;">
+        style="width: 400px; height: 360px; top: 200px;">
         <div style="text-align: center; overflow: hidden; margin-top: 11px; font-size: 13.5px">
+             <div data-options="region:'east'" style="width:100px;padding:10px">
+                Right Content
+            </div>
+             <div data-options="region:'east'" style="width:100px;padding:10px">
+                Right Content
+            </div>
             <div style="width: 100%; margin: 5px;">
                 登陆姓名:
                 <input id="txtUserName" class="easyui-textbox" data-options="prompt:'请输入管理员分配的账号...',iconCls:'icon-search',iconAlign:'left'" style="width: 70%; height: 25px" />
@@ -115,11 +130,23 @@
             <div style="float: left; margin-left: -30px; margin-top: 3px">
                 <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
             </div>
-            <div style="width: 100%; margin: 5px; float: left; margin-top: 8px; clear: both">
+           <div id="p" class="easyui-panel" title="Basic Panel" style="width:300px;height:160px;padding:10px;">
+               sad
+               </div>
+            <%--<table id="gdChooseDept" class="easyui-datagrid" title="部门角色选择" style="width: 300px; height: 160px; float:right"
+                data-options="singleSelect:true,collapsible:false">
+                <thead>
+                    <tr>
+                        <th data-options="field:'F_DeptName',width:80">部门名称</th>
+                        <th data-options="field:'F_Name',width:100">角色名称</th>
+                    </tr>
+                </thead>
+            </table>--%>
+            <div style="width: 100%; margin: 5px; margin-top: 8px;">
                 <a href="#" id="btnLogin" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px">登陆</a>
                 <a href="#" id="btnCancel" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 80px; margin-left: 10px">取消</a>
             </div>
-        </div>
+    </div>
     </div>
 </asp:Content>
 

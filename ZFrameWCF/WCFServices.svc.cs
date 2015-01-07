@@ -1,4 +1,5 @@
-﻿using BLL.SYS;
+﻿using BLL.Comm;
+using BLL.SYS;
 using EasyUI.DataGrid;
 using Entity.SYS;
 using System;
@@ -12,6 +13,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Web;
 using ZFrameCore.Common;
+using ZFrameWCF.Comm;
 
 
 namespace ZFrameWCF
@@ -44,16 +46,13 @@ namespace ZFrameWCF
 
         [WebGet]
         [OperationContract]
-        public Stream Login_UserCheck(String UserName, String PassWord, String CheckCode)
+        public Stream Login_UserCheck(String CheckCode, String UserName = "", String PassWord = "", String ChooseDept = "")
         {
             T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
-            T_SYS_Dept t_SYS_ORG_Dept;
-            T_SYS_Role t_SYS_ORG_Position;
-            T_SYS_UserInfo t_SYS_ORG_Person;
-            List<T_SYS_FunctionRight> UserFuncs;
-            List<T_SYS_Role> ChoosePositionSource;
-            UserBLL.CheckUserLogin(UserName, PassWord, out t_SYS_ORG_Dept, out t_SYS_ORG_Position, out t_SYS_ORG_Person, out UserFuncs, out ChoosePositionSource);
-            return UserName.ToStream();
+            List<T_SYS_Role> ReturnRoles;
+            CurrentLoginObject CLO;
+            String RS= UserBLL.CheckUserLogin(UserName, PassWord,out CLO, out ReturnRoles);
+            return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles }.ToJsonString().ToStream();
         }
 
     }
