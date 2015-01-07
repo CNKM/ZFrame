@@ -127,11 +127,11 @@
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
         style="width: 400px; height: 200px; top: 200px;">
         <div style="text-align: center; overflow: hidden; margin-top: 11px; font-size: 13.5px">
-            <div style="width: 100%; margin: 5px;">
+            <div style="width: 380px; margin: 5px;">
                 登陆姓名:
                 <input id="txtUserName" class="easyui-textbox" data-options="prompt:'请输入管理员分配的账号...',iconCls:'icon-search',iconAlign:'left'" style="width: 70%; height: 25px" />
             </div>
-            <div style="width: 100%; margin: 5px; margin-top: 4px">
+            <div style="width: 380px; margin: 5px; margin-top: 4px">
                 登陆密码:
                 <input id="txtUserPWD" class="easyui-textbox" data-options="" type="password" style="width: 70%; height: 25px" />
             </div>
@@ -143,10 +143,10 @@
                 <img id="icheckcode" src="VCode.aspx" title="看不清楚？点击更换" style="margin-top: 3px;" />
             </div>
             <div style="clear: both;"></div>
-            <table id="extTable" style="width: 100%; margin-left: 5px; display: none">
+            <table id="extTable" style="width: 380px; margin-left: 5px; display: none">
                 <tr>
                     <td style="text-align: center">
-                        <table id="gdChooseDept" class="easyui-datagrid" title="部门角色选择" style="width: 98%; height: 160px;"
+                        <table id="gdChooseDept" class="easyui-datagrid" title="部门角色选择" style="width: 370px; height: 160px;"
                             data-options="singleSelect:true,collapsible:false,rownumbers:true,">
                             <thead>
                                 <tr>
