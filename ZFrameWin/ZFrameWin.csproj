@@ -77,15 +77,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\WCFS\WCFServices22.wsdl" />
-    <None Include="Service References\WCFS\WCFServices23.wsdl" />
-    <None Include="Service References\WCFS\WCFServices33.xsd">
+    <None Include="Service References\WCFS\WCFServices.wsdl" />
+    <None Include="Service References\WCFS\WCFServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFS\WCFServices34.xsd">
+    <None Include="Service References\WCFS\WCFServices1.wsdl" />
+    <None Include="Service References\WCFS\WCFServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFS\WCFServices35.xsd">
+    <None Include="Service References\WCFS\WCFServices2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -117,7 +117,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WCFS\WCFServices11.disco" />
+    <None Include="Service References\WCFS\WCFServices.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:4274/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+  <xs:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
   <xs:element name="GetListUsers">
     <xs:complexType>
       <xs:sequence>
@@ -31,9 +31,10 @@
   <xs:element name="Login_UserCheck">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="CheckCode" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="CheckCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ChooseDept" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

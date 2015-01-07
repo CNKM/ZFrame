@@ -32,10 +32,10 @@ namespace ZFrameWin.WCFS {
         System.IO.Stream EndGetServerDateTime(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:WCFServices/Login_UserCheck", ReplyAction="urn:WCFServices/Login_UserCheckResponse")]
-        System.IO.Stream Login_UserCheck(string UserName, string PassWord, string CheckCode);
+        System.IO.Stream Login_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:WCFServices/Login_UserCheck", ReplyAction="urn:WCFServices/Login_UserCheckResponse")]
-        System.IAsyncResult BeginLogin_UserCheck(string UserName, string PassWord, string CheckCode, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginLogin_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState);
         
         System.IO.Stream EndLogin_UserCheck(System.IAsyncResult result);
     }
@@ -248,13 +248,13 @@ namespace ZFrameWin.WCFS {
             base.InvokeAsync(this.onBeginGetServerDateTimeDelegate, null, this.onEndGetServerDateTimeDelegate, this.onGetServerDateTimeCompletedDelegate, userState);
         }
         
-        public System.IO.Stream Login_UserCheck(string UserName, string PassWord, string CheckCode) {
-            return base.Channel.Login_UserCheck(UserName, PassWord, CheckCode);
+        public System.IO.Stream Login_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept) {
+            return base.Channel.Login_UserCheck(CheckCode, UserName, PassWord, ChooseDept);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginLogin_UserCheck(string UserName, string PassWord, string CheckCode, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginLogin_UserCheck(UserName, PassWord, CheckCode, callback, asyncState);
+        public System.IAsyncResult BeginLogin_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginLogin_UserCheck(CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -263,10 +263,11 @@ namespace ZFrameWin.WCFS {
         }
         
         private System.IAsyncResult OnBeginLogin_UserCheck(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string UserName = ((string)(inValues[0]));
-            string PassWord = ((string)(inValues[1]));
-            string CheckCode = ((string)(inValues[2]));
-            return this.BeginLogin_UserCheck(UserName, PassWord, CheckCode, callback, asyncState);
+            string CheckCode = ((string)(inValues[0]));
+            string UserName = ((string)(inValues[1]));
+            string PassWord = ((string)(inValues[2]));
+            string ChooseDept = ((string)(inValues[3]));
+            return this.BeginLogin_UserCheck(CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
         }
         
         private object[] OnEndLogin_UserCheck(System.IAsyncResult result) {
@@ -282,11 +283,11 @@ namespace ZFrameWin.WCFS {
             }
         }
         
-        public void Login_UserCheckAsync(string UserName, string PassWord, string CheckCode) {
-            this.Login_UserCheckAsync(UserName, PassWord, CheckCode, null);
+        public void Login_UserCheckAsync(string CheckCode, string UserName, string PassWord, string ChooseDept) {
+            this.Login_UserCheckAsync(CheckCode, UserName, PassWord, ChooseDept, null);
         }
         
-        public void Login_UserCheckAsync(string UserName, string PassWord, string CheckCode, object userState) {
+        public void Login_UserCheckAsync(string CheckCode, string UserName, string PassWord, string ChooseDept, object userState) {
             if ((this.onBeginLogin_UserCheckDelegate == null)) {
                 this.onBeginLogin_UserCheckDelegate = new BeginOperationDelegate(this.OnBeginLogin_UserCheck);
             }
@@ -297,9 +298,10 @@ namespace ZFrameWin.WCFS {
                 this.onLogin_UserCheckCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLogin_UserCheckCompleted);
             }
             base.InvokeAsync(this.onBeginLogin_UserCheckDelegate, new object[] {
+                        CheckCode,
                         UserName,
                         PassWord,
-                        CheckCode}, this.onEndLogin_UserCheckDelegate, this.onLogin_UserCheckCompletedDelegate, userState);
+                        ChooseDept}, this.onEndLogin_UserCheckDelegate, this.onLogin_UserCheckCompletedDelegate, userState);
         }
     }
 }

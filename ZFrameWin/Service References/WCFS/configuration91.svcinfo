@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/FfORGZHQhjIwCWuw7qrIFAQcAw=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="RlILHf3T42DqfrFZ9CEAqqxvrw0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpContextBinding_WCFServices">
       <properties>
@@ -387,10 +387,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpContextBinding_WCFServices" contract="WCFS.WCFServices" bindingType="basicHttpBinding" address="http://localhost:4274/WCFServices.svc/BaseHttp" bindingConfiguration="BasicHttpContextBinding_WCFServices">
+    <endpoint name="BasicHttpContextBinding_WCFServices" contract="WCFS.WCFServices" bindingType="basicHttpBinding" address="http://localhost/ZFrameWCF/WCFServices.svc/BaseHttp" bindingConfiguration="BasicHttpContextBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:4274/WCFServices.svc/BaseHttp</serializedValue>
+          <serializedValue>http://localhost/ZFrameWCF/WCFServices.svc/BaseHttp</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -472,10 +472,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="wsHttpBinding" address="http://localhost:4274/WCFServices.svc/WsHttp" bindingConfiguration="WSHttpBinding_WCFServices">
+    <endpoint name="WSHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="wsHttpBinding" address="http://localhost/ZFrameWCF/WCFServices.svc/WsHttp" bindingConfiguration="WSHttpBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:4274/WCFServices.svc/WsHttp</serializedValue>
+          <serializedValue>http://localhost/ZFrameWCF/WCFServices.svc/WsHttp</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -501,14 +501,14 @@
         <property path="/identity/userPrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.UserPrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
         </property>
-        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>XDA\PeerLessSoul</serializedValue>
+        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
         </property>
         <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>
         </property>
-        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
+        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>host/XDA</serializedValue>
         </property>
         <property path="/identity/dns" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.DnsElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.DnsElement</serializedValue>
@@ -557,10 +557,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="customBinding" address="http://localhost:4274/WCFServices.svc/HttpNet" bindingConfiguration="NetHttpBinding_WCFServices">
+    <endpoint name="NetHttpBinding_WCFServices" contract="WCFS.WCFServices" bindingType="customBinding" address="http://localhost/ZFrameWCF/WCFServices.svc/HttpNet" bindingConfiguration="NetHttpBinding_WCFServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:4274/WCFServices.svc/HttpNet</serializedValue>
+          <serializedValue>http://localhost/ZFrameWCF/WCFServices.svc/HttpNet</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
