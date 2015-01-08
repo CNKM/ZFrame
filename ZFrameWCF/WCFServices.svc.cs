@@ -10,7 +10,7 @@ using ZFrameWCF.Comm;
 
 namespace ZFrameWCF
 {
-    [ServiceContract(Namespace = "", SessionMode = SessionMode.Allowed)]
+    [ServiceContract(Namespace = "ZFrame", SessionMode = SessionMode.Allowed)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public partial class WCFServices
     {
@@ -23,10 +23,14 @@ namespace ZFrameWCF
         /// <returns></returns>
         public Stream CommFuncAction(Func<CallBackReturnObject> DelegateMethod)
         {
+            //配置中是否需要验证
             if (WCFWebConfig.NeedAuth)
             {
+                //是否已经登录验证通过
                 if (HttpContext.Current.Session.IsSessionAuthed())
                 {
+                    //功能菜单权限
+                    String FuncCallURL = HttpContext.Current.Request.PathInfo.TrimStart('/');
                     try
                     {
                         return DelegateMethod.ToJsonString().ToStream();
