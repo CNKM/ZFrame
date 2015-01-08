@@ -685,6 +685,14 @@ namespace ZFrameCore.Common
             return this.ToJsonString().ToStream();
         }
     }
+
+    public static class CallBackHelper
+    {
+        public static CallBackReturnObject ToCallBackObject(this Stream ReturnStream)
+        {
+            return ReturnStream.SToString().FromJsonString<CallBackReturnObject>();
+        }
+    }
     #endregion
 
 
@@ -695,9 +703,9 @@ namespace ZFrameCore.Common
         /// </summary>
         /// <param name="WcfCallBackStrem"></param>
         /// <returns></returns>
-        public static MemoryStream DecodeStreamToImage(this Stream WcfCallBackStrem)
+        public static MemoryStream DecodeStreamToImage(String ImageBytesString)
         {
-            Byte[] ImageValue = System.Convert.FromBase64String(WcfCallBackStrem.SToString());
+            Byte[] ImageValue = System.Convert.FromBase64String(ImageBytesString);
             MemoryStream ms = new MemoryStream(); //新建内存流
             ms.Write(ImageValue, 0, ImageValue.Length); //附值
             return ms;

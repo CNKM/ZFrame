@@ -20,8 +20,8 @@ namespace ZFrameWin
         public Frm_Login()
         {
             InitializeComponent();
-            Stream CheckCodeStream = WCFSC.GetCheckCodeImage("");
-            pictureBox1.Image = Image.FromStream(GraphicHelper.DecodeStreamToImage(CheckCodeStream));
+            CallBackReturnObject CBRO= WCFSC.GetCheckCodeImage("").ToCallBackObject();
+            pictureBox1.Image = Image.FromStream(GraphicHelper.DecodeStreamToImage(CBRO.Contend.ToString()));
             
         }
     }
