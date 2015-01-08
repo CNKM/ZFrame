@@ -428,6 +428,7 @@
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\tree.css" />
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\validatebox.css" />
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\window.css" />
+    <None Include="Scripts\_references.js" />
     <Content Include="TestPage.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />

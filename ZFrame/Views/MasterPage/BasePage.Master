@@ -17,8 +17,8 @@
     <script src="<%:ResolveUrl("~/Scripts/Comm/JComm.js") %>"></script>
     <script>
         $(function () {
-           AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
-        })
+            AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
+     })
     </script>
 </head>
 <body>

@@ -34,10 +34,9 @@
     </style>
     <script>
         WindowResizeEvent = function () {
+
             $("#LoginFrm").window("center");
-
         }
-
         var UserLogin = function () {
             var CValue = {
                 UserName: $("#txtUserName").textbox("getText"),
@@ -52,22 +51,21 @@
 
                 }
             };
-
+            
             if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
-                alert("登录密码不能为空！");
+                alert("登录帐号不能为空！");
                 return;
             }
             if (StringHelper.IsNullOrEmpty(CValue.PassWord)) {
-                alert("登录账号不能为空！");
+                alert("登录密码不能为空！");
                 return;
             }
             if (StringHelper.IsNullOrEmpty(CValue.CheckCode)) {
-                alert("登录验证码不能为空！");
+                alert("验证编码不能为空！");
                 return;
             }
-
-
-            AjaxHelper.CallFunction("UserLoginCheck", CValue, function (data) {
+            
+            AjaxHelper.CallFunction("UserLoginCheck", CValue,true, function (data) {
                 if (data.Msg == "1") {
                     alert("OK");
                 }
@@ -92,9 +90,8 @@
 
             });
         }
-
         var LoadCheckCode = function () {
-            AjaxHelper.CallFunction("GetCheckCodeImage", null,
+            AjaxHelper.CallFunction("GetCheckCodeImage", null,false,
                 function (data) {
                     var val = data;
                     $("#icheckcode").attr("src", "data:image/gif;base64," + val.Contend);
@@ -134,6 +131,7 @@
             })
         });
     </script>
+    
     <div id="LoginFrm" class="easyui-window" title="用户登陆"
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
         style="width: 400px; height: 200px; top: 200px;">
@@ -151,7 +149,7 @@
                     <input id="txtCheckCode" class="easyui-textbox" data-options="" type="password" style="height: 25px; width: 80px" />
             </div>
             <div style="float: left; margin-left: -30px; margin-top: 3px">
-                <img id="icheckcode"  title="看不清楚？点击更换" style="margin-top: 3px;" />
+                <img id="icheckcode" src="" title="看不清楚？点击更换" style="margin-top: 3px;" />
             </div>
             <div style="clear: both;"></div>
             <table id="extTable" style="width: 380px; margin-left: 5px; display: none">
