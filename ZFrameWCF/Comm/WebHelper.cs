@@ -28,6 +28,7 @@ namespace ZFrameWCF.Comm
 
     public static class WCFWebConfig
     {
+       
         /// <summary>
         /// 是否需要验证
         /// </summary>
@@ -69,6 +70,7 @@ namespace ZFrameWCF.Comm
 
     public static class WebHelper
     {
+        #region Session Auth
         /// <summary>
         /// 验证码验证
         /// </summary>
@@ -83,7 +85,6 @@ namespace ZFrameWCF.Comm
                 string ServerSideCode = httpSessionState["LoginCheckCode"] == null ? "" : httpSessionState["LoginCheckCode"].ToString();
                 if (CheckCode.ToUpper() == ServerSideCode)
                 {
-                    httpSessionState["IsLogined"] = 1;
                     return true;
                 }
                 return false;
@@ -93,6 +94,18 @@ namespace ZFrameWCF.Comm
                 return true;
             }
         }
+
+        /// <summary>
+        /// 是否已经验证通过
+        /// </summary>
+        /// <param name="httpSessionState"></param>
+        /// <returns></returns>
+        internal static Boolean IsSessionAuthed(this HttpSessionState httpSessionState)
+        {
+            return httpSessionState["IsLogined"] == null ? false : true;
+        }
+        #endregion
+
         /// <summary>
         /// 生成验证码图片字符串
         /// </summary>

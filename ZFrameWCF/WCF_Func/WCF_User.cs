@@ -15,6 +15,9 @@ namespace ZFrameWCF
 {
     public partial class WCFServices
     {
+
+
+
         [WebGet]
         [OperationContract]
         public Stream GetListUsers(String LoginName = "", String LoginPWD = "")
@@ -38,23 +41,38 @@ namespace ZFrameWCF
         {
             if (WebHelper.SessionAuth(HttpContext.Current.Session, CheckCode))
             {
-                try
+                return WCFFuncAction(delegate()
                 {
                     T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
                     List<T_SYS_Role> ReturnRoles;
                     CurrentLoginObject CLO;
                     String RS = UserBLL.CheckUserLogin(UserName, PassWord, out CLO, out ReturnRoles, ChooseDept);
-                    return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles }.ToJsonString().ToStream();
-                }
-                catch
-                {
-                    return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.CALLEXCEPTION, Contend = null }.ToJsonString().ToStream();
-                }
+                    if (RS == "1")
+                    {
+                        HttpContext.Current.Session["CurrentLoginObject"] = CLO;
+                    }
+                    return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles };
+                });
             }
             else
             {
                 return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.AUTHCODEERROR, Contend = null }.ToJsonString().ToStream();
             }
         }
+
+        [WebGet]
+        [OperationContract]
+        public Stream UserLoginOut()
+        {
+            return WCFFuncAction(delegate()
+            {
+                HttpContext.Current.Session["CurrentLoginObject"] = null;
+                HttpContext.Current.Session.Remove("CurrentLoginObject");
+                return new WCFCallBackObj { Msg = 1, Contend = null };
+            });
+        }
+
+
+
     }
 }

@@ -15,6 +15,39 @@ namespace ZFrameWCF
     public partial class WCFServices
     {
 
+        #region 调用模板
+        /// <summary>
+        /// 定义匿名委托作为统一服务调用模板
+        /// </summary>
+        /// <param name="WCFFunc"></param>
+        /// <returns></returns>
+        public Stream WCFFuncAction(Func<WCFCallBackObj> WCFFunc)
+        {
+            if (WCFWebConfig.NeedAuth)
+            {
+                if (HttpContext.Current.Session.IsSessionAuthed())
+                {
+                    try
+                    {
+                        return WCFFunc.ToString().ToStream();
+                    }
+                    catch
+                    {
+                        return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.CALLEXCEPTION, Contend = null }.ToJsonString().ToStream();
+                    }
+                }
+                else
+                {
+                    return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.CALLWITHOUTAUTH, Contend = null }.ToJsonString().ToStream();
+                }
+            }
+            else
+            {
+                return WCFFunc.ToString().ToStream();
+            }
+        }
+        #endregion
+
         public WCFServices()
         {
 
@@ -29,7 +62,7 @@ namespace ZFrameWCF
         [OperationContract]
         public Stream GetCheckCodeImage(String VCode = "")
         {
-           return HttpContext.Current.Session.MakeCheckCode(VCode).ToStream();
+            return HttpContext.Current.Session.MakeCheckCode(VCode).ToStream();
         }
 
         /// <summary>
@@ -43,8 +76,8 @@ namespace ZFrameWCF
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").ToStream();
         }
 
-        
-        
+
+
 
     }
 }
