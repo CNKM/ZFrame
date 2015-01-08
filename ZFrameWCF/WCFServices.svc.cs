@@ -15,13 +15,13 @@ namespace ZFrameWCF
     public partial class WCFServices
     {
 
-        #region 调用模板
+        #region 业务函数调用模板
         /// <summary>
         /// 定义匿名委托作为统一服务调用模板
         /// </summary>
-        /// <param name="WCFFunc"></param>
+        /// <param name="DelegateMethod">委托方法</param>
         /// <returns></returns>
-        public Stream WCFFuncAction(Func<WCFCallBackObj> WCFFunc)
+        public Stream CommFuncAction(Func<CallBackReturnObject> DelegateMethod)
         {
             if (WCFWebConfig.NeedAuth)
             {
@@ -29,21 +29,21 @@ namespace ZFrameWCF
                 {
                     try
                     {
-                        return WCFFunc.ToString().ToStream();
+                        return DelegateMethod.ToJsonString().ToStream();
                     }
                     catch
                     {
-                        return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.CALLEXCEPTION, Contend = null }.ToJsonString().ToStream();
+                        return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
                     }
                 }
                 else
                 {
-                    return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.CALLWITHOUTAUTH, Contend = null }.ToJsonString().ToStream();
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLWITHOUTAUTH).ToStream();
                 }
             }
             else
             {
-                return WCFFunc.ToString().ToStream();
+                return DelegateMethod.ToJsonString().ToStream();
             }
         }
         #endregion
@@ -62,7 +62,15 @@ namespace ZFrameWCF
         [OperationContract]
         public Stream GetCheckCodeImage(String VCode = "")
         {
-            return HttpContext.Current.Session.MakeCheckCode(VCode).ToStream();
+            try
+            {
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, HttpContext.Current.Session.MakeCheckCode(VCode)).ToStream();
+            }
+            catch
+            {
+                return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
+            }
+
         }
 
         /// <summary>
@@ -73,7 +81,14 @@ namespace ZFrameWCF
         [OperationContract]
         public Stream GetServerDateTime()
         {
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").ToStream();
+            try
+            {
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")).ToStream();
+            }
+            catch
+            {
+                return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
+            }
         }
 
 

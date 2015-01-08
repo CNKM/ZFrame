@@ -8,27 +8,11 @@ using System.Web.SessionState;
 
 namespace ZFrameWCF.Comm
 {
-    public static class CALLSTRINGDEFINE
-    {
-        /// <summary>
-        /// 无权访问
-        /// </summary>
-        public static readonly String CALLWITHOUTAUTH = "无权访问";
-        /// <summary>
-        /// 服务异常
-        /// </summary>
-        public static readonly String CALLEXCEPTION = "服务异常";
-
-        /// <summary>
-        /// 验证码错误
-        /// </summary>
-
-        public static readonly String AUTHCODEERROR = "验证码错误";
-    }
+   
 
     public static class WCFWebConfig
     {
-       
+
         /// <summary>
         /// 是否需要验证
         /// </summary>
@@ -102,7 +86,7 @@ namespace ZFrameWCF.Comm
         /// <returns></returns>
         internal static Boolean IsSessionAuthed(this HttpSessionState httpSessionState)
         {
-            return httpSessionState["IsLogined"] == null ? false : true;
+            return httpSessionState["CurrentLoginObject"] == null ? false : true;
         }
         #endregion
 
@@ -114,8 +98,7 @@ namespace ZFrameWCF.Comm
         /// <returns></returns>
         internal static String MakeCheckCode(this HttpSessionState httpSessionState, String VCode = "")
         {
-            string ss = ConfigurationManager.AppSettings["AuthCodeLength"];
-            string RS = ZFrameCore.Common.StringHelper.CreateRandomCode(Convert.ToInt32(ss));
+            string RS = ZFrameCore.Common.StringHelper.CreateRandomCode(Convert.ToInt32(WCFWebConfig.AuthCodeLength));
             if (!String.IsNullOrEmpty(VCode))
             {
                 httpSessionState[VCode] = RS;

@@ -39,24 +39,31 @@ namespace ZFrameWCF
         [OperationContract]
         public Stream UserLoginCheck(String CheckCode = "", String UserName = "", String PassWord = "", String ChooseDept = "")
         {
+
             if (WebHelper.SessionAuth(HttpContext.Current.Session, CheckCode))
             {
-                return WCFFuncAction(delegate()
+                try
                 {
                     T_SYS_User_BLL UserBLL = new T_SYS_User_BLL();
                     List<T_SYS_Role> ReturnRoles;
-                    CurrentLoginObject CLO;
-                    String RS = UserBLL.CheckUserLogin(UserName, PassWord, out CLO, out ReturnRoles, ChooseDept);
-                    if (RS == "1")
+                    CurrentLoginObject CurrengLoginInfo;
+                    String ExecReusltMsg = "";
+                    Int32 ExecReusltCode = UserBLL.CheckUserLogin(UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
+                    if (ExecReusltCode == 1)
                     {
-                        HttpContext.Current.Session["CurrentLoginObject"] = CLO;
+                        HttpContext.Current.Session["CurrentLoginObject"] = CurrengLoginInfo;
                     }
-                    return new WCFCallBackObj { Msg = RS, Contend = ReturnRoles };
-                });
+                    return new CallBackReturnObject{ Code = ExecReusltCode, Msg = ExecReusltMsg, Contend = ReturnRoles }.ToStream();
+                }
+                catch
+                {
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
+                }
+
             }
             else
             {
-                return new WCFCallBackObj { Msg = CALLSTRINGDEFINE.AUTHCODEERROR, Contend = null }.ToJsonString().ToStream();
+                return new CallBackReturnObject(CALLRETURNDEFINE.AUTHCODEERROR).ToStream();
             }
         }
 
@@ -64,11 +71,11 @@ namespace ZFrameWCF
         [OperationContract]
         public Stream UserLoginOut()
         {
-            return WCFFuncAction(delegate()
+            return CommFuncAction(delegate()
             {
                 HttpContext.Current.Session["CurrentLoginObject"] = null;
                 HttpContext.Current.Session.Remove("CurrentLoginObject");
-                return new WCFCallBackObj { Msg = 1, Contend = null };
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS);
             });
         }
 

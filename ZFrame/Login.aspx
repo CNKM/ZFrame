@@ -97,7 +97,7 @@
             AjaxHelper.CallFunction("GetCheckCodeImage", null,
                 function (data) {
                     var val = data;
-                    $("#icheckcode").attr("src", "data:image/gif;base64," + val);
+                    $("#icheckcode").attr("src", "data:image/gif;base64," + val.Contend);
                 }, function (eeror) {
                 });
         }

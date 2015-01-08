@@ -27,11 +27,12 @@ namespace BLL.SYS
         /// <param name="tUserName">用户名称</param>
         /// <param name="tUserPWD">用户密码</param>
         /// <returns>1 通过验证 -1 未通过验证</returns>
-        public String CheckUserLogin(
+        public Int32 CheckUserLogin(
             string tUserName,
             string tUserPWD,
             out CurrentLoginObject currentloginobj,
             out List<T_SYS_Role> ChoosePositionSource,
+            out String ReutnrString,
             String ChooseDeptid = "")
         {
             Int32 ExecResult = 0;
@@ -44,39 +45,37 @@ namespace BLL.SYS
             LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[3].Value);
             currentloginobj = new CurrentLoginObject();
             ChoosePositionSource = null;
-            String ReutnrString = "";
             switch (CheckResult)
             {
                 case LoginReulst.UserNotFind:
                     ReutnrString = "用户名或者密码错误,请重试!";
-                    break;
+                    return (Int32)LoginReulst.UserNotFind;
                 case LoginReulst.UserNotRole:
                     ReutnrString = "请联系管理员:用户未分配岗位角色!";
-                    break;
+                    return (Int32)LoginReulst.UserNotRole;
                 case LoginReulst.UserNoFuncs:
                     ReutnrString = "请联系管理员:用户岗位角色未分配功能!";
-                    break;
+                    return (Int32)LoginReulst.UserNoFuncs;
                 case LoginReulst.UserHasMuiltRole:
                     ReutnrString = "2";
                     currentloginobj = null;
                     ChoosePositionSource = returnDs.Tables.Count == 2 ? this.ToList<T_SYS_Role>(returnDs.Tables[1]) : null;
-                    break;
+                    return (Int32)LoginReulst.UserHasMuiltRole;
                 case LoginReulst.HasMuiltUser:
                     ReutnrString = "请联系管理员:用户表基础错误!";
-                    break;
-                case LoginReulst.ExecError:
-                    ReutnrString = "请联系管理员:用户表检测错误!";
-                    break;
-                default:
+                    return (Int32)LoginReulst.HasMuiltUser;
+                case LoginReulst.UserCheckPass:
                     currentloginobj.CurrentUser = this.ToList<T_SYS_UserInfo>(returnDs.Tables[0])[0];
                     currentloginobj.CurrentDept = this.ToList<T_SYS_Dept>(returnDs.Tables[1])[0];
                     currentloginobj.CurrentRole = this.ToList<T_SYS_Role>(returnDs.Tables[2])[0];
                     currentloginobj.CurrentFuncs = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[3]);
                     ChoosePositionSource = null;
-                    ReutnrString = "1";
-                    break;
+                    ReutnrString = "通过检测";
+                    return (Int32)LoginReulst.UserCheckPass;
+                default:
+                    ReutnrString = "请联系管理员:用户表检测错误!";
+                    return (Int32)LoginReulst.ExecError;
             }
-            return ReutnrString;
         }
 
 

@@ -55,18 +55,46 @@ namespace BLL.Comm
 
     public enum LoginReulst
     {
-        //用户名或密码错误!
+        /// <summary>
+        /// 通过验证
+        /// </summary>
+        [System.ComponentModel.Description("通过验证")]
+        UserCheckPass=1,
+        /// <summary>
+        /// 用户名或密码错误
+        /// </summary>
+        [System.ComponentModel.Description("用户名或密码错误")]
         UserNotFind=-1,
-        //当前登录人员未分配岗位
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [System.ComponentModel.Description("当前登录人员未分配岗位")]
         UserNotRole=-2,
-        //当前岗位没有分配功能
+        
+        /// <summary>
+        /// 当前岗位没有分配功能
+        /// </summary>
+        [System.ComponentModel.Description("当前岗位没有分配功能")]
         UserNoFuncs =-3,
-        //存在多岗位
+        
+        /// <summary>
+        /// 存在多岗位
+        /// </summary>
+        [System.ComponentModel.Description("存在多岗位")]
         UserHasMuiltRole =-4,
-        //冲突用户帐号
+
+        /// <summary>
+        /// 冲突用户帐号
+        /// </summary>
+        [System.ComponentModel.Description("冲突用户帐号")]
         HasMuiltUser =-5,
-        //执行错误，请联系管理员;
-        ExecError=-6
+
+        /// <summary>
+        /// 执行错误，请联系管理员;
+        /// </summary>
+        [System.ComponentModel.Description("执行错误，请联系管理员")]
+        ExecError = -6
 
     }
 }

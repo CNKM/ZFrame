@@ -599,20 +599,97 @@ namespace ZFrameCore.Common
     }
     #endregion
 
+    #region
+    public static class DotNetFrameWork
+    {
+        public static string GetEnumDescription(this Enum enumValue)
+        {
+            string str = enumValue.ToString();
+            System.Reflection.FieldInfo field = enumValue.GetType().GetField(str);
+            object[] objs = field.GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
+            if (objs == null || objs.Length == 0) return str;
+            System.ComponentModel.DescriptionAttribute da = (System.ComponentModel.DescriptionAttribute)objs[0];
+            return da.Description;
+        }
+    }
+    #endregion
+
     #region HttpCallBackObject
+
+    public enum CALLRETURNDEFINE
+    {
+        /// <summary>
+        /// 执行成功
+        /// </summary>
+        [System.ComponentModel.Description("执行成功")]
+        EXECSUCCESS = 1,
+        /// <summary>
+        /// 无权访问
+        /// </summary>
+        [System.ComponentModel.Description("无权访问")]
+        CALLWITHOUTAUTH = -1,
+        /// <summary>
+        /// 服务异常
+        /// </summary>
+        [System.ComponentModel.Description("服务异常")]
+        CALLEXCEPTION = -2,
+        /// <summary>
+        /// 验证码错误
+        /// </summary>
+        [System.ComponentModel.Description("验证码错误")]
+        AUTHCODEERROR = -3,
+    }
+
     /// <summary>
     /// Ajax返回结果
     /// </summary>
-    public class WCFCallBackObj
+    public class CallBackReturnObject
     {
+        public Object Code { get; set; }
         public Object Msg { get; set; }
         public Object Contend { get; set; }
+
+        public CallBackReturnObject()
+        {
+
+        }
+
+        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine,Object _Contend=null)
+        {
+            this.Contend = _Contend;
+            switch (ReturnDefine)
+            {
+                case CALLRETURNDEFINE.EXECSUCCESS:
+                    Code = (Int32)CALLRETURNDEFINE.EXECSUCCESS;
+                    Msg = CALLRETURNDEFINE.EXECSUCCESS.GetEnumDescription();
+                    break;
+                case CALLRETURNDEFINE.CALLWITHOUTAUTH:
+                    Code = (Int32)CALLRETURNDEFINE.CALLWITHOUTAUTH;
+                    Msg = CALLRETURNDEFINE.CALLWITHOUTAUTH.GetEnumDescription();
+                    break;
+                case CALLRETURNDEFINE.CALLEXCEPTION:
+                    Code = (Int32)CALLRETURNDEFINE.CALLEXCEPTION;
+                    Msg = CALLRETURNDEFINE.CALLEXCEPTION.GetEnumDescription();
+                    break;
+                case CALLRETURNDEFINE.AUTHCODEERROR:
+                    Code = (Int32)CALLRETURNDEFINE.AUTHCODEERROR;
+                    Msg = CALLRETURNDEFINE.AUTHCODEERROR.GetEnumDescription();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public Stream ToStream()
+        {
+            return this.ToJsonString().ToStream();
+        }
     }
     #endregion
 
 
     public static class GraphicHelper
-   {
+    {
         /// <summary>
         /// WCF 返回图片，转换为本地图片;
         /// </summary>
@@ -625,8 +702,8 @@ namespace ZFrameCore.Common
             ms.Write(ImageValue, 0, ImageValue.Length); //附值
             return ms;
         }
-   }
-       
+    }
+
 
 
 
