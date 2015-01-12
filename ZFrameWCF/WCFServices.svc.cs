@@ -35,9 +35,9 @@ namespace ZFrameWCF
                     {
                         return DelegateMethod.ToJsonString().ToStream();
                     }
-                    catch
+                    catch(Exception e)
                     {
-                        return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
+                        return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION,e.Message).ToStream();
                     }
                 }
                 else
@@ -68,7 +68,7 @@ namespace ZFrameWCF
         {
             try
             {
-                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, HttpContext.Current.Session.MakeCheckCode(VCode)).ToStream();
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS,null, HttpContext.Current.Session.MakeCheckCode(VCode)).ToStream();
             }
             catch
             {

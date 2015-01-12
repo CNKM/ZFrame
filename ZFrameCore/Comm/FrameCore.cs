@@ -654,26 +654,26 @@ namespace ZFrameCore.Common
 
         }
 
-        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine,Object _Contend=null)
+        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine,Object _Msg=null, Object _Contend=null)
         {
             this.Contend = _Contend;
             switch (ReturnDefine)
             {
                 case CALLRETURNDEFINE.EXECSUCCESS:
                     Code = (Int32)CALLRETURNDEFINE.EXECSUCCESS;
-                    Msg = CALLRETURNDEFINE.EXECSUCCESS.GetEnumDescription();
+                    Msg = _Msg == null ? CALLRETURNDEFINE.EXECSUCCESS.GetEnumDescription() : _Msg;
                     break;
                 case CALLRETURNDEFINE.CALLWITHOUTAUTH:
                     Code = (Int32)CALLRETURNDEFINE.CALLWITHOUTAUTH;
-                    Msg = CALLRETURNDEFINE.CALLWITHOUTAUTH.GetEnumDescription();
+                    Msg = _Msg == null ? CALLRETURNDEFINE.CALLWITHOUTAUTH.GetEnumDescription() : _Msg;
                     break;
                 case CALLRETURNDEFINE.CALLEXCEPTION:
                     Code = (Int32)CALLRETURNDEFINE.CALLEXCEPTION;
-                    Msg = CALLRETURNDEFINE.CALLEXCEPTION.GetEnumDescription();
+                    Msg = _Msg == null ? CALLRETURNDEFINE.CALLEXCEPTION.GetEnumDescription() : _Msg;
                     break;
                 case CALLRETURNDEFINE.AUTHCODEERROR:
                     Code = (Int32)CALLRETURNDEFINE.AUTHCODEERROR;
-                    Msg = CALLRETURNDEFINE.AUTHCODEERROR.GetEnumDescription();
+                    Msg = _Msg == null ? CALLRETURNDEFINE.AUTHCODEERROR.GetEnumDescription() : _Msg;
                     break;
                 default:
                     break;

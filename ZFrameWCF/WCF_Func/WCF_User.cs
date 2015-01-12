@@ -55,9 +55,9 @@ namespace ZFrameWCF
                     }
                     return new CallBackReturnObject{ Code = ExecReusltCode, Msg = ExecReusltMsg, Contend = ReturnRoles }.ToStream();
                 }
-                catch
+                catch(Exception e)
                 {
-                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION).ToStream();
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION,e.Message).ToStream();
                 }
 
             }

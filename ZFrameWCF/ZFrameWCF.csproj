@@ -63,7 +63,9 @@
     <Content Include="ForTest.aspx" />
     <Content Include="Global.asax" />
     <Content Include="WCFServices.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comm\WebHelper.cs" />
