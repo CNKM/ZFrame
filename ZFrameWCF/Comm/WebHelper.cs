@@ -1,4 +1,5 @@
-﻿using Entity.SYS;
+﻿using EasyUI.Tree;
+using Entity.SYS;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,6 +21,8 @@ namespace ZFrameWCF.Comm
         {
             get
             {
+                
+                
                 return Convert.ToBoolean(ConfigurationManager.AppSettings["NeedAuth"]);
             }
             set

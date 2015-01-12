@@ -18,10 +18,10 @@
     <script>
         $(function () {
             AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
-     })
+        })
     </script>
 </head>
-<body>
+<body style="margin: 0; border: 0; padding: 0;">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 </body>
 </html>

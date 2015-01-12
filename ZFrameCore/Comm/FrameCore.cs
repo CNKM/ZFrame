@@ -599,7 +599,7 @@ namespace ZFrameCore.Common
     }
     #endregion
 
-    #region
+    #region 注释标记
     public static class DotNetFrameWork
     {
         public static string GetEnumDescription(this Enum enumValue)

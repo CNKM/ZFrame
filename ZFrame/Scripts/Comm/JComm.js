@@ -61,7 +61,9 @@ var GridJsonRows = function (data) {
 ///窗体尺寸改变事件
 var WindowResizeEvent;
 $(window).resize(function () {
-    WindowResizeEvent();
+    if (WindowResizeEvent != null) {
+        WindowResizeEvent();
+    }
 });
 
 ///字符串处理

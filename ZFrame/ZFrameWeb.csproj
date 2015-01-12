@@ -432,6 +432,7 @@
     <Content Include="TestPage.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
+    <Content Include="Views\Portal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +470,13 @@
     </Compile>
     <Compile Include="Views\MasterPage\BasePage.Master.designer.cs">
       <DependentUpon>BasePage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Portal.aspx.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Portal.aspx.designer.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
