@@ -48,9 +48,10 @@
                         return selectrows.F_SN;
                     }
                     else { return ""; }
-
                 }
             };
+
+            CValue.CheckCode = $("#txtCheckCode").textbox("getText");
             
             if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
                 alert("登录帐号不能为空！");
@@ -66,16 +67,16 @@
             }
             
             AjaxHelper.CallFunction("UserLoginCheck", CValue,true, function (data) {
-                if (data.Msg == "1") {
+                if (data.Code == 1) {
                     alert("OK");
                 }
-                else if (data.Msg == "2") {
+                else if (data.Code == -4) {
                     $("#LoginFrm").window({ height: 360 });
                     $("#extTable").show();
                     $("#gdChooseDept").datagrid({
                         data: data.Contend
                     });
-                    alert("存在多岗位角色,请选择!");
+                    alert(data.Msg);
                 }
                 else {
                     $("#LoginFrm").window({ height: 200 });
@@ -116,7 +117,6 @@
             $("#txtCheckCode").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
                     UserLogin();
-
                 }
             })
             $("#btnLogin").click(function () {
@@ -142,11 +142,11 @@
             </div>
             <div style="width: 380px; margin: 5px; margin-top: 4px">
                 登陆密码:
-                <input id="txtUserPWD" class="easyui-textbox" data-options="" type="password" style="width: 70%; height: 25px" />
+                <input id="txtUserPWD" class="easyui-textbox" type="password" data-options="prompt:''" style="width: 70%; height: 25px" />
             </div>
             <div style="float: left; margin: 5px; margin-top: 1px; width: 196px">
                 验证密码:
-                    <input id="txtCheckCode" class="easyui-textbox" data-options="" type="password" style="height: 25px; width: 80px" />
+                    <input id="txtCheckCode" class="easyui-textbox" type="password" data-options="prompt:''"  style="height: 25px; width: 80px" />
             </div>
             <div style="float: left; margin-left: -30px; margin-top: 3px">
                 <img id="icheckcode" src="" title="看不清楚？点击更换" style="margin-top: 3px;" />

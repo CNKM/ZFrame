@@ -57,7 +57,7 @@ namespace BLL.SYS
                     ReutnrString = "请联系管理员:用户岗位角色未分配功能!";
                     return (Int32)LoginReulst.UserNoFuncs;
                 case LoginReulst.UserHasMuiltRole:
-                    ReutnrString = "2";
+                    ReutnrString = "存在多岗位角色，请选择本次登陆岗位角色";
                     currentloginobj = null;
                     ChoosePositionSource = returnDs.Tables.Count == 2 ? this.ToList<T_SYS_Role>(returnDs.Tables[1]) : null;
                     return (Int32)LoginReulst.UserHasMuiltRole;
