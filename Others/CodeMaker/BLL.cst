@@ -1,0 +1,53 @@
+﻿<%-- 
+Name:实体对象
+Author: PeerLessSoul Code by:Code Smith
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="JScript" Description="Generates a very simple business object." ResponseEncoding="UTF-8" %>
+<%@ Property Name="NameSpace" Type="String" Category="Text" Default="BLL." Description="The namespace to use for this class" %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the object is based on." %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+using ZFrameCore.BLL;
+using Entity.SYS;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+namespace <%= this.GetProperty("NameSpace").ToString()+this.SourceTable.Name.Split('_')[1].ToUpper() %>
+{
+   public class  <%=GetClassName(SourceTable.Name)%> : TBLLBase<<%=SourceTable.Name%>>
+    {
+        public <%=GetClassName(SourceTable.Name)%>()
+        {
+            ///业务对象初始化SQL
+            this.SQLString = @"Select * , dbo.FN_GetSPY(F_Name) AS F_PYName FROM <%=SourceTable.Name%>";
+            //默认拉取逻辑未删除数据
+            this.WhereStr = "F_ISDEL=1";
+            //默认排序为创建时间倒序
+            this.OrderStr = "F_Index";
+        }
+    }
+}
+<script runat="template">
+public string GetClassName(String  tablename)
+{
+  String[] NameGroup= tablename.Split('_');
+    if(NameGroup.Length==4)
+    {
+        return NameGroup[2]+"_"+NameGroup[3]+"_BLL";;
+    }else
+    {
+        return tablename+"_BLL";
+        
+    }
+}
+
+public override string GetFileName()
+{
+    return this.GetClassName(this.SourceTable.Name) + ".cs";
+}
+</script>
+
