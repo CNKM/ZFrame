@@ -15,6 +15,11 @@ namespace EasyUI.Tree
         public Boolean @checked { get; set; }
         public List<KeyValuePair<String,Object>> attributes { get; set; }
         public List<TreeData> children { get; set; }
+        public TreeData()
+        {
+            attributes = new List<KeyValuePair<string, object>>();
+            children = new List<TreeData>();
+        }
 
     }
 }

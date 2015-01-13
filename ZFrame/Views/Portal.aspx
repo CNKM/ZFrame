@@ -4,6 +4,19 @@
     <script>
         $(function () {
             $("#MainTab").tabs({ height: $(window).height() });
+            AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, true,
+                function (d) {
+                    var ReutrnCurrengLoingObject = JSON.parse(d).Contend;
+                    CurrentLoginObject.CurrentDept = ReutrnCurrengLoingObject.CurrentDept;
+                    CurrentLoginObject.CurrentFuncs = ReutrnCurrengLoingObject.ExtendContend;
+                    CurrentLoginObject.CurrentRole = ReutrnCurrengLoingObject.CurrentRole;
+                    CurrentLoginObject.CurrentUser = ReutrnCurrengLoingObject.CurrentUser;
+                    $("#FuncTree").tree({
+                        data: CurrentLoginObject.CurrentFuncs
+                    });
+                }, function (e) {
+                    alert(e);
+                });
         });
 
         WindowResizeEvent = function () {
@@ -17,11 +30,10 @@
             <div class="easyui-layout" data-options="fit:true">
                 <div data-options="region:'west',split:true" style="width: 300px;">
                     <div class="easyui-panel" style="padding: 5px">
-                        <ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true"></ul>
+                        <ul id="FuncTree" class="easyui-tree" data-options="animate:true"></ul>
                     </div>
                 </div>
                 <div data-options="region:'center'">
-                    
                 </div>
                 <div data-options="region:'south'" style="height: 26px">
                     状态栏目

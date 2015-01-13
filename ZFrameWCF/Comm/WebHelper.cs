@@ -6,11 +6,12 @@ using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Web.SessionState;
+using ZFrameCore.Entity;
 
 namespace ZFrameWCF.Comm
 {
-   
 
+    #region WCF 配置相关
     public static class WCFWebConfig
     {
 
@@ -21,8 +22,8 @@ namespace ZFrameWCF.Comm
         {
             get
             {
-                
-                
+
+
                 return Convert.ToBoolean(ConfigurationManager.AppSettings["NeedAuth"]);
             }
             set
@@ -54,6 +55,7 @@ namespace ZFrameWCF.Comm
             }
         }
     }
+    #endregion
 
     public static class WebHelper
     {
@@ -92,7 +94,7 @@ namespace ZFrameWCF.Comm
             return httpSessionState["CurrentLoginObject"] == null ? false : true;
         }
         #endregion
-
+        #region 生成验证码图片字符串
         /// <summary>
         /// 生成验证码图片字符串
         /// </summary>
@@ -113,7 +115,7 @@ namespace ZFrameWCF.Comm
             MemoryStream MMS = GetCheckCodeImage(RS);
             return System.Convert.ToBase64String(MMS.ToArray());
         }
-
+        #endregion
         #region 生成验证图片
         /// <summary>
         /// 生成验证码
@@ -167,6 +169,33 @@ namespace ZFrameWCF.Comm
             {
                 g.Dispose();
                 image.Dispose();
+            }
+        }
+        #endregion
+
+        #region 树相关
+        public static void GetEasyUITreeData<T>(List<T> SourceTree, ref List<EasyUI.Tree.TreeData> ReusltObjList,  String ParentSN = "", dynamic ParentNode = null) where T : TEntityTree<T>
+        {
+            for (int i = 0; i <= SourceTree.Count - 1; i++)
+            {
+                dynamic EntityObject = SourceTree[i];
+                if ((EntityObject.F_ParentSN == ParentSN))
+                {
+                    TreeData TD = new TreeData();
+                    TD.id = EntityObject.F_SN;
+                    TD.text = EntityObject.F_Name;
+                    TD.attributes.Add(new KeyValuePair<string, object>("url", EntityObject.F_FuncURL));
+
+                    if (ParentNode == null)
+                    {
+                        ReusltObjList.Add(TD);
+                    }
+                    else
+                    {
+                       ParentNode.children.Add(TD);
+                    }
+                    GetEasyUITreeData(SourceTree, ref ReusltObjList, EntityObject.F_SN, TD);
+                }
             }
         }
         #endregion

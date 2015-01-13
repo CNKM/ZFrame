@@ -33,7 +33,7 @@ namespace ZFrameWCF
                     String FuncCallURL = HttpContext.Current.Request.PathInfo.TrimStart('/');
                     try
                     {
-                        return DelegateMethod.ToJsonString().ToStream();
+                        return DelegateMethod().ToJsonString().ToStream();
                     }
                     catch(Exception e)
                     {
@@ -47,7 +47,7 @@ namespace ZFrameWCF
             }
             else
             {
-                return DelegateMethod.ToJsonString().ToStream();
+                return DelegateMethod().ToJsonString().ToStream();
             }
         }
         #endregion

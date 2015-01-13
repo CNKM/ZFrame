@@ -25,6 +25,14 @@
     }
 }
 
+var CurrentLoginObject = {
+    CurrentDept: {},
+    CurrentRole: {},
+    CurrentUser: {},
+    CurrentFuncs: []
+}
+
+
 var msgbox = {
     error: function (msg) { $.messager.alert("错误", msg, "error"); },
     info: function (msg) { $.messager.alert("消息", msg, "info"); },
@@ -39,7 +47,7 @@ var msgbox = {
         var win = $.messager.progress({
             title: "请稍候",
             msg: "正在执行操作...",
-            bar:{}
+            bar: {}
         });
     },
     closeprogress: function () {
@@ -65,6 +73,28 @@ $(window).resize(function () {
         WindowResizeEvent();
     }
 });
+
+var GetCurrentURl = function () {
+    var strFullPath = window.document.location.href;
+    var strPath = window.document.location.pathname;
+    var pos = strFullPath.indexOf(strPath);
+    var prePath = strFullPath.substring(0, pos);
+    var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
+    return (prePath + postPath);
+
+}
+var JumpToURL = function (url) {
+    window.location(url);
+}
+
+var JumpToPortal = function () {
+    var Portal = GetCurrentURl() + "/Views/Portal.aspx";
+    JumpToURL(Portal);
+}
+var JumToLogin = function () {
+    var Login = GetCurrentURl() + "/Login.aspx";
+    JumpToURL(Portal);
+}
 
 ///字符串处理
 var StringHelper = {

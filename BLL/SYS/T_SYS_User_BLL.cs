@@ -68,7 +68,8 @@ namespace BLL.SYS
                     currentloginobj.CurrentUser = this.ToList<T_SYS_UserInfo>(returnDs.Tables[0])[0];
                     currentloginobj.CurrentDept = this.ToList<T_SYS_Dept>(returnDs.Tables[1])[0];
                     currentloginobj.CurrentRole = this.ToList<T_SYS_Role>(returnDs.Tables[2])[0];
-                    currentloginobj.CurrentFuncs = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[3]);
+                    currentloginobj.CurrentFuncs = this.ToList<T_SYS_Function>(returnDs.Tables[3]);
+                    currentloginobj.CurrentFuncsRight = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[4]);
                     ChoosePositionSource = null;
                     ReutnrString = "通过检测";
                     return (Int32)LoginReulst.UserCheckPass;

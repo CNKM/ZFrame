@@ -72,14 +72,6 @@ namespace Entity.SYS
 
 
         #endregion
-
-        String _F_FuncParentSN;
-        [PropertyType(EntityPropertyType.DesignField)]
-        public String F_FuncParentSN
-        {
-            get { return _F_FuncParentSN; }
-            set { _F_FuncParentSN = value; }
-        }
     }
 }
 

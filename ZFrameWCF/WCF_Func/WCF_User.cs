@@ -1,6 +1,7 @@
 ﻿using BLL.Comm;
 using BLL.SYS;
 using EasyUI.DataGrid;
+using EasyUI.Tree;
 using Entity.SYS;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,41 @@ namespace ZFrameWCF
 
 
 
+      
+        /// <summary>
+        /// 获取当前用户的功能列表(原始列表)
+        /// </summary>
+        /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream GetListUsers(String LoginName = "", String LoginPWD = "")
+        public Stream GetCurrentLoginUser()
         {
-            var t = EasyUIHelper.DataGrid.GetClientRequestInfo(HttpContext.Current);
-            T_SYS_User_BLL UB = new T_SYS_User_BLL();
-            return EasyUIHelper.DataGrid.GetReutrnList<T_SYS_User>(UB.Select(), 100).ToJsonString().ToStream();
+            return CommFuncAction(delegate()
+            {
+                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session["CurrentLoginObject"] as CurrentLoginObject;
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
+            });
         }
+
+        /// <summary>
+        /// 获取当前用户的功能列表(EasyUI模式)
+        /// </summary>
+        /// <returns></returns>
+        [WebGet]
+        [OperationContract]
+        public Stream GetCurrentLoginForEasyUI()
+        {
+            return CommFuncAction(delegate()
+            {
+                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session["CurrentLoginObject"] as CurrentLoginObject;
+                List<TreeData> listTD =new List<TreeData>();
+                WebHelper.GetEasyUITreeData<T_SYS_Function>(CurrengLoginInfo.CurrentFuncs, ref listTD, "", null);
+                CurrengLoginInfo.ExtendContend = listTD;
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
+            });
+        }
+
+
 
         /// <summary>
         /// 用户登录验证

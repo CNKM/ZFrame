@@ -47,6 +47,7 @@
     <Compile Include="BLL\TBLLBase.cs" />
     <Compile Include="Comm\FrameCore.cs" />
     <Compile Include="Entity\TEntityBase.cs" />
+    <Compile Include="Entity\TEntityTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

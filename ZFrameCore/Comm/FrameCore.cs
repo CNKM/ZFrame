@@ -654,7 +654,7 @@ namespace ZFrameCore.Common
 
         }
 
-        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine,Object _Msg=null, Object _Contend=null)
+        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine, Object _Msg = null, Object _Contend = null)
         {
             this.Contend = _Contend;
             switch (ReturnDefine)

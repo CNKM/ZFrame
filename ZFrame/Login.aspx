@@ -34,7 +34,6 @@
     </style>
     <script>
         WindowResizeEvent = function () {
-
             $("#LoginFrm").window("center");
         }
         var UserLogin = function () {
@@ -68,7 +67,7 @@
             
             AjaxHelper.CallFunction("UserLoginCheck", CValue,true, function (data) {
                 if (data.Code == 1) {
-                    alert("OK");
+                    JumpToPortal();
                 }
                 else if (data.Code == -4) {
                     $("#LoginFrm").window({ height: 360 });
@@ -100,9 +99,14 @@
                 });
         }
         $(document).ready(function () {
-
+            //for debug
+            $("#txtUserName").textbox("setText", "superadmin");
+            $("#txtUserPWD").textbox("setText", "saynccl");
+            $("#txtCheckCode").textbox("setText", "123456");
+            UserLogin();
 
             LoadCheckCode();
+           
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {

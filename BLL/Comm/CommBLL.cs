@@ -43,14 +43,35 @@ namespace BLL.Comm
             set { _CurrentUser = value; }
         }
 
-        List<T_SYS_FunctionRight> _CurrentFuncs;
+        List<T_SYS_Function> _CurrentFuncs;
 
         //当前功能列表
-        public List<T_SYS_FunctionRight> CurrentFuncs
+        public List<T_SYS_Function> CurrentFuncs
         {
             get { return _CurrentFuncs; }
             set { _CurrentFuncs = value; }
         }
+
+        List<T_SYS_FunctionRight> _CurrentFuncsRight;
+        /// <summary>
+        /// 当前功能权限
+        /// </summary>
+        public List<T_SYS_FunctionRight> CurrentFuncsRight
+        {
+            get { return _CurrentFuncsRight; }
+            set { _CurrentFuncsRight = value; }
+        }
+
+        Object _ExtendContend;
+        /// <summary>
+        /// 扩展返回属性
+        /// </summary>
+        public Object ExtendContend
+        {
+            get { return _ExtendContend; }
+            set { _ExtendContend = value; }
+        }
+        
     }
 
     public enum LoginReulst
@@ -97,4 +118,5 @@ namespace BLL.Comm
         ExecError = -6
 
     }
+
 }
