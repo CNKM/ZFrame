@@ -16,10 +16,6 @@ namespace ZFrameWCF
 {
     public partial class WCFServices
     {
-
-
-
-
         /// <summary>
         /// 获取当前用户的功能列表(原始列表)
         /// </summary>
