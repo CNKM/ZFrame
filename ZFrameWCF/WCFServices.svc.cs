@@ -12,16 +12,17 @@ namespace ZFrameWCF
 {
     [ServiceContract(Namespace = "ZFrame", SessionMode = SessionMode.Allowed)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]  
     public partial class WCFServices
     {
-
+        
         #region 业务函数调用模板
         /// <summary>
         /// 定义匿名委托作为统一服务调用模板
         /// </summary>
         /// <param name="DelegateMethod">委托方法</param>
         /// <returns></returns>
-        public Stream CommFuncAction(Func<CallBackReturnObject> DelegateMethod)
+        public Stream CommFuncAction(Func<CallBackReturnObject> DelegateMethod) 
         {
             //配置中是否需要验证
             if (WCFWebConfig.NeedAuth)
@@ -37,7 +38,7 @@ namespace ZFrameWCF
                     }
                     catch(Exception e)
                     {
-                        return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION,e.Message).ToStream();
+                        return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION,null,e.Message).ToStream();
                     }
                 }
                 else
@@ -54,7 +55,7 @@ namespace ZFrameWCF
 
         public WCFServices()
         {
-
+               
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace ZFrameWCF
         {
             try
             {
-                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS,null, HttpContext.Current.Session.MakeCheckCode(VCode)).ToStream();
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS,HttpContext.Current.Session.MakeCheckCode(VCode)).ToStream();
             }
             catch
             {

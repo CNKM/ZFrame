@@ -8,12 +8,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Web;
+using System.Web.Services;
 using ZFrameCore.Common;
 using ZFrameWCF.Comm;
 namespace ZFrameWCF
 {
+  
     public partial class WCFServices
     {
         /// <summary>
@@ -27,7 +30,7 @@ namespace ZFrameWCF
             return CommFuncAction(delegate()
             {
                 CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
-                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
+                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, CurrengLoginInfo);
             });
         }
 
@@ -42,8 +45,15 @@ namespace ZFrameWCF
             return CommFuncAction(delegate()
             {
                 CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
-                WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo);
-                return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
+                if (CurrengLoginInfo != null)
+                {
+                    WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo);
+                    return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, CurrengLoginInfo);
+                }
+                else
+                {
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLWITHOUTAUTH,null,"用户未登录");
+                }
             });
         }
 
@@ -88,7 +98,13 @@ namespace ZFrameWCF
                 return new CallBackReturnObject(CALLRETURNDEFINE.AUTHCODEERROR).ToStream();
             }
         }
-
+        [WebGet]
+        [OperationContract]
+        public Stream  GetSessionAuthState()
+        {
+            Boolean ISOK =HttpContext.Current.Session.GetSessionAuthState();
+            return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, ISOK).ToStream();
+        }
         [WebGet]
         [OperationContract]
         public Stream UserLoginOut()

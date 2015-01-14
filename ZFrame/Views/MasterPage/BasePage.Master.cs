@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ZFrameCore.Common;
 
 namespace ZFrameWeb.Views.MasterPage
 {
@@ -30,10 +32,29 @@ namespace ZFrameWeb.Views.MasterPage
             }
         }
         #endregion
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+              
+                String RequsetURL = Request.Url.ToString();
+                if (!RequsetURL.Contains("Login.aspx"))
+                {
+                    //需要验证
+                 
+                    var tt= HttpContext.Current.Session;
 
+                    //if (!isLogined)
+                    //{
+                    //    Response.Redirect("~/Login.aspx");
+                    //}
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }

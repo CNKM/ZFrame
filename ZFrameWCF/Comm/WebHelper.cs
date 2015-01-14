@@ -75,10 +75,7 @@ namespace ZFrameWCF.Comm
     {
         #region 读写 Session 定义
 
-        internal static Boolean GetSessionAuthState(this HttpSessionState httpSessionState)
-        {
-            return httpSessionState.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT) == null ? false : true;
-        }
+
 
 
         internal static T Get<T>(this HttpSessionState httpSessionState, USEDSESSION SessionKey)
@@ -107,6 +104,13 @@ namespace ZFrameWCF.Comm
     public static class WebHelper
     {
         #region 验证
+
+        internal static Boolean GetSessionAuthState(this HttpSessionState httpSessionState)
+        {
+            var rr = httpSessionState.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
+            return rr == null ? false : true;
+        }
+
         /// <summary>
         /// 验证码验证
         /// </summary>
@@ -216,6 +220,7 @@ namespace ZFrameWCF.Comm
 
         public static void InitFuncTreeForEasyUI(CurrentLoginObject CLO)
         {
+
             List<TreeData> TempTreeNodes = new List<TreeData>();
             CLO.CurrentFuncs.GetEasyUITreeData(ref TempTreeNodes, "", null);
             CLO.ExtendContend = TempTreeNodes;

@@ -479,7 +479,6 @@
       <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ZFrameCore\ZFrameCore.csproj">
       <Project>{8652e3d9-7f7c-49b3-b310-b730f82b4cae}</Project>

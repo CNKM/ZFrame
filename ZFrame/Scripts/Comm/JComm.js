@@ -12,8 +12,14 @@
             success: function (responseText, status) {
                 msgbox.closeprogress();
                 try {
-                    successcallback(JSON.parse(responseText));
-                } catch (ex) {
+                    var CallBackObject = JSON.parse(responseText);
+                    if (CallBackObject.Code == -1) {
+                        alert(CallBackObject.Msg);
+                        JumToLogin();
+                        return;
+                    }
+                    successcallback(CallBackObject);
+                } catch (err) {
                     successcallback(responseText);
                 }
             },
@@ -93,7 +99,7 @@ var JumpToPortal = function () {
 }
 var JumToLogin = function () {
     var Login = GetCurrentURl() + "/Login.aspx";
-    JumpToURL(Portal);
+    JumpToURL(Login);
 }
 
 ///字符串处理

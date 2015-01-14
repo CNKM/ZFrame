@@ -645,16 +645,15 @@ namespace ZFrameCore.Common
     /// </summary>
     public class CallBackReturnObject
     {
-        public Object Code { get; set; }
-        public Object Msg { get; set; }
+        public Int32 Code { get; set; }
+        public String Msg { get; set; }
         public Object Contend { get; set; }
 
         public CallBackReturnObject()
         {
 
         }
-
-        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine, Object _Msg = null, Object _Contend = null)
+        public CallBackReturnObject(CALLRETURNDEFINE ReturnDefine, Object _Contend=null , String _Msg = null)
         {
             this.Contend = _Contend;
             switch (ReturnDefine)
@@ -679,18 +678,24 @@ namespace ZFrameCore.Common
                     break;
             }
         }
-
         public Stream ToStream()
         {
             return this.ToJsonString().ToStream();
         }
     }
 
+    public class CallBackReturnObject<T>
+    {
+        public Int32 Code { get; set; }
+        public String Msg { get; set; }
+        public T Contend { get; set; }
+    }
+
     public static class CallBackHelper
     {
-        public static CallBackReturnObject ToCallBackObject(this Stream ReturnStream)
+        public static CallBackReturnObject<T> ToCallBackObject<T>(this Stream ReturnStream)
         {
-            return ReturnStream.SToString().FromJsonString<CallBackReturnObject>();
+            return ReturnStream.SToString().FromJsonString<CallBackReturnObject<T>>();
         }
     }
     #endregion

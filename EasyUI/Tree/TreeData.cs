@@ -12,8 +12,9 @@ namespace EasyUI.Tree
         public string id { get; set; }
         public string text { get; set; }
         public string state { get; set; }
+        public string iconCls { get; set; }
         public Boolean @checked { get; set; }
-        public List<KeyValuePair<String,Object>> attributes { get; set; }
+        public List<KeyValuePair<String, Object>> attributes { get; set; }
         public List<TreeData> children { get; set; }
         public TreeData()
         {

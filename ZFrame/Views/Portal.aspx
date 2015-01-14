@@ -27,7 +27,7 @@
             });
 
             $("#MainTab").tabs({ height: $(window).height() });
-            AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, true,
+            AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, false,
                 function (d) {
                     var ReutrnCurrengLoingObject = JSON.parse(d).Contend;
                     CurrentLoginObject.CurrentDept = ReutrnCurrengLoingObject.CurrentDept;
