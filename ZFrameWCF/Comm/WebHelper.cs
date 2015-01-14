@@ -150,7 +150,7 @@ namespace ZFrameWCF.Comm
             else
             {
 
-                httpSessionState.Set(USEDSESSION.CURRENTLOGINOBJECT, RS);
+                httpSessionState.Set(USEDSESSION.LOGINCHECKCODE, RS);
             }
             MemoryStream MMS = GetCheckCodeImage(RS);
             return System.Convert.ToBase64String(MMS.ToArray());
@@ -239,6 +239,7 @@ namespace ZFrameWCF.Comm
                     TD.id = EntityObject.F_SN;
                     TD.text = EntityObject.F_Name;
                     TD.attributes.Add(new KeyValuePair<string, object>("url", EntityObject.F_FuncURL));
+                    TD.attributes.Add(new KeyValuePair<string, object>("filterkey", EntityObject.F_FilterKey));
                     if (ParentNode == null)
                     {
                         ReusltObjList.Add(TD);

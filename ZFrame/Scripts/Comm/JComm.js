@@ -107,7 +107,51 @@ var StringHelper = {
         }
         return false;
     }
+};
+
+
+function forNodes(data, callback) {
+    var nodes = [];
+    for (var i = 0; i < data.length; i++) {
+        nodes.push(data[i]);
+    }
+    while (nodes.length) {
+        var node = nodes.shift();
+        if (callback(node) == false) { return; }
+        if (node.children) {
+            for (var i = node.children.length - 1; i >= 0; i--) {
+                nodes.unshift(node.children[i]);
+            }
+        }
+    }
 }
+function RegTreeFilter() {
+    $.extend($.fn.tree.methods, {
+        doFilter: function (jq, text) {
+            return jq.each(function () {
+                var target = this;
+                var data = $.data(target, 'tree').data;
+                var ids = {};
+                forNodes(data, function (node) {
+                    if (node.attributes[1].Value.toLowerCase().indexOf(text.toLowerCase()) == -1) {
+                        $('#' + node.domId).hide();
+                    } else {
+                        $('#' + node.domId).show();
+                        ids[node.domId] = 1;
+                    }
+                });
+                for (var id in ids) {
+                    showParents(id);
+                }
 
-
-
+                function showParents(domId) {
+                    var p = $(target).tree('getParent', $('#' + domId)[0]);
+                    while (p) {
+                        $(p.target).show();
+                        p = $(target).tree('getParent', p.target);
+                    }
+                }
+            });
+        }
+    });
+}

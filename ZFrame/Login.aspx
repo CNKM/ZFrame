@@ -36,7 +36,7 @@
         WindowResizeEvent = function () {
             $("#LoginFrm").window("center");
         }
-        var UserLogin = function () {
+        var UserLogin = function (isdebug) {
             var CValue = {
                 UserName: $("#txtUserName").textbox("getText"),
                 PassWord: $("#txtUserPWD").textbox("getText"),
@@ -49,20 +49,27 @@
                     else { return ""; }
                 }
             };
+            if (isdebug == true) {
+                //for debug;
+                CValue.ChooseDept = "3E89ADA1-96DB-4C4E-886F-3D0DA5CAFFFA";
+                CValue.UserName = "superadmin";
+                CValue.PassWord = "saynccl";
+                CValue.CheckCode = "debug";
+            }
+            else {
 
-            CValue.CheckCode = $("#txtCheckCode").textbox("getText");
-            
-            if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
-                alert("登录帐号不能为空！");
-                return;
-            }
-            if (StringHelper.IsNullOrEmpty(CValue.PassWord)) {
-                alert("登录密码不能为空！");
-                return;
-            }
-            if (StringHelper.IsNullOrEmpty(CValue.CheckCode)) {
-                alert("验证编码不能为空！");
-                return;
+                if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
+                    alert("登录帐号不能为空！");
+                    return;
+                }
+                if (StringHelper.IsNullOrEmpty(CValue.PassWord)) {
+                    alert("登录密码不能为空！");
+                    return;
+                }
+                if (StringHelper.IsNullOrEmpty(CValue.CheckCode)) {
+                    alert("验证编码不能为空！");
+                    return;
+                }
             }
             
             AjaxHelper.CallFunction("UserLoginCheck", CValue,true, function (data) {
@@ -99,12 +106,7 @@
                 });
         }
         $(document).ready(function () {
-            //for debug
-            $("#txtUserName").textbox("setText", "superadmin");
-            $("#txtUserPWD").textbox("setText", "saynccl");
-            $("#txtCheckCode").textbox("setText", "123456");
-            UserLogin();
-
+            UserLogin(true);
             LoadCheckCode();
            
             $('#txtUserName').textbox("textbox").focus();

@@ -54,7 +54,13 @@ namespace ZFrameCore.Entity
             get { return _entitymodeltype; }
             set { _entitymodeltype = value; }
         }
-
+        [PropertyType(EntityPropertyType.DesignField)]
+        [System.Xml.Serialization.XmlIgnore]
+        public String F_FilterKey
+        {
+            get;
+            set;
+        }
 
         public TEntityBase()
         {
