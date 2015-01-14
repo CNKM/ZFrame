@@ -19,7 +19,7 @@ namespace ZFrameWCF
 
 
 
-      
+
         /// <summary>
         /// 获取当前用户的功能列表(原始列表)
         /// </summary>
@@ -30,7 +30,7 @@ namespace ZFrameWCF
         {
             return CommFuncAction(delegate()
             {
-                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session["CurrentLoginObject"] as CurrentLoginObject;
+                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
                 return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
             });
         }
@@ -45,10 +45,8 @@ namespace ZFrameWCF
         {
             return CommFuncAction(delegate()
             {
-                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session["CurrentLoginObject"] as CurrentLoginObject;
-                List<TreeData> listTD =new List<TreeData>();
-                WebHelper.GetEasyUITreeData<T_SYS_Function>(CurrengLoginInfo.CurrentFuncs, ref listTD, "", null);
-                CurrengLoginInfo.ExtendContend = listTD;
+                CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
+                WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo);
                 return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, null, CurrengLoginInfo);
             });
         }
@@ -79,13 +77,13 @@ namespace ZFrameWCF
                     Int32 ExecReusltCode = UserBLL.CheckUserLogin(UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
                     if (ExecReusltCode == 1)
                     {
-                        HttpContext.Current.Session["CurrentLoginObject"] = CurrengLoginInfo;
+                        HttpContext.Current.Session.Set(USEDSESSION.CURRENTLOGINOBJECT, CurrengLoginInfo);
                     }
-                    return new CallBackReturnObject{ Code = ExecReusltCode, Msg = ExecReusltMsg, Contend = ReturnRoles }.ToStream();
+                    return new CallBackReturnObject { Code = ExecReusltCode, Msg = ExecReusltMsg, Contend = ReturnRoles }.ToStream();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION,e.Message).ToStream();
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLEXCEPTION, e.Message).ToStream();
                 }
 
             }
@@ -101,10 +99,10 @@ namespace ZFrameWCF
         {
             return CommFuncAction(delegate()
             {
-                HttpContext.Current.Session["CurrentLoginObject"] = null;
-                HttpContext.Current.Session.Remove("CurrentLoginObject");
+                HttpContext.Current.Session.Remove(USEDSESSION.CURRENTLOGINOBJECT);
                 return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS);
             });
+
         }
 
 

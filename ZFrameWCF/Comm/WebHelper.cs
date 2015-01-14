@@ -1,4 +1,5 @@
-﻿using EasyUI.Tree;
+﻿using BLL.Comm;
+using EasyUI.Tree;
 using Entity.SYS;
 using System;
 using System.Collections.Generic;
@@ -56,10 +57,56 @@ namespace ZFrameWCF.Comm
         }
     }
     #endregion
+    /// <summary>
+    /// 使用的SESSION 段
+    /// </summary>
+    public enum USEDSESSION
+    {
+        /// <summary>
+        /// 登陆验证代码
+        /// </summary>
+        LOGINCHECKCODE,
+        /// <summary>
+        /// 当前登陆对象
+        /// </summary>
+        CURRENTLOGINOBJECT
+    }
+    public static class SessionHelper
+    {
+        #region 读写 Session 定义
+
+        internal static Boolean GetSessionAuthState(this HttpSessionState httpSessionState)
+        {
+            return httpSessionState.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT) == null ? false : true;
+        }
+
+
+        internal static T Get<T>(this HttpSessionState httpSessionState, USEDSESSION SessionKey)
+        {
+            if (httpSessionState[SessionKey.ToString()] == null)
+            {
+                return default(T);
+            }
+            else
+            {
+                return (T)httpSessionState[SessionKey.ToString()];
+            }
+        }
+        internal static void Set(this HttpSessionState httpSessionState, USEDSESSION SessionKey, object Value)
+        {
+            httpSessionState[SessionKey.ToString()] = Value;
+        }
+        internal static void Remove(this HttpSessionState httpSessionState, USEDSESSION SessionKey)
+        {
+            httpSessionState[SessionKey.ToString()] = null;
+            httpSessionState.Remove(SessionKey.ToString());
+        }
+        #endregion
+    }
 
     public static class WebHelper
     {
-        #region Session Auth
+        #region 验证
         /// <summary>
         /// 验证码验证
         /// </summary>
@@ -71,7 +118,7 @@ namespace ZFrameWCF.Comm
             if (WCFWebConfig.NeedAuth)
             {
                 CheckCode = String.IsNullOrEmpty(CheckCode) ? Guid.NewGuid().ToString() : CheckCode;
-                string ServerSideCode = httpSessionState["LoginCheckCode"] == null ? "" : httpSessionState["LoginCheckCode"].ToString();
+                string ServerSideCode = httpSessionState.Get<String>(USEDSESSION.LOGINCHECKCODE) == null ? "" : httpSessionState.Get<String>(USEDSESSION.LOGINCHECKCODE);
                 if (CheckCode.ToUpper() == ServerSideCode)
                 {
                     return true;
@@ -84,15 +131,7 @@ namespace ZFrameWCF.Comm
             }
         }
 
-        /// <summary>
-        /// 是否已经验证通过
-        /// </summary>
-        /// <param name="httpSessionState"></param>
-        /// <returns></returns>
-        internal static Boolean IsSessionAuthed(this HttpSessionState httpSessionState)
-        {
-            return httpSessionState["CurrentLoginObject"] == null ? false : true;
-        }
+
         #endregion
         #region 生成验证码图片字符串
         /// <summary>
@@ -110,7 +149,8 @@ namespace ZFrameWCF.Comm
             }
             else
             {
-                httpSessionState["LoginCheckCode"] = RS;
+
+                httpSessionState.Set(USEDSESSION.CURRENTLOGINOBJECT, RS);
             }
             MemoryStream MMS = GetCheckCodeImage(RS);
             return System.Convert.ToBase64String(MMS.ToArray());
@@ -172,9 +212,23 @@ namespace ZFrameWCF.Comm
             }
         }
         #endregion
-
         #region 树相关
-        public static void GetEasyUITreeData<T>(List<T> SourceTree, ref List<EasyUI.Tree.TreeData> ReusltObjList,  String ParentSN = "", dynamic ParentNode = null) where T : TEntityTree<T>
+
+        public static void InitFuncTreeForEasyUI(CurrentLoginObject CLO)
+        {
+            List<TreeData> TempTreeNodes = new List<TreeData>();
+            CLO.CurrentFuncs.GetEasyUITreeData(ref TempTreeNodes, "", null);
+            CLO.ExtendContend = TempTreeNodes;
+        }
+        /// <summary>
+        /// 构建EasyUI树形结构
+        /// </summary>
+        /// <typeparam name="T">树形结构实体类型</typeparam>
+        /// <param name="SourceTree">树</param>
+        /// <param name="ReusltObjList"></param>
+        /// <param name="ParentSN"></param>
+        /// <param name="ParentNode"></param>
+        public static void GetEasyUITreeData<T>(this List<T> SourceTree, ref List<EasyUI.Tree.TreeData> ReusltObjList, String ParentSN = "", dynamic ParentNode = null) where T : TEntityTree<T>
         {
             for (int i = 0; i <= SourceTree.Count - 1; i++)
             {
@@ -185,14 +239,13 @@ namespace ZFrameWCF.Comm
                     TD.id = EntityObject.F_SN;
                     TD.text = EntityObject.F_Name;
                     TD.attributes.Add(new KeyValuePair<string, object>("url", EntityObject.F_FuncURL));
-
                     if (ParentNode == null)
                     {
                         ReusltObjList.Add(TD);
                     }
                     else
                     {
-                       ParentNode.children.Add(TD);
+                        ParentNode.children.Add(TD);
                     }
                     GetEasyUITreeData(SourceTree, ref ReusltObjList, EntityObject.F_SN, TD);
                 }

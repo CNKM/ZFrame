@@ -27,7 +27,7 @@ namespace ZFrameWCF
             if (WCFWebConfig.NeedAuth)
             {
                 //是否已经登录验证通过
-                if (HttpContext.Current.Session.IsSessionAuthed())
+                if (HttpContext.Current.Session.GetSessionAuthState())
                 {
                     //功能菜单权限
                     String FuncCallURL = HttpContext.Current.Request.PathInfo.TrimStart('/');
