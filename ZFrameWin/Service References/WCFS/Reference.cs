@@ -12,40 +12,64 @@ namespace ZFrameWin.WCFS {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="WCFS.WCFServices")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="ZFrame", ConfigurationName="WCFS.WCFServices")]
     public interface WCFServices {
         
-        [System.ServiceModel.OperationContractAttribute(Action="urn:WCFServices/GetCheckCodeImage", ReplyAction="urn:WCFServices/GetCheckCodeImageResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/GetCurrentLoginUser", ReplyAction="ZFrame/WCFServices/GetCurrentLoginUserResponse")]
+        System.IO.Stream GetCurrentLoginUser();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/GetCurrentLoginUser", ReplyAction="ZFrame/WCFServices/GetCurrentLoginUserResponse")]
+        System.IAsyncResult BeginGetCurrentLoginUser(System.AsyncCallback callback, object asyncState);
+        
+        System.IO.Stream EndGetCurrentLoginUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/GetCurrentLoginForEasyUI", ReplyAction="ZFrame/WCFServices/GetCurrentLoginForEasyUIResponse")]
+        System.IO.Stream GetCurrentLoginForEasyUI();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/GetCurrentLoginForEasyUI", ReplyAction="ZFrame/WCFServices/GetCurrentLoginForEasyUIResponse")]
+        System.IAsyncResult BeginGetCurrentLoginForEasyUI(System.AsyncCallback callback, object asyncState);
+        
+        System.IO.Stream EndGetCurrentLoginForEasyUI(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/UserLoginCheck", ReplyAction="ZFrame/WCFServices/UserLoginCheckResponse")]
+        System.IO.Stream UserLoginCheck(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/UserLoginCheck", ReplyAction="ZFrame/WCFServices/UserLoginCheckResponse")]
+        System.IAsyncResult BeginUserLoginCheck(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState);
+        
+        System.IO.Stream EndUserLoginCheck(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/GetSessionAuthState", ReplyAction="ZFrame/WCFServices/GetSessionAuthStateResponse")]
+        System.IO.Stream GetSessionAuthState();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/GetSessionAuthState", ReplyAction="ZFrame/WCFServices/GetSessionAuthStateResponse")]
+        System.IAsyncResult BeginGetSessionAuthState(System.AsyncCallback callback, object asyncState);
+        
+        System.IO.Stream EndGetSessionAuthState(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/UserLoginOut", ReplyAction="ZFrame/WCFServices/UserLoginOutResponse")]
+        System.IO.Stream UserLoginOut();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/UserLoginOut", ReplyAction="ZFrame/WCFServices/UserLoginOutResponse")]
+        System.IAsyncResult BeginUserLoginOut(System.AsyncCallback callback, object asyncState);
+        
+        System.IO.Stream EndUserLoginOut(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/GetCheckCodeImage", ReplyAction="ZFrame/WCFServices/GetCheckCodeImageResponse")]
         System.IO.Stream GetCheckCodeImage(string VCode);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:WCFServices/GetCheckCodeImage", ReplyAction="urn:WCFServices/GetCheckCodeImageResponse")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/GetCheckCodeImage", ReplyAction="ZFrame/WCFServices/GetCheckCodeImageResponse")]
         System.IAsyncResult BeginGetCheckCodeImage(string VCode, System.AsyncCallback callback, object asyncState);
         
         System.IO.Stream EndGetCheckCodeImage(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="urn:WCFServices/GetListUsers", ReplyAction="urn:WCFServices/GetListUsersResponse")]
-        System.IO.Stream GetListUsers(string LoginName, string LoginPWD);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:WCFServices/GetListUsers", ReplyAction="urn:WCFServices/GetListUsersResponse")]
-        System.IAsyncResult BeginGetListUsers(string LoginName, string LoginPWD, System.AsyncCallback callback, object asyncState);
-        
-        System.IO.Stream EndGetListUsers(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="urn:WCFServices/GetServerDateTime", ReplyAction="urn:WCFServices/GetServerDateTimeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="ZFrame/WCFServices/GetServerDateTime", ReplyAction="ZFrame/WCFServices/GetServerDateTimeResponse")]
         System.IO.Stream GetServerDateTime();
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:WCFServices/GetServerDateTime", ReplyAction="urn:WCFServices/GetServerDateTimeResponse")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="ZFrame/WCFServices/GetServerDateTime", ReplyAction="ZFrame/WCFServices/GetServerDateTimeResponse")]
         System.IAsyncResult BeginGetServerDateTime(System.AsyncCallback callback, object asyncState);
         
         System.IO.Stream EndGetServerDateTime(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="urn:WCFServices/Login_UserCheck", ReplyAction="urn:WCFServices/Login_UserCheckResponse")]
-        System.IO.Stream Login_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:WCFServices/Login_UserCheck", ReplyAction="urn:WCFServices/Login_UserCheckResponse")]
-        System.IAsyncResult BeginLogin_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState);
-        
-        System.IO.Stream EndLogin_UserCheck(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -54,11 +78,11 @@ namespace ZFrameWin.WCFS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetCheckCodeImageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetCurrentLoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetCheckCodeImageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetCurrentLoginUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -73,11 +97,87 @@ namespace ZFrameWin.WCFS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetListUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetCurrentLoginForEasyUICompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetListUsersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetCurrentLoginForEasyUICompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.IO.Stream Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.IO.Stream)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UserLoginCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UserLoginCheckCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.IO.Stream Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.IO.Stream)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSessionAuthStateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSessionAuthStateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.IO.Stream Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.IO.Stream)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UserLoginOutCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UserLoginOutCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.IO.Stream Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.IO.Stream)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCheckCodeImageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCheckCodeImageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -111,26 +211,37 @@ namespace ZFrameWin.WCFS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Login_UserCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public Login_UserCheckCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public System.IO.Stream Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((System.IO.Stream)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WCFServicesClient : System.ServiceModel.ClientBase<ZFrameWin.WCFS.WCFServices>, ZFrameWin.WCFS.WCFServices {
+        
+        private BeginOperationDelegate onBeginGetCurrentLoginUserDelegate;
+        
+        private EndOperationDelegate onEndGetCurrentLoginUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCurrentLoginUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCurrentLoginForEasyUIDelegate;
+        
+        private EndOperationDelegate onEndGetCurrentLoginForEasyUIDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCurrentLoginForEasyUICompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUserLoginCheckDelegate;
+        
+        private EndOperationDelegate onEndUserLoginCheckDelegate;
+        
+        private System.Threading.SendOrPostCallback onUserLoginCheckCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSessionAuthStateDelegate;
+        
+        private EndOperationDelegate onEndGetSessionAuthStateDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSessionAuthStateCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUserLoginOutDelegate;
+        
+        private EndOperationDelegate onEndUserLoginOutDelegate;
+        
+        private System.Threading.SendOrPostCallback onUserLoginOutCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetCheckCodeImageDelegate;
         
@@ -138,23 +249,11 @@ namespace ZFrameWin.WCFS {
         
         private System.Threading.SendOrPostCallback onGetCheckCodeImageCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetListUsersDelegate;
-        
-        private EndOperationDelegate onEndGetListUsersDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetListUsersCompletedDelegate;
-        
         private BeginOperationDelegate onBeginGetServerDateTimeDelegate;
         
         private EndOperationDelegate onEndGetServerDateTimeDelegate;
         
         private System.Threading.SendOrPostCallback onGetServerDateTimeCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginLogin_UserCheckDelegate;
-        
-        private EndOperationDelegate onEndLogin_UserCheckDelegate;
-        
-        private System.Threading.SendOrPostCallback onLogin_UserCheckCompletedDelegate;
         
         public WCFServicesClient() {
         }
@@ -175,13 +274,269 @@ namespace ZFrameWin.WCFS {
                 base(binding, remoteAddress) {
         }
         
-        public event System.EventHandler<GetCheckCodeImageCompletedEventArgs> GetCheckCodeImageCompleted;
+        public event System.EventHandler<GetCurrentLoginUserCompletedEventArgs> GetCurrentLoginUserCompleted;
         
-        public event System.EventHandler<GetListUsersCompletedEventArgs> GetListUsersCompleted;
+        public event System.EventHandler<GetCurrentLoginForEasyUICompletedEventArgs> GetCurrentLoginForEasyUICompleted;
+        
+        public event System.EventHandler<UserLoginCheckCompletedEventArgs> UserLoginCheckCompleted;
+        
+        public event System.EventHandler<GetSessionAuthStateCompletedEventArgs> GetSessionAuthStateCompleted;
+        
+        public event System.EventHandler<UserLoginOutCompletedEventArgs> UserLoginOutCompleted;
+        
+        public event System.EventHandler<GetCheckCodeImageCompletedEventArgs> GetCheckCodeImageCompleted;
         
         public event System.EventHandler<GetServerDateTimeCompletedEventArgs> GetServerDateTimeCompleted;
         
-        public event System.EventHandler<Login_UserCheckCompletedEventArgs> Login_UserCheckCompleted;
+        public System.IO.Stream GetCurrentLoginUser() {
+            return base.Channel.GetCurrentLoginUser();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCurrentLoginUser(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCurrentLoginUser(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IO.Stream EndGetCurrentLoginUser(System.IAsyncResult result) {
+            return base.Channel.EndGetCurrentLoginUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCurrentLoginUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCurrentLoginUser(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCurrentLoginUser(System.IAsyncResult result) {
+            System.IO.Stream retVal = this.EndGetCurrentLoginUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCurrentLoginUserCompleted(object state) {
+            if ((this.GetCurrentLoginUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCurrentLoginUserCompleted(this, new GetCurrentLoginUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCurrentLoginUserAsync() {
+            this.GetCurrentLoginUserAsync(null);
+        }
+        
+        public void GetCurrentLoginUserAsync(object userState) {
+            if ((this.onBeginGetCurrentLoginUserDelegate == null)) {
+                this.onBeginGetCurrentLoginUserDelegate = new BeginOperationDelegate(this.OnBeginGetCurrentLoginUser);
+            }
+            if ((this.onEndGetCurrentLoginUserDelegate == null)) {
+                this.onEndGetCurrentLoginUserDelegate = new EndOperationDelegate(this.OnEndGetCurrentLoginUser);
+            }
+            if ((this.onGetCurrentLoginUserCompletedDelegate == null)) {
+                this.onGetCurrentLoginUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCurrentLoginUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCurrentLoginUserDelegate, null, this.onEndGetCurrentLoginUserDelegate, this.onGetCurrentLoginUserCompletedDelegate, userState);
+        }
+        
+        public System.IO.Stream GetCurrentLoginForEasyUI() {
+            return base.Channel.GetCurrentLoginForEasyUI();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCurrentLoginForEasyUI(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCurrentLoginForEasyUI(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IO.Stream EndGetCurrentLoginForEasyUI(System.IAsyncResult result) {
+            return base.Channel.EndGetCurrentLoginForEasyUI(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCurrentLoginForEasyUI(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCurrentLoginForEasyUI(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCurrentLoginForEasyUI(System.IAsyncResult result) {
+            System.IO.Stream retVal = this.EndGetCurrentLoginForEasyUI(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCurrentLoginForEasyUICompleted(object state) {
+            if ((this.GetCurrentLoginForEasyUICompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCurrentLoginForEasyUICompleted(this, new GetCurrentLoginForEasyUICompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCurrentLoginForEasyUIAsync() {
+            this.GetCurrentLoginForEasyUIAsync(null);
+        }
+        
+        public void GetCurrentLoginForEasyUIAsync(object userState) {
+            if ((this.onBeginGetCurrentLoginForEasyUIDelegate == null)) {
+                this.onBeginGetCurrentLoginForEasyUIDelegate = new BeginOperationDelegate(this.OnBeginGetCurrentLoginForEasyUI);
+            }
+            if ((this.onEndGetCurrentLoginForEasyUIDelegate == null)) {
+                this.onEndGetCurrentLoginForEasyUIDelegate = new EndOperationDelegate(this.OnEndGetCurrentLoginForEasyUI);
+            }
+            if ((this.onGetCurrentLoginForEasyUICompletedDelegate == null)) {
+                this.onGetCurrentLoginForEasyUICompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCurrentLoginForEasyUICompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCurrentLoginForEasyUIDelegate, null, this.onEndGetCurrentLoginForEasyUIDelegate, this.onGetCurrentLoginForEasyUICompletedDelegate, userState);
+        }
+        
+        public System.IO.Stream UserLoginCheck(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept) {
+            return base.Channel.UserLoginCheck(PType, CheckCode, UserName, PassWord, ChooseDept);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUserLoginCheck(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUserLoginCheck(PType, CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IO.Stream EndUserLoginCheck(System.IAsyncResult result) {
+            return base.Channel.EndUserLoginCheck(result);
+        }
+        
+        private System.IAsyncResult OnBeginUserLoginCheck(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int PType = ((int)(inValues[0]));
+            string CheckCode = ((string)(inValues[1]));
+            string UserName = ((string)(inValues[2]));
+            string PassWord = ((string)(inValues[3]));
+            string ChooseDept = ((string)(inValues[4]));
+            return this.BeginUserLoginCheck(PType, CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
+        }
+        
+        private object[] OnEndUserLoginCheck(System.IAsyncResult result) {
+            System.IO.Stream retVal = this.EndUserLoginCheck(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUserLoginCheckCompleted(object state) {
+            if ((this.UserLoginCheckCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UserLoginCheckCompleted(this, new UserLoginCheckCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UserLoginCheckAsync(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept) {
+            this.UserLoginCheckAsync(PType, CheckCode, UserName, PassWord, ChooseDept, null);
+        }
+        
+        public void UserLoginCheckAsync(int PType, string CheckCode, string UserName, string PassWord, string ChooseDept, object userState) {
+            if ((this.onBeginUserLoginCheckDelegate == null)) {
+                this.onBeginUserLoginCheckDelegate = new BeginOperationDelegate(this.OnBeginUserLoginCheck);
+            }
+            if ((this.onEndUserLoginCheckDelegate == null)) {
+                this.onEndUserLoginCheckDelegate = new EndOperationDelegate(this.OnEndUserLoginCheck);
+            }
+            if ((this.onUserLoginCheckCompletedDelegate == null)) {
+                this.onUserLoginCheckCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUserLoginCheckCompleted);
+            }
+            base.InvokeAsync(this.onBeginUserLoginCheckDelegate, new object[] {
+                        PType,
+                        CheckCode,
+                        UserName,
+                        PassWord,
+                        ChooseDept}, this.onEndUserLoginCheckDelegate, this.onUserLoginCheckCompletedDelegate, userState);
+        }
+        
+        public System.IO.Stream GetSessionAuthState() {
+            return base.Channel.GetSessionAuthState();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSessionAuthState(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSessionAuthState(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IO.Stream EndGetSessionAuthState(System.IAsyncResult result) {
+            return base.Channel.EndGetSessionAuthState(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSessionAuthState(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSessionAuthState(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSessionAuthState(System.IAsyncResult result) {
+            System.IO.Stream retVal = this.EndGetSessionAuthState(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSessionAuthStateCompleted(object state) {
+            if ((this.GetSessionAuthStateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSessionAuthStateCompleted(this, new GetSessionAuthStateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSessionAuthStateAsync() {
+            this.GetSessionAuthStateAsync(null);
+        }
+        
+        public void GetSessionAuthStateAsync(object userState) {
+            if ((this.onBeginGetSessionAuthStateDelegate == null)) {
+                this.onBeginGetSessionAuthStateDelegate = new BeginOperationDelegate(this.OnBeginGetSessionAuthState);
+            }
+            if ((this.onEndGetSessionAuthStateDelegate == null)) {
+                this.onEndGetSessionAuthStateDelegate = new EndOperationDelegate(this.OnEndGetSessionAuthState);
+            }
+            if ((this.onGetSessionAuthStateCompletedDelegate == null)) {
+                this.onGetSessionAuthStateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSessionAuthStateCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSessionAuthStateDelegate, null, this.onEndGetSessionAuthStateDelegate, this.onGetSessionAuthStateCompletedDelegate, userState);
+        }
+        
+        public System.IO.Stream UserLoginOut() {
+            return base.Channel.UserLoginOut();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUserLoginOut(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUserLoginOut(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IO.Stream EndUserLoginOut(System.IAsyncResult result) {
+            return base.Channel.EndUserLoginOut(result);
+        }
+        
+        private System.IAsyncResult OnBeginUserLoginOut(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginUserLoginOut(callback, asyncState);
+        }
+        
+        private object[] OnEndUserLoginOut(System.IAsyncResult result) {
+            System.IO.Stream retVal = this.EndUserLoginOut(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUserLoginOutCompleted(object state) {
+            if ((this.UserLoginOutCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UserLoginOutCompleted(this, new UserLoginOutCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UserLoginOutAsync() {
+            this.UserLoginOutAsync(null);
+        }
+        
+        public void UserLoginOutAsync(object userState) {
+            if ((this.onBeginUserLoginOutDelegate == null)) {
+                this.onBeginUserLoginOutDelegate = new BeginOperationDelegate(this.OnBeginUserLoginOut);
+            }
+            if ((this.onEndUserLoginOutDelegate == null)) {
+                this.onEndUserLoginOutDelegate = new EndOperationDelegate(this.OnEndUserLoginOut);
+            }
+            if ((this.onUserLoginOutCompletedDelegate == null)) {
+                this.onUserLoginOutCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUserLoginOutCompleted);
+            }
+            base.InvokeAsync(this.onBeginUserLoginOutDelegate, null, this.onEndUserLoginOutDelegate, this.onUserLoginOutCompletedDelegate, userState);
+        }
         
         public System.IO.Stream GetCheckCodeImage(string VCode) {
             return base.Channel.GetCheckCodeImage(VCode);
@@ -233,58 +588,6 @@ namespace ZFrameWin.WCFS {
                         VCode}, this.onEndGetCheckCodeImageDelegate, this.onGetCheckCodeImageCompletedDelegate, userState);
         }
         
-        public System.IO.Stream GetListUsers(string LoginName, string LoginPWD) {
-            return base.Channel.GetListUsers(LoginName, LoginPWD);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetListUsers(string LoginName, string LoginPWD, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetListUsers(LoginName, LoginPWD, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IO.Stream EndGetListUsers(System.IAsyncResult result) {
-            return base.Channel.EndGetListUsers(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetListUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string LoginName = ((string)(inValues[0]));
-            string LoginPWD = ((string)(inValues[1]));
-            return this.BeginGetListUsers(LoginName, LoginPWD, callback, asyncState);
-        }
-        
-        private object[] OnEndGetListUsers(System.IAsyncResult result) {
-            System.IO.Stream retVal = this.EndGetListUsers(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetListUsersCompleted(object state) {
-            if ((this.GetListUsersCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetListUsersCompleted(this, new GetListUsersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetListUsersAsync(string LoginName, string LoginPWD) {
-            this.GetListUsersAsync(LoginName, LoginPWD, null);
-        }
-        
-        public void GetListUsersAsync(string LoginName, string LoginPWD, object userState) {
-            if ((this.onBeginGetListUsersDelegate == null)) {
-                this.onBeginGetListUsersDelegate = new BeginOperationDelegate(this.OnBeginGetListUsers);
-            }
-            if ((this.onEndGetListUsersDelegate == null)) {
-                this.onEndGetListUsersDelegate = new EndOperationDelegate(this.OnEndGetListUsers);
-            }
-            if ((this.onGetListUsersCompletedDelegate == null)) {
-                this.onGetListUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetListUsersCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetListUsersDelegate, new object[] {
-                        LoginName,
-                        LoginPWD}, this.onEndGetListUsersDelegate, this.onGetListUsersCompletedDelegate, userState);
-        }
-        
         public System.IO.Stream GetServerDateTime() {
             return base.Channel.GetServerDateTime();
         }
@@ -331,62 +634,6 @@ namespace ZFrameWin.WCFS {
                 this.onGetServerDateTimeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetServerDateTimeCompleted);
             }
             base.InvokeAsync(this.onBeginGetServerDateTimeDelegate, null, this.onEndGetServerDateTimeDelegate, this.onGetServerDateTimeCompletedDelegate, userState);
-        }
-        
-        public System.IO.Stream Login_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept) {
-            return base.Channel.Login_UserCheck(CheckCode, UserName, PassWord, ChooseDept);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginLogin_UserCheck(string CheckCode, string UserName, string PassWord, string ChooseDept, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginLogin_UserCheck(CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IO.Stream EndLogin_UserCheck(System.IAsyncResult result) {
-            return base.Channel.EndLogin_UserCheck(result);
-        }
-        
-        private System.IAsyncResult OnBeginLogin_UserCheck(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string CheckCode = ((string)(inValues[0]));
-            string UserName = ((string)(inValues[1]));
-            string PassWord = ((string)(inValues[2]));
-            string ChooseDept = ((string)(inValues[3]));
-            return this.BeginLogin_UserCheck(CheckCode, UserName, PassWord, ChooseDept, callback, asyncState);
-        }
-        
-        private object[] OnEndLogin_UserCheck(System.IAsyncResult result) {
-            System.IO.Stream retVal = this.EndLogin_UserCheck(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnLogin_UserCheckCompleted(object state) {
-            if ((this.Login_UserCheckCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.Login_UserCheckCompleted(this, new Login_UserCheckCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void Login_UserCheckAsync(string CheckCode, string UserName, string PassWord, string ChooseDept) {
-            this.Login_UserCheckAsync(CheckCode, UserName, PassWord, ChooseDept, null);
-        }
-        
-        public void Login_UserCheckAsync(string CheckCode, string UserName, string PassWord, string ChooseDept, object userState) {
-            if ((this.onBeginLogin_UserCheckDelegate == null)) {
-                this.onBeginLogin_UserCheckDelegate = new BeginOperationDelegate(this.OnBeginLogin_UserCheck);
-            }
-            if ((this.onEndLogin_UserCheckDelegate == null)) {
-                this.onEndLogin_UserCheckDelegate = new EndOperationDelegate(this.OnEndLogin_UserCheck);
-            }
-            if ((this.onLogin_UserCheckCompletedDelegate == null)) {
-                this.onLogin_UserCheckCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLogin_UserCheckCompleted);
-            }
-            base.InvokeAsync(this.onBeginLogin_UserCheckDelegate, new object[] {
-                        CheckCode,
-                        UserName,
-                        PassWord,
-                        ChooseDept}, this.onEndLogin_UserCheckDelegate, this.onLogin_UserCheckCompletedDelegate, userState);
         }
     }
 }

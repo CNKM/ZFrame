@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+<xs:schema xmlns:tns="ZFrame" elementFormDefault="qualified" targetNamespace="ZFrame" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="GetCurrentLoginUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentLoginUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="GetCurrentLoginUserResult" type="q1:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentLoginForEasyUI">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentLoginForEasyUIResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/Message" name="GetCurrentLoginForEasyUIResult" type="q2:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PType" type="xs:int" />
+        <xs:element minOccurs="0" name="CheckCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ChooseDept" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/Message" name="UserLoginCheckResult" type="q3:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSessionAuthState">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSessionAuthStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="GetSessionAuthStateResult" type="q4:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginOut">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginOutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/Message" name="UserLoginOutResult" type="q5:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetCheckCodeImage">
     <xs:complexType>
       <xs:sequence>
@@ -11,22 +77,7 @@
   <xs:element name="GetCheckCodeImageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="GetCheckCodeImageResult" type="q1:StreamBody" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetListUsers">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LoginName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="LoginPWD" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetListUsersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/Message" name="GetListUsersResult" type="q2:StreamBody" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/Message" name="GetCheckCodeImageResult" type="q6:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -38,24 +89,7 @@
   <xs:element name="GetServerDateTimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/Message" name="GetServerDateTimeResult" type="q3:StreamBody" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Login_UserCheck">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CheckCode" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="ChooseDept" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Login_UserCheckResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="Login_UserCheckResult" type="q4:StreamBody" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/Message" name="GetServerDateTimeResult" type="q7:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

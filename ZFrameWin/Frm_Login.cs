@@ -16,13 +16,11 @@ namespace ZFrameWin
     public partial class Frm_Login : Form
     {
 
-        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient("BasicHttpContextBinding_WCFServices");
+        WCFS.WCFServicesClient WCFSC = new WCFS.WCFServicesClient();
         public Frm_Login()
         {
             InitializeComponent();
-            CallBackReturnObject CBRO= WCFSC.GetCheckCodeImage("").ToCallBackObject();
-            pictureBox1.Image = Image.FromStream(GraphicHelper.DecodeStreamToImage(CBRO.Contend.ToString()));
-            
+            pictureBox1.Image = Image.FromStream(GraphicHelper.DecodeStreamToImage(WCFSC.GetCheckCodeImage("").ToCallBackObject<String>().Contend));
         }
     }
 }

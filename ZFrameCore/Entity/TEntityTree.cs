@@ -20,6 +20,7 @@ namespace ZFrameCore.Entity
         }
         public TEntityTree()
         {
+            Parent = null;
             this._Children = new List<T>();
         }
 

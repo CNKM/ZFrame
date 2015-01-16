@@ -1,52 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="ZFrame" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="ZFrame" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <xsd:schema targetNamespace="/Imports">
-      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd0" />
-      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+    <xsd:schema targetNamespace="ZFrame/Imports">
+      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd0" namespace="ZFrame" />
+      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost/ZFrameWCF/WCFServices.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="WCFServices_GetCurrentLoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentLoginUser" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetCurrentLoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentLoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetCurrentLoginForEasyUI_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentLoginForEasyUI" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetCurrentLoginForEasyUI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentLoginForEasyUIResponse" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_UserLoginCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginCheck" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_UserLoginCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetSessionAuthState_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionAuthState" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_GetSessionAuthState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionAuthStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_UserLoginOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginOut" />
+  </wsdl:message>
+  <wsdl:message name="WCFServices_UserLoginOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginOutResponse" />
+  </wsdl:message>
   <wsdl:message name="WCFServices_GetCheckCodeImage_InputMessage">
-    <wsdl:part name="parameters" element="GetCheckCodeImage" />
+    <wsdl:part name="parameters" element="tns:GetCheckCodeImage" />
   </wsdl:message>
   <wsdl:message name="WCFServices_GetCheckCodeImage_OutputMessage">
-    <wsdl:part name="parameters" element="GetCheckCodeImageResponse" />
-  </wsdl:message>
-  <wsdl:message name="WCFServices_GetListUsers_InputMessage">
-    <wsdl:part name="parameters" element="GetListUsers" />
-  </wsdl:message>
-  <wsdl:message name="WCFServices_GetListUsers_OutputMessage">
-    <wsdl:part name="parameters" element="GetListUsersResponse" />
+    <wsdl:part name="parameters" element="tns:GetCheckCodeImageResponse" />
   </wsdl:message>
   <wsdl:message name="WCFServices_GetServerDateTime_InputMessage">
-    <wsdl:part name="parameters" element="GetServerDateTime" />
+    <wsdl:part name="parameters" element="tns:GetServerDateTime" />
   </wsdl:message>
   <wsdl:message name="WCFServices_GetServerDateTime_OutputMessage">
-    <wsdl:part name="parameters" element="GetServerDateTimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="WCFServices_Login_UserCheck_InputMessage">
-    <wsdl:part name="parameters" element="Login_UserCheck" />
-  </wsdl:message>
-  <wsdl:message name="WCFServices_Login_UserCheck_OutputMessage">
-    <wsdl:part name="parameters" element="Login_UserCheckResponse" />
+    <wsdl:part name="parameters" element="tns:GetServerDateTimeResponse" />
   </wsdl:message>
   <wsdl:portType name="WCFServices">
-    <wsdl:operation name="GetCheckCodeImage">
-      <wsdl:input wsaw:Action="urn:WCFServices/GetCheckCodeImage" message="WCFServices_GetCheckCodeImage_InputMessage" />
-      <wsdl:output wsaw:Action="urn:WCFServices/GetCheckCodeImageResponse" message="WCFServices_GetCheckCodeImage_OutputMessage" />
+    <wsdl:operation name="GetCurrentLoginUser">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/GetCurrentLoginUser" message="tns:WCFServices_GetCurrentLoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/GetCurrentLoginUserResponse" message="tns:WCFServices_GetCurrentLoginUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListUsers">
-      <wsdl:input wsaw:Action="urn:WCFServices/GetListUsers" message="WCFServices_GetListUsers_InputMessage" />
-      <wsdl:output wsaw:Action="urn:WCFServices/GetListUsersResponse" message="WCFServices_GetListUsers_OutputMessage" />
+    <wsdl:operation name="GetCurrentLoginForEasyUI">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/GetCurrentLoginForEasyUI" message="tns:WCFServices_GetCurrentLoginForEasyUI_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/GetCurrentLoginForEasyUIResponse" message="tns:WCFServices_GetCurrentLoginForEasyUI_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLoginCheck">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/UserLoginCheck" message="tns:WCFServices_UserLoginCheck_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/UserLoginCheckResponse" message="tns:WCFServices_UserLoginCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionAuthState">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/GetSessionAuthState" message="tns:WCFServices_GetSessionAuthState_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/GetSessionAuthStateResponse" message="tns:WCFServices_GetSessionAuthState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLoginOut">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/UserLoginOut" message="tns:WCFServices_UserLoginOut_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/UserLoginOutResponse" message="tns:WCFServices_UserLoginOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckCodeImage">
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/GetCheckCodeImage" message="tns:WCFServices_GetCheckCodeImage_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/GetCheckCodeImageResponse" message="tns:WCFServices_GetCheckCodeImage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetServerDateTime">
-      <wsdl:input wsaw:Action="urn:WCFServices/GetServerDateTime" message="WCFServices_GetServerDateTime_InputMessage" />
-      <wsdl:output wsaw:Action="urn:WCFServices/GetServerDateTimeResponse" message="WCFServices_GetServerDateTime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Login_UserCheck">
-      <wsdl:input wsaw:Action="urn:WCFServices/Login_UserCheck" message="WCFServices_Login_UserCheck_InputMessage" />
-      <wsdl:output wsaw:Action="urn:WCFServices/Login_UserCheckResponse" message="WCFServices_Login_UserCheck_OutputMessage" />
+      <wsdl:input wsaw:Action="ZFrame/WCFServices/GetServerDateTime" message="tns:WCFServices_GetServerDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="ZFrame/WCFServices/GetServerDateTimeResponse" message="tns:WCFServices_GetServerDateTime_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
