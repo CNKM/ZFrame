@@ -24,10 +24,12 @@ namespace BLL.SYS
         /// <summary>
         /// 验证用户登录
         /// </summary>
+        /// <param name="PlatformType">平台类别</param>
         /// <param name="tUserName">用户名称</param>
         /// <param name="tUserPWD">用户密码</param>
         /// <returns>1 通过验证 -1 未通过验证</returns>
         public Int32 CheckUserLogin(
+            Int32 PlatformType,
             string tUserName,
             string tUserPWD,
             out CurrentLoginObject currentloginobj,
@@ -37,12 +39,13 @@ namespace BLL.SYS
         {
             Int32 ExecResult = 0;
             List<SqlParameter> Parms = new List<SqlParameter>();
+            Parms.Add(new SqlParameter() { ParameterName = "@PlatformType", Value = PlatformType, DbType = System.Data.DbType.Int32 });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginName", Value = tUserName });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPWD", Value = tUserPWD });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPosition", Value = ChooseDeptid });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginResult", DbType = System.Data.DbType.Int32, Direction = ParameterDirection.Output });
             DataSet returnDs = this.ExecProceureRetrunList("USP_CheckUserLogin", Parms, out ExecResult, null, false);
-            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[3].Value);
+            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[4].Value);
             currentloginobj = new CurrentLoginObject();
             ChoosePositionSource = null;
             switch (CheckResult)

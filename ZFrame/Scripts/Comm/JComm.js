@@ -90,7 +90,8 @@ var GetCurrentURl = function () {
 
 }
 var JumpToURL = function (url) {
-    window.location(url);
+    //window.location(url);
+    location.href = url;
 }
 
 var JumpToPortal = function () {

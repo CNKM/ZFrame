@@ -38,6 +38,7 @@
         }
         var UserLogin = function (isdebug) {
             var CValue = {
+                PType :0,
                 UserName: $("#txtUserName").textbox("getText"),
                 PassWord: $("#txtUserPWD").textbox("getText"),
                 CheckCode: $("#txtCheckCode").textbox("getText"),
@@ -51,6 +52,7 @@
             };
             if (isdebug == true) {
                 //for debug;
+                CValue.PType = 0;
                 CValue.ChooseDept = "3E89ADA1-96DB-4C4E-886F-3D0DA5CAFFFA";
                 CValue.UserName = "superadmin";
                 CValue.PassWord = "saynccl";

@@ -69,7 +69,7 @@ namespace ZFrameWCF
         /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream UserLoginCheck(String CheckCode = "", String UserName = "", String PassWord = "", String ChooseDept = "")
+        public Stream UserLoginCheck(Int32 PType =0, String CheckCode = "", String UserName = "", String PassWord = "", String ChooseDept = "")
         {
 
             if (WebHelper.SessionAuth(HttpContext.Current.Session, CheckCode))
@@ -80,7 +80,7 @@ namespace ZFrameWCF
                     List<T_SYS_Role> ReturnRoles;
                     CurrentLoginObject CurrengLoginInfo;
                     String ExecReusltMsg = "";
-                    Int32 ExecReusltCode = UserBLL.CheckUserLogin(UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
+                    Int32 ExecReusltCode = UserBLL.CheckUserLogin(PType,UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
                     if (ExecReusltCode == 1)
                     {
                         HttpContext.Current.Session.Set(USEDSESSION.CURRENTLOGINOBJECT, CurrengLoginInfo);

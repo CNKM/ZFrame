@@ -433,6 +433,7 @@
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
     <Content Include="Views\Portal.aspx" />
+    <Content Include="Views\SYS\View_SYS_Function.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -477,6 +478,13 @@
     </Compile>
     <Compile Include="Views\Portal.aspx.designer.cs">
       <DependentUpon>Portal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SYS\View_SYS_Function.aspx.cs">
+      <DependentUpon>View_SYS_Function.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\SYS\View_SYS_Function.aspx.designer.cs">
+      <DependentUpon>View_SYS_Function.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -7,22 +7,44 @@
             RegTreeFilter();
             $("#FuncFilter").textbox({
                 icons: [{
-                    iconCls: 'icon-search',
+                    iconCls: "icon-search",
                     handler: function (e) {
-                        var v = $(e.data.target).textbox('getValue');
-                        $('#FuncTree').tree('doFilter', v);
+                        var v = $(e.data.target).textbox("getValue");
+                        $("#FuncTree").tree("doFilter", v);
                     }
                 }, {
-                    iconCls: 'icon-remove',
+                    iconCls: "icon-remove",
                     handler: function (e) {
-                        $(e.data.target).textbox('clear');
+                        $(e.data.target).textbox("clear");
                     }
                 }]
             })
+            $("#FuncTree").tree({
+                onClick: function (node) {
+                    var funcurl = node.attributes[0].Value;
+                    var hosturl = GetCurrentURl();
+                    var title = node.text;
+                    var isexists = $("#MainTab").tabs("exists", title);
+                    if (isexists) {
+                        $("#MainTab").tabs("select", title);
+                    } else {
+                        funcurl = funcurl.replace("~", hosturl);
+                        $("#MainTab").tabs("add", {
+                            id: node.id,
+                            title: title,
+                            selected: true,
+                            href: funcurl,
+                            iconCls: node.iconCls,
+                            closable: true
+                        });
+                    }
+
+                }
+            });
             $("#FuncFilter").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
-                    var v = $("#FuncFilter").textbox('getValue');
-                    $('#FuncTree').tree('doFilter', v);
+                    var v = $("#FuncFilter").textbox("getValue");
+                    $("#FuncTree").tree("doFilter", v);
                 }
             });
 

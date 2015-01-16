@@ -243,8 +243,9 @@ namespace ZFrameWCF.Comm
                     TreeData TD = new TreeData();
                     TD.id = EntityObject.F_SN;
                     TD.text = EntityObject.F_Name;
-                    TD.attributes.Add(new KeyValuePair<string, object>("url", EntityObject.F_FuncURL));
-                    TD.attributes.Add(new KeyValuePair<string, object>("filterkey", EntityObject.F_FilterKey));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("url", EntityObject.F_URL));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("filterkey", EntityObject.F_FilterKey));
+                    TD.iconCls = EntityObject.F_Icon;
                     if (ParentNode == null)
                     {
                         ReusltObjList.Add(TD);
