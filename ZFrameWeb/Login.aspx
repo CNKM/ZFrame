@@ -29,7 +29,6 @@
             padding-left: 35px !important;
             padding-top: 8px;
             padding-bottom: 3px;
-            font-size: 16px;
         }
 
    

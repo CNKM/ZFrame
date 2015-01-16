@@ -51,6 +51,7 @@
                     $("#FuncTree").tree("doFilter", v);
                 }
             });
+
             AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, false,
                 function (d) {
                     var ReutrnCurrengLoingObject = JSON.parse(d).Contend;
@@ -61,13 +62,29 @@
                     $("#FuncTree").tree({
                         data: CurrentLoginObject.CurrentFuncs
                     });
+                    $("#currentUser").text("注当前登录人员:【" + CurrentLoginObject.CurrentUser.F_Name + "】");
+                    $("#currentDept").text("前登录部门:【" + CurrentLoginObject.CurrentDept.F_Name + "】");
+                    $("#currentRole").text("当前岗位角色:【" + CurrentLoginObject.CurrentRole.F_Name + "】");
                 }, function (e) {
                     msgbox.error(e);
                 });
+
+            $("#btnLoginOff").click(function (e) {
+                AjaxHelper.CallFunction("UserLoginOut", null, false,
+              function (d) {
+                  if (d.Code == 1) {
+                      JumToLogin();
+                  }
+
+              }, function (e) {
+                  msgbox.error(e);
+              });
+
+            });
         });
     </script>
 
-    
+
     <div class="easyui-layout" data-options="fit:true">
         <%--<div data-options="region:'north'" style="width: 100%;">
             HeadContend
@@ -76,7 +93,7 @@
             <div id="MainTab" class="easyui-tabs" style="width: 100%;" data-options="fit:true">
                 <div title="开始首页" style="padding: 2px" data-options="iconCls:'icon-help'">
                     <div class="easyui-layout" data-options="fit:true">
-                        <div data-options="region:'west',split:true" style="width: 185px;">
+                        <div data-options="region:'west',split:true" style="width: 220px;">
                             <div class="easyui-layout" data-options="fit:true">
                                 <div data-options="region:'north'" style="width: 100%; height: 30px; padding: 2px">
                                     <input id="FuncFilter" class="easyui-textbox" style="width: 100%;" data-options="prompt: '输入拼音过滤',iconWidth: 22" />
@@ -92,8 +109,24 @@
                 </div>
             </div>
         </div>
-        <div data-options="region:'south'" style="width: 100%;height:20px">
-            
+        <div data-options="region:'south'" style="width: 100%; height: 28px; font-size: 16px; overflow: hidden">
+            <div style="margin-left: 10px;" class="PortalFooterBar">
+                <span class="l-btn-icon icon-cancel"></span>
+                <div id="btnLoginOff">注销登录</div>
+            </div>
+            <div style="margin-left: 30px;" class="PortalFooterBar">
+                <span class="l-btn-icon icon-cancel"></span>
+                <div id="currentUser"></div>
+            </div>
+            <div style="margin-left: 10px;" class="PortalFooterBar">
+                <span class="l-btn-icon icon-cancel"></span>
+                <div id="currentDept"></div>
+            </div>
+            <div style="margin-left: 10px;" class="PortalFooterBar">
+                <span class="l-btn-icon icon-cancel"></span>
+                <div id="currentRole"></div>
+            </div>
+            <div style="clear: both;display: inline-block"></div>
         </div>
     </div>
 
@@ -102,3 +135,4 @@
 
 
 </asp:Content>
+

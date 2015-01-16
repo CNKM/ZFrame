@@ -24,6 +24,45 @@
         .progressbar {
             display: none !important;
         }
+
+        .tree-node {
+            margin: 2px !important;
+        }
+
+        .tree-title {
+            font-size: 16px !important;
+        }
+
+        .panel-title {
+            font-size: 16px !important;
+        }
+
+        .panel-with-icon {
+            font-size: 16px !important;
+        }
+
+        .l-btn-text {
+            font-size: 16px !important;
+        }
+
+        .PortalFooterBar {
+            float: left;
+            display: inline;
+        }
+
+            .PortalFooterBar div {
+                margin-left: 18px;
+                margin-top: 0.3em;
+            }
+
+                .PortalFooterBar div:hover {
+                    cursor: default;
+                }
+
+            .PortalFooterBar #btnLoginOff:hover {
+                cursor: pointer !important;
+                color: blue !important;
+            }
     </style>
 </head>
 <body style="margin: 0; border: 0; padding: 0;">
