@@ -14,7 +14,7 @@
                 try {
                     var CallBackObject = JSON.parse(responseText);
                     if (CallBackObject.Code == -1) {
-                        alert(CallBackObject.Msg);
+                        msgbox.info(CallBackObject.Msg);
                         JumToLogin();
                         return;
                     }
@@ -53,7 +53,7 @@ var msgbox = {
         var win = $.messager.progress({
             title: "请稍候",
             msg: "正在执行操作...",
-            bar: {}
+            bar: {hide:true}
         });
     },
     closeprogress: function () {

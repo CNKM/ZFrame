@@ -31,6 +31,8 @@
             padding-bottom: 3px;
             font-size: 16px;
         }
+
+   
     </style>
     <script>
         WindowResizeEvent = function () {
@@ -38,7 +40,7 @@
         }
         var UserLogin = function (isdebug) {
             var CValue = {
-                PType :0,
+                PType: 0,
                 UserName: $("#txtUserName").textbox("getText"),
                 PassWord: $("#txtUserPWD").textbox("getText"),
                 CheckCode: $("#txtCheckCode").textbox("getText"),
@@ -61,20 +63,20 @@
             else {
 
                 if (StringHelper.IsNullOrEmpty(CValue.UserName)) {
-                    alert("登录帐号不能为空！");
+                    msgbox.info("登录帐号不能为空！");
                     return;
                 }
                 if (StringHelper.IsNullOrEmpty(CValue.PassWord)) {
-                    alert("登录密码不能为空！");
+                    msgbox.info("登录密码不能为空！");
                     return;
                 }
                 if (StringHelper.IsNullOrEmpty(CValue.CheckCode)) {
-                    alert("验证编码不能为空！");
+                    msgbox.info("验证编码不能为空！");
                     return;
                 }
             }
-            
-            AjaxHelper.CallFunction("UserLoginCheck", CValue,true, function (data) {
+
+            AjaxHelper.CallFunction("UserLoginCheck", CValue, true, function (data) {
                 if (data.Code == 1) {
                     JumpToPortal();
                 }
@@ -84,7 +86,7 @@
                     $("#gdChooseDept").datagrid({
                         data: data.Contend
                     });
-                    alert(data.Msg);
+                    msgbox.info(data.Msg);
                 }
                 else {
                     $("#LoginFrm").window({ height: 200 });
@@ -92,15 +94,15 @@
                     $("#gdChooseDept").datagrid({
                         data: []
                     });
-                    alert(data.Msg);
+                    msgbox.info(data.Msg);
                 }
             }, function (e) {
-                alert(e);
+                msgbox.error(e);
 
             });
         }
         var LoadCheckCode = function () {
-            AjaxHelper.CallFunction("GetCheckCodeImage", null,false,
+            AjaxHelper.CallFunction("GetCheckCodeImage", null, false,
                 function (data) {
                     var val = data;
                     $("#icheckcode").attr("src", "data:image/gif;base64," + val.Contend);
@@ -110,7 +112,7 @@
         $(document).ready(function () {
             UserLogin(true);
             LoadCheckCode();
-           
+
             $('#txtUserName').textbox("textbox").focus();
             $("#txtUserName").textbox("textbox").bind("keydown", function (e) {
                 if (e.keyCode == 13) {
@@ -139,7 +141,7 @@
             })
         });
     </script>
-    
+
     <div id="LoginFrm" class="easyui-window" title="用户登陆"
         data-options="iconCls:'icon-login-user',closable:false,minimizable:false,maximizable:false,collapsible:false,resizable:false,shadow:true,draggable:false"
         style="width: 400px; height: 200px; top: 200px;">
@@ -154,7 +156,7 @@
             </div>
             <div style="float: left; margin: 5px; margin-top: 1px; width: 196px">
                 验证密码:
-                    <input id="txtCheckCode" class="easyui-textbox" type="password" data-options="prompt:''"  style="height: 25px; width: 80px" />
+                    <input id="txtCheckCode" class="easyui-textbox" type="password" data-options="prompt:''" style="height: 25px; width: 80px" />
             </div>
             <div style="float: left; margin-left: -30px; margin-top: 3px">
                 <img id="icheckcode" src="" title="看不清楚？点击更换" style="margin-top: 3px;" />

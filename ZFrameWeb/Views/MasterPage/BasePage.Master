@@ -20,6 +20,11 @@
             AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
         })
     </script>
+    <style type="text/css">
+        .progressbar {
+            display: none !important;
+        }
+    </style>
 </head>
 <body style="margin: 0; border: 0; padding: 0;">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>

@@ -22,6 +22,10 @@
             $("#FuncTree").tree({
                 onClick: function (node) {
                     var funcurl = node.attributes[0].Value;
+                    if (StringHelper.IsNullOrEmpty(funcurl)) {
+                        msgbox.info("功能链接错误,请联系管理员.")
+                        return;
+                    }
                     var hosturl = GetCurrentURl();
                     var title = node.text;
                     var isexists = $("#MainTab").tabs("exists", title);
@@ -47,8 +51,6 @@
                     $("#FuncTree").tree("doFilter", v);
                 }
             });
-
-            $("#MainTab").tabs({ height: $(window).height() });
             AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, false,
                 function (d) {
                     var ReutrnCurrengLoingObject = JSON.parse(d).Contend;
@@ -60,36 +62,43 @@
                         data: CurrentLoginObject.CurrentFuncs
                     });
                 }, function (e) {
-                    alert(e);
+                    msgbox.error(e);
                 });
         });
-
-        WindowResizeEvent = function () {
-            $("#MainTab").tabs({ height: $(window).height() });
-        }
     </script>
 
-    <div id="MainTab" class="easyui-tabs" style="width: 100%; height: 768px;">
-        <div title="开始首页" style="padding: 2px" data-options="iconCls:'icon-help'">
-            <div class="easyui-layout" data-options="fit:true">
-                <div data-options="region:'west',split:true" style="width: 180px;">
+    
+    <div class="easyui-layout" data-options="fit:true">
+        <%--<div data-options="region:'north'" style="width: 100%;">
+            HeadContend
+        </div>--%>
+        <div data-options="region:'center'" style="width: 100%">
+            <div id="MainTab" class="easyui-tabs" style="width: 100%;" data-options="fit:true">
+                <div title="开始首页" style="padding: 2px" data-options="iconCls:'icon-help'">
                     <div class="easyui-layout" data-options="fit:true">
-                        <div data-options="region:'north'" style="width: 100%; height: 30px; padding: 2px">
-                            <input id="FuncFilter" class="easyui-textbox" style="width: 100%;" data-options="prompt: '输入拼音过滤',iconWidth: 22" />
+                        <div data-options="region:'west',split:true" style="width: 185px;">
+                            <div class="easyui-layout" data-options="fit:true">
+                                <div data-options="region:'north'" style="width: 100%; height: 30px; padding: 2px">
+                                    <input id="FuncFilter" class="easyui-textbox" style="width: 100%;" data-options="prompt: '输入拼音过滤',iconWidth: 22" />
+                                </div>
+                                <div data-options="region:'center'">
+                                    <ul id="FuncTree" class="easyui-tree" data-options="animate:true,lines:true,cache:true"></ul>
+                                </div>
+                            </div>
                         </div>
                         <div data-options="region:'center'">
-                            <ul id="FuncTree" class="easyui-tree" data-options="animate:true,lines:true"></ul>
                         </div>
                     </div>
                 </div>
-                <div data-options="region:'center'">
-                </div>
-                <div data-options="region:'south'" style="height: 26px">
-                    状态栏目
-                </div>
             </div>
         </div>
+        <div data-options="region:'south'" style="width: 100%;height:20px">
+            
+        </div>
     </div>
+
+
+
 
 
 </asp:Content>
