@@ -8,14 +8,13 @@
     <%--EASYUI Lib--%>
     <link href="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/themes/default/easyui.css")%>" rel="stylesheet" />
     <link href="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/themes/icon.css")%>" rel="stylesheet" />
-
     <link href="<%:ResolveUrl("~/Images/Icons/ExtIconsLib.css")%>" rel="stylesheet" />
     <%--JS--%>
     <script src="<%:ResolveUrl("~/Scripts/jquery-2.1.1.min.js") %>"></script>
     <script src="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/jquery.easyui.min.js") %>"></script>
     <script src="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js")%>"></script>
     <script src="<%:ResolveUrl("~/Scripts/Comm/JComm.js") %>"></script>
-    <script>
+    <script type="text/javascript">
         $(function () {
             AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
         })
@@ -50,18 +49,18 @@
             display: inline;
         }
 
-            .PortalFooterBar div {
-                margin-left: 18px;
-                margin-top: 0.3em;
+            .PortalFooterBar div:hover {
+                cursor: default;
             }
-
-                .PortalFooterBar div:hover {
-                    cursor: default;
-                }
 
             .PortalFooterBar #btnLoginOff:hover {
                 cursor: pointer !important;
                 color: blue !important;
+            }
+
+            .PortalFooterBar div {
+                margin-left: 18px;
+                margin-top: 0.25em;
             }
     </style>
 </head>
