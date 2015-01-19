@@ -132,6 +132,7 @@ function forNodes(data, callback) {
         }
     }
 }
+//树相关
 function RegTreeFilter() {
     $.extend($.fn.tree.methods, {
         doFilter: function (jq, text) {
@@ -162,6 +163,38 @@ function RegTreeFilter() {
         }
     });
 }
+
+var InitTreeWithFilter = function (treecontrol, treefilter, nodeclickcallback,source) {
+    RegTreeFilter();
+    treecontrol.tree({
+        onClick: function (node) {
+            nodeclickcallback(node);
+        },
+        data: source
+    });
+    treefilter.textbox({
+        icons: [{
+            iconCls: "icon-search",
+            handler: function (e) {
+                var v = $(e.data.target).textbox("getValue");
+                treecontrol.tree("doFilter", v);
+            }
+        }, {
+            iconCls: "icon-remove",
+            handler: function (e) {
+                $(e.data.target).textbox("clear");
+            }
+        }]
+    })
+    treefilter.textbox("textbox").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var v = treefilter.textbox("getValue");
+            treecontrol.tree("doFilter", v);
+        }
+    });
+
+}
+
 
 var GetBrowerVersion = function () {
     var userAgent = navigator.userAgent,
