@@ -15,8 +15,17 @@
     <script src="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js")%>"></script>
     <script src="<%:ResolveUrl("~/Scripts/Comm/JComm.js") %>"></script>
     <script type="text/javascript">
+        var IsLoadedCSS = false;
         $(function () {
             AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
+            if (!IsLoadedCSS) {
+                var CurrentBrower = GetBrowerVersion();
+                if (CurrentBrower.name == "IE") {
+                    document.body.classList.add("IE");
+                } else {
+                }
+                IsLoadedCSS = true;
+            }
         })
     </script>
     <style type="text/css">
@@ -61,6 +70,10 @@
             .PortalFooterBar div {
                 margin-left: 18px;
                 margin-top: 0.25em;
+            }
+            .IE .PortalFooterBar div {
+                margin-left: 18px;
+                margin-top: 0.3em;
             }
     </style>
 </head>

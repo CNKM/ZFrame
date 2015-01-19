@@ -171,10 +171,10 @@ var GetBrowerVersion = function () {
     rChrome = /(chrome)\/([\w.]+)/,
     rSafari = /version\/([\w.]+).*(safari)/;
     var browserinfo = {
-        name:"",
-        version:null
+        name: "",
+        version: null
     };
-    
+
     var ua = userAgent.toLowerCase();
     function uaMatch(ua) {
         var match = rMsie.exec(ua);
