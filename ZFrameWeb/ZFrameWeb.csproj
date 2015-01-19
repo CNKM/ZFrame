@@ -70,6 +70,7 @@
     <Content Include="Images\Icons\building--arrow.png" />
     <Content Include="Images\Icons\building-network.png" />
     <Content Include="Images\Icons\department_24.png" />
+    <Content Include="Images\Icons\gear--arrow.png" />
     <Content Include="Images\Icons\luggage.png" />
     <Content Include="Images\Icons\user_role_24.png" />
     <Content Include="Images\Icons\user.png" />
