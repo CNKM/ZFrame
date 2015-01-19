@@ -62,7 +62,7 @@
                     $("#FuncTree").tree({
                         data: CurrentLoginObject.CurrentFuncs
                     });
-                    $("#currentUser").text("注当前登录人员:【" + CurrentLoginObject.CurrentUser.F_Name + "】");
+                    $("#currentUser").text("当前登录人员:【" + CurrentLoginObject.CurrentUser.F_Name + "】");
                     $("#currentDept").text("前登录部门:【" + CurrentLoginObject.CurrentDept.F_Name + "】");
                     $("#currentRole").text("当前岗位角色:【" + CurrentLoginObject.CurrentRole.F_Name + "】");
                 }, function (e) {
@@ -111,19 +111,19 @@
         </div>
         <div data-options="region:'south'" style="width: 100%; height: 28px; font-size: 16px; overflow: hidden">
             <div style="margin-left: 10px;" class="PortalFooterBar">
-                <span class="l-btn-icon icon-cancel"></span>
+                <span class="l-btn-icon icon-login-off"></span>
                 <div id="btnLoginOff">注销登录</div>
             </div>
             <div style="margin-left: 30px;" class="PortalFooterBar">
-                <span class="l-btn-icon icon-cancel"></span>
+                <span class="l-btn-icon icon-login-userinfo"></span>
                 <div id="currentUser"></div>
             </div>
             <div style="margin-left: 10px;" class="PortalFooterBar">
-                <span class="l-btn-icon icon-cancel"></span>
+                <span class="l-btn-icon icon-department"></span>
                 <div id="currentDept"></div>
             </div>
             <div style="margin-left: 10px;" class="PortalFooterBar">
-                <span class="l-btn-icon icon-cancel"></span>
+                <span class="l-btn-icon icon-login-userrole"></span>
                 <div id="currentRole"></div>
             </div>
             <div style="clear: both;display: inline-block"></div>

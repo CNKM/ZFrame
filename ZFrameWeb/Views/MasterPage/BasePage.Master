@@ -8,7 +8,8 @@
     <%--EASYUI Lib--%>
     <link href="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/themes/default/easyui.css")%>" rel="stylesheet" />
     <link href="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/themes/icon.css")%>" rel="stylesheet" />
-    <link href="<%:ResolveUrl("~/Images/Icons/ExtIconsLib.css")%>" rel="stylesheet" />
+    <link href="<%:ResolveUrl("~/Style/ExtIconsLib.css")%>" rel="stylesheet" />
+    <link href="<%:ResolveUrl("~/Style/Comm.css")%>" rel="stylesheet" />
     <%--JS--%>
     <script src="<%:ResolveUrl("~/Scripts/jquery-2.1.1.min.js") %>"></script>
     <script src="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/jquery.easyui.min.js") %>"></script>
@@ -18,64 +19,14 @@
         var IsLoadedCSS = false;
         $(function () {
             AjaxHelper.ServerBaseURL = "<%=Application["WCFHOME"]%>";
-            if (!IsLoadedCSS) {
-                var CurrentBrower = GetBrowerVersion();
-                if (CurrentBrower.name == "IE") {
+            var CurrentBrower = GetBrowerVersion();
+            if (CurrentBrower.name == "IE") {
+                if (!document.body.classList.contains("IE")) {
                     document.body.classList.add("IE");
-                } else {
                 }
-                IsLoadedCSS = true;
             }
         })
     </script>
-    <style type="text/css">
-        .progressbar {
-            display: none !important;
-        }
-
-        .tree-node {
-            margin: 2px !important;
-        }
-
-        .tree-title {
-            font-size: 16px !important;
-        }
-
-        .panel-title {
-            font-size: 16px !important;
-        }
-
-        .panel-with-icon {
-            font-size: 16px !important;
-        }
-
-        .l-btn-text {
-            font-size: 16px !important;
-        }
-
-        .PortalFooterBar {
-            float: left;
-            display: inline;
-        }
-
-            .PortalFooterBar div:hover {
-                cursor: default;
-            }
-
-            .PortalFooterBar #btnLoginOff:hover {
-                cursor: pointer !important;
-                color: blue !important;
-            }
-
-            .PortalFooterBar div {
-                margin-left: 18px;
-                margin-top: 0.25em;
-            }
-            .IE .PortalFooterBar div {
-                margin-left: 18px;
-                margin-top: 0.3em;
-            }
-    </style>
 </head>
 <body style="margin: 0; border: 0; padding: 0;">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>

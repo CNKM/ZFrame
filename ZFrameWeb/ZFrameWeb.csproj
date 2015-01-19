@@ -65,8 +65,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Icons\ExtIconsLib.css" />
-    <Content Include="Images\Icons\login_user.png" />
+    <Content Include="Images\Icons\arrow-circle-225-left.png" />
+    <Content Include="Images\Icons\arrow.png" />
+    <Content Include="Images\Icons\building--arrow.png" />
+    <Content Include="Images\Icons\building-network.png" />
+    <Content Include="Images\Icons\department_24.png" />
+    <Content Include="Images\Icons\luggage.png" />
+    <Content Include="Images\Icons\user_role_24.png" />
+    <Content Include="Images\Icons\user.png" />
+    <Content Include="Style\ExtIconsLib.css" />
+    <Content Include="Images\Icons\login_user_32.png" />
     <Content Include="Login.aspx" />
     <Content Include="Readme.txt" />
     <Content Include="Scripts\Comm\JComm.js" />
@@ -429,6 +437,7 @@
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\validatebox.css" />
     <Content Include="Scripts\jquery-easyui-1.4.1\themes\metro\window.css" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Style\Comm.css" />
     <Content Include="TestPage.aspx" />
     <Content Include="Views\MasterPage\BasePage.Master" />
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
@@ -497,9 +506,7 @@
       <Name>ZFrameDAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Style\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

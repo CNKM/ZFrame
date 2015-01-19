@@ -208,4 +208,3 @@ var GetBrowerVersion = function () {
     }
     return browserinfo;
 }
-
