@@ -3,13 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script type="text/javascript">
         $(function () {
+          
             InitTreeWithFilter($("#MgrFuncTree"), $("#MgrFuncFilter"), function (node) {
+                
                 $("#nodeText").textbox("setText", node.text);
                 $("#nodeURL").textbox("setText", node.attributes[0].Value);
                 $("#nodeIcon").textbox("setText", node.iconCls);
-                $("#nodeOpenType").textbox("setText", node.attributes[2].Value);
+                //$("#nodeOpenType").textbox("setText", node.attributes[2].Value);
                 $("#nodeOpenSpeace").textbox("setText", node.attributes[3].Value);
+
+                var opentype = node.attributes[2].Value;
+                $("#nodeOpenType").combobox("setValue", opentype);
+                //$('#cc').combobox('setValue', '001');
                 var state = (node.attributes[4].Value);
+                if (state == 1) {
+                    $("#ck").prop("checked", true);
+                } else {
+                    $("#ck").prop("checked", false);
+                }
             },  parent.CurrentLoginObject.CurrentFuncs);
             $("#checkboxdiv").click(function () {
                 var isChecked = $("#ck").prop("checked") ? true : false;
@@ -54,7 +65,7 @@
                     </div>
                     <div style="margin: 4px">
                         打开方式：
-                        <input id="nodeOpenType" class="easyui-textbox" style="width: 286px; height: 32px" />
+                        <input id="nodeOpenType" class="easyui-combobox" data-options="valueField:'id',textField:'text',data:[{id: '0',text: 'Tab 方式'},{id: '1', text: '弹出窗体'}]" style="width: 286px; height: 32px" />
                     </div>
                     <div style="margin: 4px">
                         打开尺寸：
