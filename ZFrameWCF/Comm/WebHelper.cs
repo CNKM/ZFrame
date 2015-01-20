@@ -249,6 +249,7 @@ namespace ZFrameWCF.Comm
                     TD.attributes.Add(new KeyValuePair<String, Object>("openSpace", EntityObject.F_OpenSpace));
                     TD.attributes.Add(new KeyValuePair<String, Object>("state", EntityObject.F_State));
                     TD.attributes.Add(new KeyValuePair<String, Object>("tip", EntityObject.F_Tips));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("remark", EntityObject.F_Remark));
                     TD.iconCls = EntityObject.F_Icon;
                     if (ParentNode == null)
                     {
