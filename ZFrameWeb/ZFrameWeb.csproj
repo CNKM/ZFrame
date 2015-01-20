@@ -74,6 +74,7 @@
     <Content Include="Images\Icons\luggage.png" />
     <Content Include="Images\Icons\user_role_24.png" />
     <Content Include="Images\Icons\user.png" />
+    <Content Include="JavaScript\SYS\JS_SYS_Function.js" />
     <Content Include="Style\ExtIconsLib.css" />
     <Content Include="Images\Icons\login_user_32.png" />
     <Content Include="Login.aspx" />
@@ -444,6 +445,7 @@
     <None Include="Properties\PublishProfiles\ZSite.pubxml" />
     <Content Include="Views\Portal.aspx" />
     <Content Include="Views\SYS\View_SYS_Function.aspx" />
+    <Content Include="Views\SYS\View_SYS_UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -495,6 +497,13 @@
     </Compile>
     <Compile Include="Views\SYS\View_SYS_Function.aspx.designer.cs">
       <DependentUpon>View_SYS_Function.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SYS\View_SYS_UserInfo.aspx.cs">
+      <DependentUpon>View_SYS_UserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\SYS\View_SYS_UserInfo.aspx.designer.cs">
+      <DependentUpon>View_SYS_UserInfo.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

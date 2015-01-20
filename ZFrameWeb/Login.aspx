@@ -96,7 +96,7 @@
                     msgbox.info(data.Msg);
                 }
             }, function (e) {
-                msgbox.error(e);
+                msgbox.alert(e.responseText);
 
             });
         }

@@ -15,12 +15,14 @@
                 if (isexists) {
                     $("#MainTab").tabs("select", title);
                 } else {
-                    funcurl = funcurl.replace("~", hosturl);
+                    funcurl = funcurl.replace("~", "..");
+                    var content = '<iframe scrolling="no" frameborder="0"  src="' + funcurl + '" style="width:100%;height:100%;"></iframe>';
                     $("#MainTab").tabs("add", {
                         id: node.id,
                         title: title,
                         selected: true,
-                        href: funcurl,
+                        //href: funcurl,
+                        content: content,
                         iconCls: node.iconCls,
                         closable: true
                     });

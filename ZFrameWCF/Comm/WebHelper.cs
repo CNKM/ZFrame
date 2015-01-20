@@ -245,6 +245,9 @@ namespace ZFrameWCF.Comm
                     TD.text = EntityObject.F_Name;
                     TD.attributes.Add(new KeyValuePair<String, Object>("url", EntityObject.F_URL));
                     TD.attributes.Add(new KeyValuePair<String, Object>("filterkey", EntityObject.F_FilterKey));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("openyType", EntityObject.F_OpenType));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("openSpace", EntityObject.F_OpenSpace));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("state", EntityObject.F_State));
                     TD.iconCls = EntityObject.F_Icon;
                     if (ParentNode == null)
                     {

@@ -40,6 +40,7 @@ var CurrentLoginObject = {
 
 
 var msgbox = {
+    alert:function(msg){ $.messager.alert("消息", msg, "error");},
     error: function (msg) { $.messager.alert("错误", msg, "error"); },
     info: function (msg) { $.messager.alert("消息", msg, "info"); },
     question: function (confirmmsg, callback) {

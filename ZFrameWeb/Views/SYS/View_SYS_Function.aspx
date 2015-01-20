@@ -1,15 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/MasterPage/BasePage.Master" AutoEventWireup="true" CodeBehind="View_SYS_Function.aspx.cs" Inherits="ZFrameWeb.Views.SYS.View_SYS_Function" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <script>
+    <script type="text/javascript">
         $(function () {
             InitTreeWithFilter($("#MgrFuncTree"), $("#MgrFuncFilter"), function (node) {
-                alert("click");
-            }, CurrentLoginObject.CurrentFuncs);
+                $("#nodeText").textbox("setText", node.text);
+                $("#nodeURL").textbox("setText", node.attributes[0].Value);
+                $("#nodeIcon").textbox("setText", node.iconCls);
+                $("#nodeOpenType").textbox("setText", node.attributes[2].Value);
+                $("#nodeOpenSpeace").textbox("setText", node.attributes[3].Value);
+                var state = (node.attributes[4].Value);
+            },  parent.CurrentLoginObject.CurrentFuncs);
+            $("#checkboxdiv").click(function () {
+                var isChecked = $("#ck").prop("checked") ? true : false;
+                if (isChecked == true) {
+                    $("#ck").prop("checked", false);
+                } else {
+                    $("#ck").prop("checked", true);
+                }
+            });
         });
     </script>
     <div class="easyui-layout" data-options="fit:true">
-        <div data-options="region:'west',split:true" style="width: 180px;">
+        <div data-options="region:'west',split:true" style="width: 220px;">
             <div class="easyui-layout" data-options="fit:true">
                 <div data-options="region:'north'" style="width: 100%; height: 32px; padding: 2px">
                     <input id="MgrFuncFilter" class="easyui-textbox" style="width: 100%;" data-options="prompt: '输入拼音过滤',iconWidth: 22" />
@@ -29,28 +42,28 @@
                 <div data-options="region:'center'">
                     <div style="margin: 4px">
                         功能名称：
-                        <input class="easyui-textbox" style="width: 286px; height: 32px">
+                        <input id="nodeText" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
                     <div style="margin: 4px">
                         连接地址：
-                        <input class="easyui-textbox" style="width: 286px; height: 32px">
+                        <input id="nodeURL" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
                     <div style="margin: 4px">
                         功能图标：
-                        <input class="easyui-textbox" style="width: 286px; height: 32px">
+                        <input id="nodeIcon" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
                     <div style="margin: 4px">
                         打开方式：
-                        <input class="easyui-textbox" style="width: 286px; height: 32px">
+                        <input id="nodeOpenType" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
                     <div style="margin: 4px">
                         打开尺寸：
-                        <input class="easyui-textbox" style="width: 286px; height: 32px">
+                        <input id="nodeOpenSpeace" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
-                    <div style="margin: 4px">
-                        是否关闭:
-                        <div class="datagrid-cell-check">
-                            <input name="ck" type="checkbox">
+                    <div style="margin: 4px; margin-top: 8px; cursor: pointer" id="checkboxdiv">
+                        <div style="float: left">是否关闭：</div>
+                        <div>
+                            <input id="ck" style="margin-top: 0px; margin-left: -1px" type="checkbox" />
                         </div>
                     </div>
                 </div>
