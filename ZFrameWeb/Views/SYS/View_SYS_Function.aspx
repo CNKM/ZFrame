@@ -4,11 +4,11 @@
     <script type="text/javascript">
         $(function () {
             var CurrentNode = {
-                F_SN: CurrentNode.id,
-                F_PlatformType: CurrentNode.id,
+                F_SN: "",
+                F_PlatformType: "",
                 F_ParentSN: null,
                 F_FuncRightGroup: null,
-                F_Name: CurrentNode.text,
+                F_Name: "",
                 F_URL: "",
                 F_Icon: "",
                 F_Tips: "",
@@ -16,8 +16,8 @@
                 F_OpenSpace: "",
                 F_Remark: "",
                 F_State: "",
-                F_Index: "",
-                F_IsDel: ""
+                F_Index: ""
+               
             };
             $("#MgrFuncTree").tree({
                 formatter: function (node) {
@@ -25,13 +25,22 @@
                 }
             })
             InitTreeWithFilter($("#MgrFuncTree"), $("#MgrFuncFilter"), function (node) {
-                //CurrentNode.F_SN = node.id;
-                //CurrentNode.F_Icon =node.iconCls;
-                //CurrentNode.
+                var t = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_SN = node.id;
+                CurrentNode.F_Icon = node.iconCls;
+                CurrentNode.F_Name = node.text;
+                CurrentNode.F_OpenSpace = GetValueByKey(node.attributes, "state");;
+                CurrentNode.F_OpenType = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_ParentSN = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_PlatformType = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_Remark = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_State = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_URL = GetValueByKey(node.attributes, "state");
+                CurrentNode.F_Tips = GetValueByKey(node.attributes, "state");
+
                 $("#nodeText").textbox("setText", node.text);
                 $("#nodeURL").textbox("setText", node.attributes[0].Value);
                 $("#nodeIcon").textbox("setText", node.iconCls);
-
                 var opentype = node.attributes[2].Value;
                 $("#nodeOpenType").combobox("setValue", opentype);
                 $("#nodeOpenSpeace").textbox("setText", node.attributes[3].Value);
@@ -65,7 +74,7 @@
             });
 
             $("#btnSave").click(function () {
-               
+
             });
         });
     </script>

@@ -242,3 +242,14 @@ var GetBrowerVersion = function () {
     }
     return browserinfo;
 }
+
+
+var GetValueByKey = function (KeyValuePairs,SearckKey)
+{
+    for (var i = 0; i < KeyValuePairs.length; i++) {
+        if (SearckKey == KeyValuePairs[i].Key) {
+            return KeyValuePairs[i].Value;
+        }
+    }
+    return null;
+}
