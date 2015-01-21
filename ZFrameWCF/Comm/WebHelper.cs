@@ -243,13 +243,15 @@ namespace ZFrameWCF.Comm
                     TreeData TD = new TreeData();
                     TD.id = EntityObject.F_SN;
                     TD.text = EntityObject.F_Name;
-                    TD.attributes.Add(new KeyValuePair<String, Object>("url", EntityObject.F_URL));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("filterkey", EntityObject.F_FilterKey));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("openyType", EntityObject.F_OpenType));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("openSpace", EntityObject.F_OpenSpace));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("state", EntityObject.F_State));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("tip", EntityObject.F_Tips));
-                    TD.attributes.Add(new KeyValuePair<String, Object>("remark", EntityObject.F_Remark));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_PlatformType", EntityObject.F_PlatformType));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_URL", EntityObject.F_URL));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_OpenType", EntityObject.F_OpenType));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_OpenSpace", EntityObject.F_OpenSpace));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_State", EntityObject.F_State));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_Tips", EntityObject.F_Tips));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_Remark", EntityObject.F_Remark));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_FilterKey", EntityObject.F_FilterKey));
+                    
                     TD.iconCls = EntityObject.F_Icon;
                     if (ParentNode == null)
                     {

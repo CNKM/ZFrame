@@ -40,7 +40,7 @@ var CurrentLoginObject = {
 
 
 var msgbox = {
-    alert:function(msg){ $.messager.alert("消息", msg, "error");},
+    alert: function (msg) { $.messager.alert("消息", msg, "error"); },
     error: function (msg) { $.messager.alert("错误", msg, "error"); },
     info: function (msg) { $.messager.alert("消息", msg, "info"); },
     question: function (confirmmsg, callback) {
@@ -133,6 +133,7 @@ function forNodes(data, callback) {
         }
     }
 }
+
 //树相关
 function RegTreeFilter() {
     $.extend($.fn.tree.methods, {
@@ -142,7 +143,7 @@ function RegTreeFilter() {
                 var data = $.data(target, 'tree').data;
                 var ids = {};
                 forNodes(data, function (node) {
-                    if (node.attributes[1].Value.toLowerCase().indexOf(text.toLowerCase()) == -1) {
+                    if (node.attributes[6].Value.toLowerCase().indexOf(text.toLowerCase()) == -1) {
                         $('#' + node.domId).hide();
                     } else {
                         $('#' + node.domId).show();
@@ -165,14 +166,23 @@ function RegTreeFilter() {
     });
 }
 
-var InitTreeWithFilter = function (treecontrol, treefilter, nodeclickcallback,source) {
+var InitTreeWithFilter = function (treecontrol, treefilter, nodeclickcallback, source,tipsIndex) {
     RegTreeFilter();
     treecontrol.tree({
         onClick: function (node) {
             nodeclickcallback(node);
         },
+        formatter: function (node) {
+            if (tipsIndex != null && tipsIndex >= 0) {
+                return '<span title="' + node.attributes[tipsIndex].Value + '">' + node.text + '</span>';
+            }
+            else {
+                return '<span >' + node.text + '</span>';
+            }
+        },
         data: source
     });
+
     treefilter.textbox({
         icons: [{
             iconCls: "icon-search",
@@ -242,14 +252,10 @@ var GetBrowerVersion = function () {
     }
     return browserinfo;
 }
-
-
-var GetValueByKey = function (KeyValuePairs,SearckKey)
-{
-    for (var i = 0; i < KeyValuePairs.length; i++) {
-        if (SearckKey == KeyValuePairs[i].Key) {
-            return KeyValuePairs[i].Value;
-        }
-    }
-    return null;
-}
+Array.prototype.GetValueByKey = function (SearckKey) {
+     for (var i = 0; i < this.length; i++) {
+         if (SearckKey == this[i].Key) {
+             return this[i].Value;
+         }
+     }
+};

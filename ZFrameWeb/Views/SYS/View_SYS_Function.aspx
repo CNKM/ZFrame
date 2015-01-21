@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script type="text/javascript">
         $(function () {
-            var CurrentNode = {
+            var CurrentEntity = {
                 F_SN: "",
                 F_PlatformType: "",
                 F_ParentSN: null,
@@ -17,43 +17,32 @@
                 F_Remark: "",
                 F_State: "",
                 F_Index: ""
-               
+
             };
-            $("#MgrFuncTree").tree({
-                formatter: function (node) {
-                    return '<span title="' + node.attributes[5].Value + '">' + node.text + '</span>';
-                }
-            })
+
             InitTreeWithFilter($("#MgrFuncTree"), $("#MgrFuncFilter"), function (node) {
-                var t = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_SN = node.id;
-                CurrentNode.F_Icon = node.iconCls;
-                CurrentNode.F_Name = node.text;
-                CurrentNode.F_OpenSpace = GetValueByKey(node.attributes, "state");;
-                CurrentNode.F_OpenType = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_ParentSN = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_PlatformType = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_Remark = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_State = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_URL = GetValueByKey(node.attributes, "state");
-                CurrentNode.F_Tips = GetValueByKey(node.attributes, "state");
+                CurrentEntity.F_SN = node.id;
+                CurrentEntity.F_Icon = node.iconCls;
+                CurrentEntity.F_Name = node.text;
+                CurrentEntity.F_OpenSpace = node.attributes.GetValueByKey("F_OpenSpace");
+                CurrentEntity.F_OpenType = node.attributes.GetValueByKey("F_OpenType");
+                CurrentEntity.F_ParentSN = node.attributes.GetValueByKey("F_ParentSN");
+                CurrentEntity.F_PlatformType = node.attributes.GetValueByKey("F_PlatformType");
+                CurrentEntity.F_Remark = node.attributes.GetValueByKey("F_Remark");
+                CurrentEntity.F_State = node.attributes.GetValueByKey("F_State");
+                CurrentEntity.F_URL = node.attributes.GetValueByKey("F_URL");
+                CurrentEntity.F_Tips = node.attributes.GetValueByKey("F_Tips");
 
-                $("#nodeText").textbox("setText", node.text);
-                $("#nodeURL").textbox("setText", node.attributes[0].Value);
-                $("#nodeIcon").textbox("setText", node.iconCls);
-                var opentype = node.attributes[2].Value;
-                $("#nodeOpenType").combobox("setValue", opentype);
-                $("#nodeOpenSpeace").textbox("setText", node.attributes[3].Value);
+                $("#nodeText").textbox("setText", CurrentEntity.F_Name);
+                $("#nodeURL").textbox("setText", CurrentEntity.F_URL);
+                $("#nodeIcon").textbox("setText", CurrentEntity.F_Icon);
+                $("#nodeOpenType").combobox("setValue", CurrentEntity.F_OpenType);
+                $("#nodeOpenSpeace").textbox("setText", CurrentEntity.F_OpenSpace);
+                $("#nodeTips").textbox("setText", CurrentEntity.F_Tips);
+                $("#nodeRemark").textbox("setText", CurrentEntity.F_Remark);
+                $("#ck").prop("checked", CurrentEntity.F_State == "1");
 
-                var state = (node.attributes[4].Value);
-                if (state == 1) {
-                    $("#ck").prop("checked", true);
-                } else {
-                    $("#ck").prop("checked", false);
-                }
 
-                $("#nodeTips").textbox("setText", node.attributes[5].Value);
-                $("#nodeRemark").textbox("setText", node.attributes[6].Value);
             }, parent.CurrentLoginObject.CurrentFuncs);
 
             $("#checkboxdiv").click(function () {
@@ -74,7 +63,25 @@
             });
 
             $("#btnSave").click(function () {
-
+                CurrentEntity.F_Name = $("#nodeText").textbox("getText");
+                CurrentEntity.F_URL = $("#nodeURL").textbox("getText");
+                CurrentEntity.F_Icon = $("#nodeIcon").textbox("getText");
+                CurrentEntity.F_OpenType = $("#nodeOpenType").combobox("getValue");
+                CurrentEntity.F_OpenSpace = $("#nodeOpenSpeace").textbox("getText");
+                CurrentEntity.F_Tips = $("#nodeTips").textbox("getText");
+                CurrentEntity.F_Remark = $("#nodeRemark").textbox("getText");
+                CurrentEntity.F_State = $("#ck").prop("checked") ? 1 : 0;
+                var PostArrar = [];
+                PostArrar[0] = CurrentEntity;
+                AjaxHelper.CallFunction("SAVE_Single_SYS_Function", PostValue = { PostEntity: JSON.stringify(PostArrar) }, false,
+                    function (d) {
+                        if (d.Code == 1) {
+                            msgbox.info("保存成功!用户重新登陆后启用");
+                        }
+                    },
+                    function (e) {
+                        msgbox.error(e);
+                    });
             });
         });
     </script>

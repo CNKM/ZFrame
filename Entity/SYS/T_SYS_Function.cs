@@ -18,6 +18,12 @@ namespace Entity.SYS
         [PropertyType(EntityPropertyType.DBFieldKey)]
         public string F_SN { get { return _F_SN; } set { if (_F_SN != value) { _F_SN = value; if (SendNotifyProperty)this.SendPropertyChanged("F_SN"); } } }
 
+        private int? _F_PlatformType;
+
+        /// <summary>0 WEB  1 WinForm
+        /// </summary>
+        public int? F_PlatformType { get { return _F_PlatformType; } set { if (_F_PlatformType != value) { _F_PlatformType = value; if (SendNotifyProperty)this.SendPropertyChanged("F_PlatformType"); } } }
+
         private string _F_ParentSN;
 
         /// <summary>
@@ -42,23 +48,11 @@ namespace Entity.SYS
         /// </summary>
         public string F_URL { get { return _F_URL; } set { if (_F_URL != value) { _F_URL = value; if (SendNotifyProperty)this.SendPropertyChanged("F_URL"); } } }
 
-        private string _F_WebURL;
-
-        /// <summary>
-        /// </summary>
-        public string F_WebURL { get { return _F_WebURL; } set { if (_F_WebURL != value) { _F_WebURL = value; if (SendNotifyProperty)this.SendPropertyChanged("F_WebURL"); } } }
-
         private string _F_Icon;
 
         /// <summary>
         /// </summary>
         public string F_Icon { get { return _F_Icon; } set { if (_F_Icon != value) { _F_Icon = value; if (SendNotifyProperty)this.SendPropertyChanged("F_Icon"); } } }
-
-        private string _F_WebIcon;
-
-        /// <summary>
-        /// </summary>
-        public string F_WebIcon { get { return _F_WebIcon; } set { if (_F_WebIcon != value) { _F_WebIcon = value; if (SendNotifyProperty)this.SendPropertyChanged("F_WebIcon"); } } }
 
         private string _F_Tips;
 

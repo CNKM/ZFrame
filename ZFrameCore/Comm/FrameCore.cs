@@ -638,6 +638,9 @@ namespace ZFrameCore.Common
         /// </summary>
         [System.ComponentModel.Description("验证码错误")]
         AUTHCODEERROR = -3,
+
+        [System.ComponentModel.Description("上传参数错误")]
+        POSTERROR = -4,
     }
 
     /// <summary>

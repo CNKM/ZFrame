@@ -406,7 +406,7 @@ namespace ZFrameCore.BLL
         /// <param name="DelegateMethod">委托方法名</param>
         /// <param name="ErrorMessage">错误信息</param>
         /// <returns>执行成功标记 0 成功 -1 失败 失败后自动回滚</returns>
-        public virtual Int32 TransactionDo(Action<SqlTransaction, Object> DelegateMethod, Object Arg, out String ErrorMessage)
+        public virtual Int32 TransactionDo(Action<SqlTransaction, Object> DelegateMethod, out String ErrorMessage, Object Arg)
         {
             using (SqlConnection connection = new SqlConnection(ZFrameDAL.TConnConfig.SQLConnStr))
             {
@@ -417,6 +417,41 @@ namespace ZFrameCore.BLL
                 {
 
                     DelegateMethod(transaction, Arg);
+                    transaction.Commit();
+                    ErrorMessage = "";
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    ErrorMessage = ex.Message;
+                    return -1;
+                }
+                finally
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+        }
+        /// <summary>
+        /// 事务中执行指定方法
+        /// </summary>
+        /// <param name="DelegateMethod">委托方法名</param>
+        /// <param name="ErrorMessage">错误信息</param>
+        /// <returns>执行成功标记 0 成功 -1 失败 失败后自动回滚</returns>
+        public virtual Int32 TransactionDo(Action<SqlTransaction> DelegateMethod, out String ErrorMessage)
+        {
+            using (SqlConnection connection = new SqlConnection(ZFrameDAL.TConnConfig.SQLConnStr))
+            {
+                connection.Open();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction();
+                try
+                {
+
+                    DelegateMethod(transaction);
                     transaction.Commit();
                     ErrorMessage = "";
                     return 0;

@@ -1,10 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/MasterPage/BasePage.Master" AutoEventWireup="true" CodeBehind="Portal.aspx.cs" Inherits="ZFrameWeb.Views.Portal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <style>
+        .FuncBody {
+            overflow :hidden;
+        }
+    </style>
     <script>
         $(function () {
             InitTreeWithFilter($("#FuncTree"), $("#FuncFilter"), function (node) {
-                var funcurl = node.attributes[0].Value;
+                var funcurl = node.attributes.GetValueByKey("F_URL");
                 if (StringHelper.IsNullOrEmpty(funcurl)) {
                     msgbox.info("功能链接错误,请联系管理员.")
                     return;
@@ -16,16 +21,17 @@
                     $("#MainTab").tabs("select", title);
                 } else {
                     funcurl = funcurl.replace("~", "..");
-                    var content = '<iframe scrolling="no" frameborder="0"  src="' + funcurl + '" style="width:100%;height:100%;"></iframe>';
+                    var content = '<iframe scrolling="no" frameborder="0"  src="' + funcurl + '" style="width:100%;height:100%;margin: 1.5px; border: 0;"></iframe>';
                     $("#MainTab").tabs("add", {
+                        bodyCls:"FuncBody",
                         id: node.id,
                         title: title,
                         selected: true,
-                        //href: funcurl,
                         content: content,
                         iconCls: node.iconCls,
                         closable: true
-                    });
+                    }
+                    );
                 }
             });
 
@@ -66,9 +72,9 @@
         <%--<div data-options="region:'north'" style="width: 100%;">
             HeadContend
         </div>--%>
-        <div data-options="region:'center'" style="width: 100%">
+        <div data-options="region:'center'" style="width: 100%;">
             <div id="MainTab" class="easyui-tabs" style="width: 100%;" data-options="fit:true">
-                <div title="开始首页" style="padding: 2px" data-options="iconCls:'icon-help'">
+                <div title="开始首页" style="margin: 1.5px" data-options="iconCls:'icon-help'">
                     <div class="easyui-layout" data-options="fit:true">
                         <div data-options="region:'west',split:true" style="width: 220px;">
                             <div class="easyui-layout" data-options="fit:true">
@@ -76,7 +82,7 @@
                                     <input id="FuncFilter" class="easyui-textbox" style="width: 100%;" data-options="prompt: '输入拼音过滤',iconWidth: 22" />
                                 </div>
                                 <div data-options="region:'center'">
-                                    <ul id="FuncTree" class="easyui-tree" data-options="animate:true,lines:true,cache:true"></ul>
+                                    <ul id="FuncTree" class="easyui-tree" data-options="animate:true,lines:true"></ul>
                                 </div>
                             </div>
                         </div>
