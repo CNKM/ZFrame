@@ -132,8 +132,8 @@
                         备注信息：
                         <input id="nodeRemark" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
-                    <div style="margin: 4px; margin-top: 8px; cursor: pointer" id="checkboxdiv">
-                        <div style="float: left">是否关闭：</div>
+                    <div style="margin: 4px; margin-top: 8px; cursor: pointer" >
+                        <div style="float: left" id="checkboxdiv">是否关闭：</div>
                         <div>
                             <input id="ck" style="margin-top: 0px; margin-left: -1px" type="checkbox" />
                         </div>
