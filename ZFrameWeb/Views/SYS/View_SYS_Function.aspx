@@ -41,7 +41,7 @@
                     $("#nodeOpenSpeace").textbox("setText", CurrentEntity.F_OpenSpace);
                     $("#nodeTips").textbox("setText", CurrentEntity.F_Tips);
                     $("#nodeRemark").textbox("setText", CurrentEntity.F_Remark);
-                    $("#nodeIndex").textbox("setText"  ,CurrentEntity.F_Index );
+                    $("#nodeIndex").textbox("setText"  ,CurrentEntity.F_Index.toString() );
                     $("#ck").prop("checked", CurrentEntity.F_State == "1");
                 }, data.Contend);
             });
