@@ -74,7 +74,7 @@
     <Content Include="Images\Icons\luggage.png" />
     <Content Include="Images\Icons\user_role_24.png" />
     <Content Include="Images\Icons\user.png" />
-    <Content Include="JavaScript\SYS\JS_SYS_Function.js" />
+    <Content Include="Scripts\Model\JS_SYS_Function.js" />
     <Content Include="Style\ExtIconsLib.css" />
     <Content Include="Images\Icons\login_user_32.png" />
     <Content Include="Login.aspx" />

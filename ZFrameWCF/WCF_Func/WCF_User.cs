@@ -16,7 +16,7 @@ using ZFrameCore.Common;
 using ZFrameWCF.Comm;
 namespace ZFrameWCF
 {
-  
+
     public partial class WCFServices
     {
         /// <summary>
@@ -40,22 +40,30 @@ namespace ZFrameWCF
         /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream GetCurrentLoginForEasyUI()
+        public Stream GetCurrentLoginForEasyUI(Int32 PType = 0, String FuncState = null, Boolean IsReloadFunc = false)
         {
             return CommFuncAction(delegate()
             {
                 CurrentLoginObject CurrengLoginInfo = HttpContext.Current.Session.Get<CurrentLoginObject>(USEDSESSION.CURRENTLOGINOBJECT);
+                if (IsReloadFunc)
+                {
+                    T_SYS_User_BLL BLL = new T_SYS_User_BLL();
+                    BLL.ReloaduserFuncs(PType, CurrengLoginInfo,FuncState);
+                    HttpContext.Current.Session.Set(USEDSESSION.CURRENTLOGINOBJECT, CurrengLoginInfo);
+                }
+
                 if (CurrengLoginInfo != null)
                 {
-                    WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo);
+                    WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo,FuncState);
                     return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, CurrengLoginInfo);
                 }
                 else
                 {
-                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLWITHOUTAUTH,null,"用户未登录");
+                    return new CallBackReturnObject(CALLRETURNDEFINE.CALLWITHOUTAUTH, null, "用户未登录");
                 }
             });
         }
+
 
 
 
@@ -69,7 +77,7 @@ namespace ZFrameWCF
         /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream UserLoginCheck(Int32 PType =0, String CheckCode = "", String UserName = "", String PassWord = "", String ChooseDept = "")
+        public Stream UserLoginCheck(Int32 PType = 0, String CheckCode = "", String UserName = "", String PassWord = "", String ChooseDept = "")
         {
 
             if (WebHelper.SessionAuth(HttpContext.Current.Session, CheckCode))
@@ -80,7 +88,7 @@ namespace ZFrameWCF
                     List<T_SYS_Role> ReturnRoles;
                     CurrentLoginObject CurrengLoginInfo;
                     String ExecReusltMsg = "";
-                    Int32 ExecReusltCode = UserBLL.CheckUserLogin(PType,UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
+                    Int32 ExecReusltCode = UserBLL.CheckUserLogin(PType, UserName, PassWord, out CurrengLoginInfo, out ReturnRoles, out ExecReusltMsg, ChooseDept);
                     if (ExecReusltCode == 1)
                     {
                         HttpContext.Current.Session.Set(USEDSESSION.CURRENTLOGINOBJECT, CurrengLoginInfo);
@@ -100,9 +108,9 @@ namespace ZFrameWCF
         }
         [WebGet]
         [OperationContract]
-        public Stream  GetSessionAuthState()
+        public Stream GetSessionAuthState()
         {
-            Boolean ISOK =HttpContext.Current.Session.GetSessionAuthState();
+            Boolean ISOK = HttpContext.Current.Session.GetSessionAuthState();
             return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, ISOK).ToStream();
         }
         [WebGet]

@@ -3,55 +3,46 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <style>
         .FuncBody {
-            overflow :hidden;
+            overflow: hidden;
         }
     </style>
+    <script src="<%:ResolveUrl("~/Scripts/Model/JS_SYS_Function.js") %>"></script>
     <script>
-        $(function () {
-            InitTreeWithFilter($("#FuncTree"), $("#FuncFilter"), function (node) {
-                var funcurl = node.attributes.GetValueByKey("F_URL");
-                if (StringHelper.IsNullOrEmpty(funcurl)) {
-                    msgbox.info("功能链接错误,请联系管理员.")
-                    return;
-                }
-                var hosturl = GetCurrentURl();
-                var title = node.text;
-                var isexists = $("#MainTab").tabs("exists", title);
-                if (isexists) {
-                    $("#MainTab").tabs("select", title);
-                } else {
-                    funcurl = funcurl.replace("~", "..");
-                    var content = '<iframe scrolling="no" frameborder="0"  src="' + funcurl + '" style="width:100%;height:100%;margin: 1.5px; border: 0;"></iframe>';
-                    $("#MainTab").tabs("add", {
-                        bodyCls:"FuncBody",
-                        id: node.id,
-                        title: title,
-                        selected: true,
-                        content: content,
-                        iconCls: node.iconCls,
-                        closable: true
+        var PortalLoadFunc = function (isreload,state) {
+            LoadFuncs(0, state, isreload, function (data) {
+                InitTreeWithFilter($("#FuncTree"), $("#FuncFilter"), function (node) {
+                    var funcurl = node.attributes.GetValueByKey("F_URL");
+                    if (StringHelper.IsNullOrEmpty(funcurl)) {
+                        msgbox.info("功能链接错误,请联系管理员.")
+                        return;
                     }
-                    );
-                }
+                    var hosturl = GetCurrentURl();
+                    var title = node.text;
+                    var isexists = $("#MainTab").tabs("exists", title);
+                    if (isexists) {
+                        $("#MainTab").tabs("select", title);
+                    } else {
+                        funcurl = funcurl.replace("~", "..");
+                        var content = '<iframe scrolling="no" frameborder="0"  src="' + funcurl + '" style="width:100%;height:100%;margin: 1.5px; border: 0;"></iframe>';
+                        $("#MainTab").tabs("add", {
+                            bodyCls: "FuncBody",
+                            id: node.id,
+                            title: title,
+                            selected: true,
+                            content: content,
+                            iconCls: node.iconCls,
+                            closable: true
+                        }
+                        );
+                    }
+                }, data.CurrentFuncs);
+                $("#currentUser").text("当前登录人员:【" + CurrentLoginObject.CurrentUser.F_Name + "】");
+                $("#currentDept").text("前登录部门:【" + CurrentLoginObject.CurrentDept.F_Name + "】");
+                $("#currentRole").text("当前岗位角色:【" + CurrentLoginObject.CurrentRole.F_Name + "】");
             });
-
-            AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", null, false,
-                function (d) {
-                    var ReutrnCurrengLoingObject = JSON.parse(d).Contend;
-                    CurrentLoginObject.CurrentDept = ReutrnCurrengLoingObject.CurrentDept;
-                    CurrentLoginObject.CurrentFuncs = ReutrnCurrengLoingObject.ExtendContend;
-                    CurrentLoginObject.CurrentRole = ReutrnCurrengLoingObject.CurrentRole;
-                    CurrentLoginObject.CurrentUser = ReutrnCurrengLoingObject.CurrentUser;
-                    $("#FuncTree").tree({
-                        data: CurrentLoginObject.CurrentFuncs
-                    });
-                    $("#currentUser").text("当前登录人员:【" + CurrentLoginObject.CurrentUser.F_Name + "】");
-                    $("#currentDept").text("前登录部门:【" + CurrentLoginObject.CurrentDept.F_Name + "】");
-                    $("#currentRole").text("当前岗位角色:【" + CurrentLoginObject.CurrentRole.F_Name + "】");
-                }, function (e) {
-                    msgbox.error(e);
-                });
-
+        }
+        $(function () {
+            PortalLoadFunc(false);
             $("#btnLoginOff").click(function (e) {
                 AjaxHelper.CallFunction("UserLoginOut", null, false,
               function (d) {
@@ -65,6 +56,7 @@
 
             });
         });
+
     </script>
 
 

@@ -2703,7 +2703,7 @@ namespace ZFrameDAL
             SqlParameter ReturnParm = new SqlParameter()
             {
                 ParameterName = "@ReturnValue",
-                SqlDbType = System.Data.SqlDbType.BigInt,
+                SqlDbType = System.Data.SqlDbType.Int,
                 Direction = ParameterDirection.Output,
                 Value =1
             };
