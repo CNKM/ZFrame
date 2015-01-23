@@ -1,21 +1,21 @@
-﻿.icon-login-user{
-	background:url("../Images/Icons/login_user_32.png") no-repeat center center;
+﻿.icon-login-user {
+    background: url("../Images/Icons/login_user_32.png") no-repeat center center;
 }
 
-.icon-department{
-	background:url("../Images/Icons/building-network.png") no-repeat center center;
+.icon-department {
+    background: url("../Images/Icons/building-network.png") no-repeat center center;
 }
 
-.icon-login-off{
-	background:url("../Images/Icons/arrow-circle-225-left.png") no-repeat center center;
+.icon-login-off {
+    background: url("../Images/Icons/arrow-circle-225-left.png") no-repeat center center;
 }
 
-.icon-login-userinfo{
-	background:url("../Images/Icons/user.png") no-repeat center center;
+.icon-login-userinfo {
+    background: url("../Images/Icons/user.png") no-repeat center center;
 }
 
 
-.icon-login-userrole{
-	background:url("../Images/Icons/gear--arrow.png") no-repeat center center;
+.icon-login-userrole {
+    background: url("../Images/Icons/gear--arrow.png") no-repeat center center;
 }
 

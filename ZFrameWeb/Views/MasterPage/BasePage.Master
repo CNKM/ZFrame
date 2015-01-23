@@ -10,6 +10,7 @@
     <link href="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/themes/icon.css")%>" rel="stylesheet" />
     <link href="<%:ResolveUrl("~/Style/ExtIconsLib.css")%>" rel="stylesheet" />
     <link href="<%:ResolveUrl("~/Style/Comm.css")%>" rel="stylesheet" />
+    <link href="<%:ResolveUrl("~/Style/fugueIcon.css")%>" rel="stylesheet" />
     <%--JS--%>
     <script src="<%:ResolveUrl("~/Scripts/jquery-2.1.1.min.js") %>"></script>
     <script src="<%:ResolveUrl("~/Scripts/jquery-easyui-1.4.1/jquery.easyui.min.js") %>"></script>

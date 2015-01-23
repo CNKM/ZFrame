@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script src="<%:ResolveUrl("~/Scripts/Model/JS_SYS_Function.js") %>"></script>
+    <script src="<%:ResolveUrl("~/Images/fugue/fugueLib.js")%>"></script>
     <script type="text/javascript">
         var CurrentEntity = {
             F_SN: "",
@@ -33,20 +34,36 @@
                     CurrentEntity.F_URL = node.attributes.GetValueByKey("F_URL");
                     CurrentEntity.F_Tips = node.attributes.GetValueByKey("F_Tips");
                     CurrentEntity.F_Index = node.attributes.GetValueByKey("F_Index");
-
                     $("#nodeText").textbox("setText", CurrentEntity.F_Name);
                     $("#nodeURL").textbox("setText", CurrentEntity.F_URL);
-                    $("#nodeIcon").textbox("setText", CurrentEntity.F_Icon);
+                    //$("#nodeIcon").textbox("setText", CurrentEntity.F_Icon);
                     $("#nodeOpenType").combobox("setValue", CurrentEntity.F_OpenType);
                     $("#nodeOpenSpeace").textbox("setText", CurrentEntity.F_OpenSpace);
                     $("#nodeTips").textbox("setText", CurrentEntity.F_Tips);
                     $("#nodeRemark").textbox("setText", CurrentEntity.F_Remark);
-                    $("#nodeIndex").textbox("setText"  ,CurrentEntity.F_Index.toString() );
+                    $("#nodeIndex").textbox("setText", CurrentEntity.F_Index.toString());
                     $("#ck").prop("checked", CurrentEntity.F_State == "1");
                 }, data.Contend);
             });
         }
         $(function () {
+            var iconslib = [];
+            for (var i = 0; i < fuguelib.length ; i++) {
+                iconslib[i] = { id: fuguelib[i], text: fuguelib[i] };
+            }
+            $("#nodeIcon").combobox({
+                data: iconslib,
+                formatter: function (row) {
+                    //var s = "<div>"+
+                    //            "<div class=' " + row.text + "'></div>"+
+                    //            "<div>"+row.text+"</div>"+
+                    //        "</div>";
+                    var s = '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+                    '<span class="'+row.text+'"></span>';
+                    //var s = "<span class='" + row.id + "'>" + row.text+ "</span>"
+                    return s;
+                }
+            });
             SelfLoadFunc();
             $("#checkboxdiv").click(function () {
                 var isChecked = $("#ck").prop("checked") ? true : false;
@@ -122,7 +139,9 @@
                     </div>
                     <div style="margin: 4px">
                         功能图标：
-                        <input id="nodeIcon" class="easyui-textbox" style="width: 286px; height: 32px" />
+                        <%--<input id="nodeIcon" class="easyui-textbox" style="width: 286px; height: 32px" />--%>
+                        <input id="nodeIcon" class="easyui-combobox" data-options="valueField:'id',textField:'text'" style="width: 286px; height: 32px" />
+
                     </div>
                     <div style="margin: 4px">
                         打开方式：
@@ -136,7 +155,7 @@
                         悬停提示：
                         <input id="nodeTips" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
-                     <div style="margin: 4px">
+                    <div style="margin: 4px">
                         功能排序：
                          <input id="nodeIndex" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
