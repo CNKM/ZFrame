@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/MasterPage/BasePage.Master" AutoEventWireup="true" CodeBehind="View_SYS_Function.aspx.cs" Inherits="ZFrameWeb.Views.SYS.View_SYS_Function" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-     <script src="<%:ResolveUrl("~/Scripts/Model/JS_SYS_Function.js") %>"></script>
+    <script src="<%:ResolveUrl("~/Scripts/Model/JS_SYS_Function.js") %>"></script>
     <script type="text/javascript">
         var CurrentEntity = {
             F_SN: "",
@@ -19,7 +19,7 @@
             F_Index: ""
         };
         var SelfLoadFunc = function () {
-            LoadFuncs(0, null, true, function (data) {
+            LoadFullFuncs(function (data) {
                 InitTreeWithFilter($("#MgrFuncTree"), $("#MgrFuncFilter"), function (node) {
                     CurrentEntity.F_SN = node.id;
                     CurrentEntity.F_Icon = node.iconCls;
@@ -32,6 +32,7 @@
                     CurrentEntity.F_State = node.attributes.GetValueByKey("F_State");
                     CurrentEntity.F_URL = node.attributes.GetValueByKey("F_URL");
                     CurrentEntity.F_Tips = node.attributes.GetValueByKey("F_Tips");
+                    CurrentEntity.F_Index = node.attributes.GetValueByKey("F_Index");
 
                     $("#nodeText").textbox("setText", CurrentEntity.F_Name);
                     $("#nodeURL").textbox("setText", CurrentEntity.F_URL);
@@ -40,8 +41,9 @@
                     $("#nodeOpenSpeace").textbox("setText", CurrentEntity.F_OpenSpace);
                     $("#nodeTips").textbox("setText", CurrentEntity.F_Tips);
                     $("#nodeRemark").textbox("setText", CurrentEntity.F_Remark);
+                    $("#nodeIndex").textbox("setText"  ,CurrentEntity.F_Index );
                     $("#ck").prop("checked", CurrentEntity.F_State == "1");
-                }, data.CurrentFuncs);
+                }, data.Contend);
             });
         }
         $(function () {
@@ -71,6 +73,7 @@
                 CurrentEntity.F_OpenSpace = $("#nodeOpenSpeace").textbox("getText");
                 CurrentEntity.F_Tips = $("#nodeTips").textbox("getText");
                 CurrentEntity.F_Remark = $("#nodeRemark").textbox("getText");
+                CurrentEntity.F_Index = $("#nodeIndex").textbox("getText");
                 CurrentEntity.F_State = $("#ck").prop("checked") ? 1 : 0;
                 var PostArrar = [];
                 PostArrar[0] = CurrentEntity;
@@ -81,7 +84,7 @@
                             //自身重加载(功能内全部)
                             SelfLoadFunc();
                             //主窗体重加载(可显示的)
-                            parent.PortalLoadFunc(true,0);
+                            parent.PortalLoadFunc(true);
                         }
                     },
                     function (e) {
@@ -133,11 +136,15 @@
                         悬停提示：
                         <input id="nodeTips" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
+                     <div style="margin: 4px">
+                        功能排序：
+                         <input id="nodeIndex" class="easyui-textbox" style="width: 286px; height: 32px" />
+                    </div>
                     <div style="margin: 4px">
                         备注信息：
                         <input id="nodeRemark" class="easyui-textbox" style="width: 286px; height: 32px" />
                     </div>
-                    <div style="margin: 4px; margin-top: 8px; cursor: pointer" >
+                    <div style="margin: 4px; margin-top: 8px; cursor: pointer">
                         <div style="float: left" id="checkboxdiv">是否关闭：</div>
                         <div>
                             <input id="ck" style="margin-top: 0px; margin-left: -1px" type="checkbox" />

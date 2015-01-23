@@ -9,10 +9,25 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Web;
 using ZFrameCore.Common;
+using ZFrameWCF.Comm;
 namespace ZFrameWCF
 {
     public partial class WCFServices
     {
+
+
+        [WebGet]
+        [OperationContract]
+        public Stream GetFuncsForEasyUI()
+        {
+            return CommFuncAction(delegate()
+            {
+               BLL.SYS.T_SYS_Function_BLL CurrentBLL = new BLL.SYS.T_SYS_Function_BLL();
+               return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS,WebHelper.InitFuncTreeForEasyUI(CurrentBLL.Select()));
+            });
+        }
+
+
 
         [WebGet]
         [OperationContract]

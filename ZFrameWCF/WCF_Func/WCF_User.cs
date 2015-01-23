@@ -19,6 +19,8 @@ namespace ZFrameWCF
 
     public partial class WCFServices
     {
+        
+
         /// <summary>
         /// 获取当前用户的功能列表(原始列表)
         /// </summary>
@@ -40,7 +42,7 @@ namespace ZFrameWCF
         /// <returns></returns>
         [WebGet]
         [OperationContract]
-        public Stream GetCurrentLoginForEasyUI(Int32 PType = 0, String FuncState = null, Boolean IsReloadFunc = false)
+        public Stream GetCurrentLoginForEasyUI(Int32 PType = 0, Boolean IsReloadFunc = false)
         {
             return CommFuncAction(delegate()
             {
@@ -48,13 +50,13 @@ namespace ZFrameWCF
                 if (IsReloadFunc)
                 {
                     T_SYS_User_BLL BLL = new T_SYS_User_BLL();
-                    BLL.ReloaduserFuncs(PType, CurrengLoginInfo,FuncState);
+                    BLL.ReloaduserFuncs(PType,CurrengLoginInfo);
                     HttpContext.Current.Session.Set(USEDSESSION.CURRENTLOGINOBJECT, CurrengLoginInfo);
                 }
 
                 if (CurrengLoginInfo != null)
                 {
-                    WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo,FuncState);
+                    WebHelper.InitFuncTreeForEasyUI(CurrengLoginInfo);
                     return new CallBackReturnObject(CALLRETURNDEFINE.EXECSUCCESS, CurrengLoginInfo);
                 }
                 else

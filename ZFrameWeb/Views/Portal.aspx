@@ -8,8 +8,9 @@
     </style>
     <script src="<%:ResolveUrl("~/Scripts/Model/JS_SYS_Function.js") %>"></script>
     <script>
-        var PortalLoadFunc = function (isreload,state) {
-            LoadFuncs(0, state, isreload, function (data) {
+
+        var PortalLoadFunc = function (isreload) {
+            LoadUserFuncs(0, isreload, function (data) {
                 InitTreeWithFilter($("#FuncTree"), $("#FuncFilter"), function (node) {
                     var funcurl = node.attributes.GetValueByKey("F_URL");
                     if (StringHelper.IsNullOrEmpty(funcurl)) {

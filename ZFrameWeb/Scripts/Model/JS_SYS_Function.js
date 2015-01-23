@@ -1,7 +1,6 @@
-﻿var LoadFuncs = function (pType, funcState, isReloadFunc, Loadcallback) {
+﻿var LoadUserFuncs = function (pType, isReloadFunc, Loadcallback) {
     var postvalue = {
         PType: pType,
-        FuncState: funcState,
         IsReloadFunc: isReloadFunc
     }
     AjaxHelper.CallFunction("GetCurrentLoginForEasyUI", postvalue, false,
@@ -16,4 +15,15 @@
        }, function (e) {
            msgbox.error(e);
        });
+}
+
+var LoadFullFuncs = function (Loadcallback) {
+    AjaxHelper.CallFunction("GetFuncsForEasyUI", null, false,
+   function (d) {
+       var ReutrnCurrengLoingObject = JSON.parse(d);
+       Loadcallback(ReutrnCurrengLoingObject);
+
+   }, function (e) {
+       msgbox.error(e);
+   });
 }

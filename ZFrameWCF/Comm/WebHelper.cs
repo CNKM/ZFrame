@@ -218,13 +218,20 @@ namespace ZFrameWCF.Comm
         #endregion
         #region 树相关
 
-        public static void InitFuncTreeForEasyUI(CurrentLoginObject CLO, String FuncState = null)
+        public static void InitFuncTreeForEasyUI(CurrentLoginObject CLO)
         {
-
             List<TreeData> TempTreeNodes = new List<TreeData>();
-            CLO.CurrentFuncs.GetEasyUITreeData(ref TempTreeNodes, "", null, FuncState);
+            CLO.CurrentFuncs.GetEasyUITreeData(ref TempTreeNodes, "", null);
             CLO.ExtendContend = TempTreeNodes;
         }
+
+        public static List<TreeData> InitFuncTreeForEasyUI(List<T_SYS_Function> Funcs)
+        {
+            List<TreeData> TempTreeNodes = new List<TreeData>();
+            Funcs.GetEasyUITreeData(ref TempTreeNodes, "", null);
+            return TempTreeNodes;
+        }
+
         /// <summary>
         /// 构建EasyUI树形结构
         /// </summary>
@@ -233,18 +240,11 @@ namespace ZFrameWCF.Comm
         /// <param name="ReusltObjList"></param>
         /// <param name="ParentSN"></param>
         /// <param name="ParentNode"></param>
-        public static void GetEasyUITreeData<T>(this List<T> SourceTree, ref List<EasyUI.Tree.TreeData> ReusltObjList, String ParentSN = "", dynamic ParentNode = null, String FuncState = null) where T : TEntityTree<T>
+        public static void GetEasyUITreeData<T>(this List<T> SourceTree, ref List<EasyUI.Tree.TreeData> ReusltObjList, String ParentSN = "", dynamic ParentNode = null) where T : TEntityTree<T>
         {
             for (int i = 0; i <= SourceTree.Count - 1; i++)
             {
                 dynamic EntityObject = SourceTree[i];
-                if (!String.IsNullOrEmpty(FuncState))
-                {
-                    if (EntityObject.F_State != System.Convert.ToInt32(FuncState))
-                    {
-                        continue;
-                    }
-                }
                 if ((EntityObject.F_ParentSN == ParentSN))
                 {
 
@@ -258,6 +258,7 @@ namespace ZFrameWCF.Comm
                     TD.attributes.Add(new KeyValuePair<String, Object>("F_State", EntityObject.F_State));
                     TD.attributes.Add(new KeyValuePair<String, Object>("F_Tips", EntityObject.F_Tips));
                     TD.attributes.Add(new KeyValuePair<String, Object>("F_Remark", EntityObject.F_Remark));
+                    TD.attributes.Add(new KeyValuePair<String, Object>("F_Index", EntityObject.F_Index));
                     TD.attributes.Add(new KeyValuePair<String, Object>("F_FilterKey", EntityObject.F_FilterKey));
 
                     TD.iconCls = EntityObject.F_Icon;

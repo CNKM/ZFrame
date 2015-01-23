@@ -27,28 +27,29 @@ namespace BLL.SYS
         /// <param name="PlatformType"></param>
         /// <param name="_CurrentLoingObject"></param>
         /// <returns></returns>
-        public Int32 ReloaduserFuncs(Int32 PlatformType, CurrentLoginObject _CurrentLoingObject, String FuncState = null)
+        public Int32 ReloaduserFuncs(Int32 PlatformType, CurrentLoginObject _CurrentLoingObject)
         {
             Int32 ExecResult = 0;
             List<SqlParameter> Parms = new List<SqlParameter>();
             Parms.Add(new SqlParameter() { ParameterName = "@PlatformType", Value = PlatformType, DbType = System.Data.DbType.Int32 });
-            Parms.Add(new SqlParameter() { ParameterName = "@UserSN", Value = _CurrentLoingObject.CurrentUser.F_SN });
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginName", Value = "" });
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginPWD", Value = "" });
+            Parms.Add(new SqlParameter() { ParameterName = "@IsReloadFunc", Value = 1, DbType = System.Data.DbType.Int32 });
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginUserSN", Value = _CurrentLoingObject.CurrentUser.F_SN });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPosition", Value = _CurrentLoingObject.CurrentRole.F_SN });
-            DataSet returnDs = this.ExecProceureRetrunList("USP_ReloadFunc", Parms, out ExecResult, null, true);
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginResult", DbType = System.Data.DbType.Int32, Direction = ParameterDirection.Output });
+            DataSet returnDs = this.ExecProceureRetrunList("USP_CheckUserLogin", Parms, out ExecResult, null, false);
+            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[Parms.Count - 1].Value);
+            
             _CurrentLoingObject.CurrentFuncs.Clear();
             _CurrentLoingObject.CurrentFuncs = null;
-            if (!String.IsNullOrEmpty(FuncState))
-            {
-                _CurrentLoingObject.CurrentFuncs = this.ToList<T_SYS_Function>(returnDs.Tables[0]).Where(x => x.F_State == Convert.ToInt32(FuncState)).ToList();
-            }
-            else
-            {
-                _CurrentLoingObject.CurrentFuncs = this.ToList<T_SYS_Function>(returnDs.Tables[0]);
-            }
+            _CurrentLoingObject.CurrentFuncs = this.ToList<T_SYS_Function>(returnDs.Tables[0]);
+
             _CurrentLoingObject.CurrentFuncsRight.Clear();
             _CurrentLoingObject.CurrentFuncsRight = null;
             _CurrentLoingObject.CurrentFuncsRight = this.ToList<T_SYS_FunctionRight>(returnDs.Tables[1]);
-            return Convert.ToInt32(Parms[0].Value);
+
+            return (Int32)CheckResult;
         }
 
 
@@ -73,10 +74,12 @@ namespace BLL.SYS
             Parms.Add(new SqlParameter() { ParameterName = "@PlatformType", Value = PlatformType, DbType = System.Data.DbType.Int32 });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginName", Value = tUserName });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPWD", Value = tUserPWD });
+            Parms.Add(new SqlParameter() { ParameterName = "@IsReloadFunc", Value = 0,DbType=System.Data.DbType.Int32 });
+            Parms.Add(new SqlParameter() { ParameterName = "@LoginUserSN", Value = "" });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginPosition", Value = ChooseDeptid });
             Parms.Add(new SqlParameter() { ParameterName = "@LoginResult", DbType = System.Data.DbType.Int32, Direction = ParameterDirection.Output });
             DataSet returnDs = this.ExecProceureRetrunList("USP_CheckUserLogin", Parms, out ExecResult, null, false);
-            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[4].Value);
+            LoginReulst CheckResult = (LoginReulst)Convert.ToInt32(Parms[Parms.Count -1].Value);
             currentloginobj = new CurrentLoginObject();
             ChoosePositionSource = null;
             switch (CheckResult)
