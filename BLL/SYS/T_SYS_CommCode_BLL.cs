@@ -13,7 +13,7 @@ namespace BLL.SYS
         public T_SYS_CommCode_BLL()
         {
             ///业务对象初始化SQL
-            this.SQLString = @"Select * , dbo.FN_GetSPY(F_Name) AS F_PYName FROM T_SYS_CommCode";
+            this.SQLString = @"Select * , dbo.FN_GetSPY(F_Name) AS F_FilterKey FROM T_SYS_CommCode";
             //默认拉取逻辑未删除数据
             this.WhereStr = "F_IsDel=1";
             //默认排序为创建时间倒序

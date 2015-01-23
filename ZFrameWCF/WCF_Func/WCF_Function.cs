@@ -31,7 +31,7 @@ namespace ZFrameWCF
 
         [WebGet]
         [OperationContract]
-        public Stream SAVE_Single_SYS_Function(String PostEntity)
+        public Stream SAVE_Function(String PostEntity)
         {
             return CommFuncAction(delegate()
             {

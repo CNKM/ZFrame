@@ -77,7 +77,7 @@
                 CurrentEntity.F_State = $("#ck").prop("checked") ? 1 : 0;
                 var PostArrar = [];
                 PostArrar[0] = CurrentEntity;
-                AjaxHelper.CallFunction("SAVE_Single_SYS_Function", PostValue = { PostEntity: JSON.stringify(PostArrar) }, false,
+                AjaxHelper.CallFunction("SAVE_Function", PostValue = { PostEntity: JSON.stringify(PostArrar) }, false,
                     function (d) {
                         if (d.Code == 1) {
                             msgbox.info("保存成功！");

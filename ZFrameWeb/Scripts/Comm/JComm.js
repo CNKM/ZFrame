@@ -144,7 +144,7 @@ function RegTreeFilter() {
                 var data = $.data(target, 'tree').data;
                 var ids = {};
                 forNodes(data, function (node) {
-                    if (node.attributes[6].Value.toLowerCase().indexOf(text.toLowerCase()) == -1) {
+                    if (node.attributes[node.attributes.length -1].Value.toLowerCase().indexOf(text.toLowerCase()) == -1) {
                         $('#' + node.domId).hide();
                     } else {
                         $('#' + node.domId).show();
