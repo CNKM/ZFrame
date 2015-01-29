@@ -47,20 +47,15 @@
             });
         }
         $(function () {
-            var iconslib = [];
-            for (var i = 0; i < fuguelib.length ; i++) {
-                iconslib[i] = { id: fuguelib[i], text: fuguelib[i] };
-            }
+            //var iconslib = [];
+            //for (var i = 0; i < fungueLibs.length ; i++) {
+            //    iconslib[i] = { id: fuguelib[i], text: fuguelib[i] };
+            //}
             $("#nodeIcon").combobox({
-                data: iconslib,
+                data: fungueLibs,
                 formatter: function (row) {
-                    //var s = "<div>"+
-                    //            "<div class=' " + row.text + "'></div>"+
-                    //            "<div>"+row.text+"</div>"+
-                    //        "</div>";
-                    var s = '<span style="font-weight:bold">' + row.text + '</span><br/>' +
-                    '<span class="'+row.text+'"></span>';
-                    //var s = "<span class='" + row.id + "'>" + row.text+ "</span>"
+                    var CurrentImageURL = GetCurrentURl() + row.icon.ImageSrc;
+                    return '<img class="item-img" src="' + CurrentImageURL  + '"/><span class="item-text">' + row.icon.Name + '</span>';
                     return s;
                 }
             });
