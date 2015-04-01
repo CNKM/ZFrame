@@ -28,7 +28,6 @@ namespace ZFrameWCF
         }
 
 
-
         [WebGet]
         [OperationContract]
         public Stream SAVE_Function(String PostEntity)

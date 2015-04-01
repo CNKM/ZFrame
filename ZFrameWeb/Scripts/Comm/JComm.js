@@ -64,6 +64,12 @@ var msgbox = {
 };
 
 //获取数据行
+var GetDataGridSelection=function(dataGrid) {
+    var selectedRows = [];
+    var rows = dataGrid.datagrid('getSelections');
+    return rows;
+}
+
 var GridJsonRows = function (data) {
     if (data.d != null) {
         var rv = JSON.parse(data.d);
@@ -166,7 +172,6 @@ function RegTreeFilter() {
         }
     });
 }
-
 var InitTreeWithFilter = function (treecontrol, treefilter, nodeclickcallback, source,tipsIndex) {
     RegTreeFilter();
     treecontrol.tree({
@@ -206,8 +211,6 @@ var InitTreeWithFilter = function (treecontrol, treefilter, nodeclickcallback, s
     });
 
 }
-
-
 var GetBrowerVersion = function () {
     var userAgent = navigator.userAgent,
     rMsie = /(msie\s|trident.*rv:)([\w.]+)/,
@@ -253,6 +256,7 @@ var GetBrowerVersion = function () {
     }
     return browserinfo;
 }
+
 Array.prototype.GetValueByKey = function (SearckKey) {
      for (var i = 0; i < this.length; i++) {
          if (SearckKey == this[i].Key) {

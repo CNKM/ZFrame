@@ -4020,7 +4020,9 @@
     <Content Include="Views\Portal.aspx" />
     <Content Include="Views\SYS\View_SYS_Function.aspx" />
     <Content Include="Views\SYS\View_SYS_UserInfo.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
