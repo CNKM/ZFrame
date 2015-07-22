@@ -641,6 +641,9 @@ namespace ZFrameCore.Common
 
         [System.ComponentModel.Description("上传参数错误")]
         POSTERROR = -4,
+
+        [System.ComponentModel.Description("执行错误")]
+        EXECERROR = -5,
     }
 
     /// <summary>

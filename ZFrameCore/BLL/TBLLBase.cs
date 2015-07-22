@@ -472,6 +472,43 @@ namespace ZFrameCore.BLL
         }
         #endregion
 
+        #region 事务处理
+        /// <summary>
+        /// 事务中执行指定方法
+        /// </summary>
+        /// <param name="DelegateMethod">委托方法名</param>
+        /// <param name="ErrorMessage">错误信息</param>
+        /// <returns>执行成功标记 0 成功 -1 失败 失败后自动回滚</returns>
+        public virtual Int32 TransactionDo(Action<SqlTransaction, Object> DelegateMethod, Object Arg, out String ErrorMessage)
+        {
+            using (SqlConnection connection = new SqlConnection(ZFrameDAL.TConnConfig.SQLConnStr))
+            {
+                connection.Open();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction();
+                try
+                {
+
+                    DelegateMethod(transaction, Arg);
+                    transaction.Commit();
+                    ErrorMessage = "";
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    ErrorMessage = ex.Message;
+                    return -1;
+                }
+                finally
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+        }
+        #endregion
         #region 对象列表容器
         List<EntityObjectType> _EntityList;
         /// <summary>
