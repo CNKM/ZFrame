@@ -9,11 +9,11 @@ namespace Entity.SYS
     {
           #region 数据库字段对应
           
-          private string _F_SN;
+          private Guid _F_SN;
         
           /// <summary>
            /// </summary>
-          public string F_SN{get{return _F_SN;}set{ if(_F_SN!=value){_F_SN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_SN");}}}
+          public Guid F_SN {get{return _F_SN;}set{ if(_F_SN!=value){_F_SN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_SN");}}}
           
           private string _F_UID;
         

@@ -14,13 +14,14 @@
     <RootNamespace>ZFrameWeb</RootNamespace>
     <AssemblyName>ZFrameWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -4108,7 +4109,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52448</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/ZFrameWeb</IISUrl>
+          <IISUrl>http://localhost:52448/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
