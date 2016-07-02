@@ -9,17 +9,17 @@ namespace Entity.SYS
     {
           #region 数据库字段对应
           
-          private string _F_SN;
+          private Guid _F_SN;
         
           /// <summary>
            /// </summary>
-          public string F_SN{get{return _F_SN;}set{ if(_F_SN!=value){_F_SN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_SN");}}}
+          public Guid F_SN {get{return _F_SN;}set{ if(_F_SN!=value){_F_SN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_SN");}}}
           
-          private string _F_UserSN;
+          private Guid _F_UserSN;
         
           /// <summary>
            /// </summary>
-          public string F_UserSN{get{return _F_UserSN;}set{ if(_F_UserSN!=value){_F_UserSN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_UserSN");}}}
+          public Guid F_UserSN {get{return _F_UserSN;}set{ if(_F_UserSN!=value){_F_UserSN=value;if(SendNotifyProperty)this.SendPropertyChanged("F_UserSN");}}}
           
           private DateTime? _F_LoginDateTime;
         

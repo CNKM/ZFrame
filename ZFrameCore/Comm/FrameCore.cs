@@ -76,9 +76,6 @@ namespace ZFrameCore.Common
 
             public static DataTableEntityBuilder<T> CreateBuilder(DataRow dr)
             {
-
-
-
                 DataTableEntityBuilder<T> dynamicBuilder = new DataTableEntityBuilder<T>();
                 DynamicMethod method = new DynamicMethod("DynamicCreateEntity", typeof(T), new Type[] { typeof(DataRow) }, typeof(T), true);
                 ILGenerator generator = method.GetILGenerator();

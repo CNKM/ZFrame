@@ -65,11 +65,11 @@ namespace Entity.SYS
         /// </summary>
         public bool? F_IsDel { get { return _F_IsDel; } set { if (_F_IsDel != value) { _F_IsDel = value; } } }
 
-        private string _F_Creator;
+        private Guid _F_Creator;
 
         /// <summary>创建人
         /// </summary>
-        public string F_Creator { get { return _F_Creator; } set { if (_F_Creator != value) { _F_Creator = value; } } }
+        public Guid F_Creator { get { return _F_Creator; } set { if (_F_Creator != value) { _F_Creator = value; } } }
 
         private DateTime? _F_CreateDate;
 
@@ -77,11 +77,11 @@ namespace Entity.SYS
         /// </summary>
         public DateTime? F_CreateDate { get { return _F_CreateDate; } set { if (_F_CreateDate != value) { _F_CreateDate = value; } } }
 
-        private string _F_Updater;
+        private Guid _F_Updater;
 
         /// <summary>修改人
         /// </summary>
-        public string F_Updater { get { return _F_Updater; } set { if (_F_Updater != value) { _F_Updater = value; } } }
+        public Guid F_Updater { get { return _F_Updater; } set { if (_F_Updater != value) { _F_Updater = value; } } }
 
         private DateTime? _F_UpdateDate;
 

@@ -7,9 +7,9 @@ using ZFrameCore.Common;
 
 namespace ZFrameCore.Entity
 {
-    public class TEntityTree<T>:TEntityBase where T:TEntityBase
+    public class TEntityTree<T> : TEntityBase where T  : TEntityBase 
     {
-        T Parent;
+        T _Parent;
         List<T> _Children;
         [PropertyType(EntityPropertyType.DesignField)]
         public List<T> Children
@@ -18,13 +18,29 @@ namespace ZFrameCore.Entity
             set { _Children = value; }
 
         }
+
+        [PropertyType(EntityPropertyType.DesignField)]
+        public T Parent
+        {
+            get
+            {
+                return _Parent;
+            }
+
+            set
+            {
+                _Parent = value;
+            }
+        }
+
         public TEntityTree()
         {
-            Parent = null;
+            
+            this._Parent = null;
             this._Children = new List<T>();
         }
 
 
-    
+
     }
 }

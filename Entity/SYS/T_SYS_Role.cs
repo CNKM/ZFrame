@@ -10,11 +10,11 @@ namespace Entity.SYS
     {
         #region 数据库字段对应
 
-        private string _F_SN;
+        private Guid _F_SN;
 
         /// <summary>
         /// </summary>
-        public string F_SN { get { return _F_SN; } set { if (_F_SN != value) { _F_SN = value; if (SendNotifyProperty)this.SendPropertyChanged("F_SN"); } } }
+        public Guid F_SN { get { return _F_SN; } set { if (_F_SN != value) { _F_SN = value; if (SendNotifyProperty)this.SendPropertyChanged("F_SN"); } } }
 
         private string _F_UID;
 
@@ -22,11 +22,11 @@ namespace Entity.SYS
         /// </summary>
         public string F_UID { get { return _F_UID; } set { if (_F_UID != value) { _F_UID = value; if (SendNotifyProperty)this.SendPropertyChanged("F_UID"); } } }
 
-        private string _F_ParentSN;
+        private Guid _F_ParentSN;
 
         /// <summary>
         /// </summary>
-        public string F_ParentSN { get { return _F_ParentSN; } set { if (_F_ParentSN != value) { _F_ParentSN = value; if (SendNotifyProperty)this.SendPropertyChanged("F_ParentSN"); } } }
+        public Guid F_ParentSN { get { return _F_ParentSN; } set { if (_F_ParentSN != value) { _F_ParentSN = value; if (SendNotifyProperty)this.SendPropertyChanged("F_ParentSN"); } } }
 
         private string _F_Name;
 
@@ -52,11 +52,11 @@ namespace Entity.SYS
         /// </summary>
         public bool? F_IsDel { get { return _F_IsDel; } set { if (_F_IsDel != value) { _F_IsDel = value; if (SendNotifyProperty)this.SendPropertyChanged("F_IsDel"); } } }
 
-        private string _F_Creator;
+        private Guid _F_Creator;
 
         /// <summary>
         /// </summary>
-        public string F_Creator { get { return _F_Creator; } set { if (_F_Creator != value) { _F_Creator = value; if (SendNotifyProperty)this.SendPropertyChanged("F_Creator"); } } }
+        public Guid F_Creator { get { return _F_Creator; } set { if (_F_Creator != value) { _F_Creator = value; if (SendNotifyProperty)this.SendPropertyChanged("F_Creator"); } } }
 
         private DateTime? _F_CreateDate;
 
@@ -64,11 +64,11 @@ namespace Entity.SYS
         /// </summary>
         public DateTime? F_CreateDate { get { return _F_CreateDate; } set { if (_F_CreateDate != value) { _F_CreateDate = value; if (SendNotifyProperty)this.SendPropertyChanged("F_CreateDate"); } } }
 
-        private string _F_Updater;
+        private Guid _F_Updater;
 
         /// <summary>
         /// </summary>
-        public string F_Updater { get { return _F_Updater; } set { if (_F_Updater != value) { _F_Updater = value; if (SendNotifyProperty)this.SendPropertyChanged("F_Updater"); } } }
+        public Guid F_Updater { get { return _F_Updater; } set { if (_F_Updater != value) { _F_Updater = value; if (SendNotifyProperty)this.SendPropertyChanged("F_Updater"); } } }
 
         private DateTime? _F_UpdateDate;
 
@@ -88,9 +88,9 @@ namespace Entity.SYS
             set { _F_DeptName = value; }
         }
         
-        String _F_DeptSN;
+        Guid _F_DeptSN;
          [PropertyType(EntityPropertyType.DesignField)]
-        public String F_DeptSN
+        public Guid F_DeptSN
         {
             get { return _F_DeptSN; }
             set { _F_DeptSN = value; }

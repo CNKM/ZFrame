@@ -43,7 +43,6 @@ namespace ZFrameCore.Entity
             {
                 _F_Checked = value;
                 this.SendPropertyChanged("F_Checked");
-
             }
         }
         /// <summary>
